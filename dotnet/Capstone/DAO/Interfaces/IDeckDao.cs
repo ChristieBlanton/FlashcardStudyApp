@@ -12,6 +12,8 @@ namespace Capstone.DAO.Interfaces
         Deck AddDeck(int userId, string deckName);
 
         Deck GetDeck(int deckId);
+
+        List<Deck> MyDecks(int userId);
        
     }
 }
