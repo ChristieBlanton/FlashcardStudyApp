@@ -24,11 +24,22 @@ CREATE TABLE users (
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 )
 
+CREATE TABLE decks (
+	deck_id int IDENTITY (101, 1) NOT NULL,
+	user_id int NOT NULL,
+	deck_name varchar(50) NOT NULL,
+	CONSTRAINT PK_deck PRIMARY KEY (deck_id),
+	CONSTRAINT FK_deck FOREIGN KEY (user_id) REFERENCES users(user_id)
+)
+
+
 --populate default data
 -- user/password
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
 
 -- admin/password
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('admin','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
+
+INSERT INTO decks (user_id, deck_name) VALUES (1, 'Test Deck');
 
 GO
