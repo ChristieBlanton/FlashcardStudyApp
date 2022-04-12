@@ -13,9 +13,7 @@ export default {
   data() {
     return {
       decks: [],
-      currentUser: {
-          userId: this.$store.state.user.userId,
-      }
+      
     };
   },
   methods: {
@@ -24,17 +22,27 @@ export default {
     },
   },
   created() {
-      console.log(this.currentUser);
 
-    deckService.myDecks(this.currentUser).then((response) => {this.decks = response.data});
+    deckService.myDecks(this.$store.state.user.userId).then((response) => {this.decks = response.data});
   },
 };
 </script>
 
 <style>
 .deck {
-  width: 100px;
-  height: 100px;
+  width: 350px;
+  height: 200px;
   background-color: aquamarine;
+  box-shadow: -2px 3px 5px lightgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+}
+.list-decks{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 </style>

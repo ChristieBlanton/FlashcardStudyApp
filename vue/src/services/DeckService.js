@@ -5,7 +5,7 @@ export default {
   addDeck(deck) {
     return axios.post('/deck', deck)
   },
-  myDecks(user){
-      return axios.get('/deck/mydecks', user)
+  myDecks(id){
+      return axios.get(`/deck/mydecks/${id}`)
   },
 }
