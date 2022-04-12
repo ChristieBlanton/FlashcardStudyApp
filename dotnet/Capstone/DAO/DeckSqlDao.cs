@@ -20,6 +20,7 @@ namespace Capstone.DAO
         string sqlAddDeck = "INSERT INTO deck (user_id, deck_name) OUTPUT inserted.deck_id VALUES(@user_id, @deck_name) ";
         string sqlGetDeck = "SELECT * FROM deck WHERE deck_id = @deck_id";
         string sqlMyDecks = "SELECT * FROM deck WHERE user_id = @user_id";
+        string sqlUpdateDeck = "UPDATE deck SET deck_name = @deck_name, deck_description = @deck_description WHERE deck_id = @deck_id AND isPublic = 0";
         public Deck AddDeck (int userId, string deckName)
         {
             int deckId = -1;
@@ -32,6 +33,7 @@ namespace Capstone.DAO
                     SqlCommand cmd = new SqlCommand(sqlAddDeck, conn);
                     cmd.Parameters.AddWithValue("@user_id", userId);
                     cmd.Parameters.AddWithValue("@deck_name", deckName);
+                   //cmd.Parameters.AddWithValue("@deck_description", deckDescription);
                     deckId = Convert.ToInt32(cmd.ExecuteScalar());
                 }
             }
@@ -100,13 +102,40 @@ namespace Capstone.DAO
             return decks;
         }
 
+        public Deck UpdateDeck(int deckId, string deckName, string deckDescription)
+        {
+ 
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sqlUpdateDeck, conn);
+                    cmd.Parameters.AddWithValue("@deck_id", deckId);
+                    cmd.Parameters.AddWithValue("@deck_name", deckName);
+                    cmd.Parameters.AddWithValue("@deck_description", deckDescription);
+
+                    cmd.ExecuteNonQuery();
+
+           
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            return GetDeck(deckId);
+        }
+
         private Deck GetDeckFromReader(SqlDataReader reader)
         {
             Deck d = new Deck()
             {
                 DeckId = Convert.ToInt32(reader["deck_id"]),
                 UserId = Convert.ToInt32(reader["user_id"]),
-                DeckName = Convert.ToString(reader["deck_name"])
+                DeckName = Convert.ToString(reader["deck_name"]),
+                DeckDescription = Convert.ToString(reader["deck_description"])
             };
             return d;
         }

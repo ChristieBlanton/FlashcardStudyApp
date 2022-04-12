@@ -14,6 +14,7 @@ namespace Capstone.DAO.Interfaces
         Deck GetDeck(int deckId);
 
         List<Deck> MyDecks(int userId);
-       
+        public Deck UpdateDeck(int deckId, string deckName, string deckDescription);
+
     }
 }

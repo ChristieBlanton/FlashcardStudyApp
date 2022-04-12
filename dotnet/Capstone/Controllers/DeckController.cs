@@ -63,6 +63,25 @@ namespace Capstone.Controllers
             return result;
         }
 
+        [HttpPut("mydecks/{id}")]
+        public ActionResult<Deck> UpdateDeck(Deck updatedDeck)
+        {
+            ActionResult result;
+
+            Deck deck = deckDao.UpdateDeck(updatedDeck.DeckId, updatedDeck.DeckName, updatedDeck.DeckDescription );
+
+            if(deck != null)
+            {
+                result = Ok(deck);
+            }
+            else
+            {
+                result = BadRequest(new { message = "An error occured. Unable to update deck." });
+            }
+
+            return result;
+        }
+
         private int? GetCurrentUserId()
         {
             string userId = User.FindFirst("sub")?.Value;

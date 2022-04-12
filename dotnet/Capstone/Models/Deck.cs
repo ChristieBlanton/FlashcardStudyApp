@@ -10,5 +10,7 @@ namespace Capstone.Models
         public int DeckId { get; set; }
         public int UserId { get; set; }
         public string DeckName { get; set; }
+        public string DeckDescription { get; set; }
+        public bool isPublic { get; set; }
     }
 }
