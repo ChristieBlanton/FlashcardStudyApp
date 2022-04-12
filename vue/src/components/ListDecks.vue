@@ -1,8 +1,8 @@
 <template>
   <div class="list-decks">
-    <router-link class="list-decks" v-bind:to="{name: 'deckdetails'}"><div class="deck teal-btn" v-for="deck in decks" v-bind:key="deck.deckId">
+    <div class="deck teal-btn" v-for="deck in decks" v-bind:key="deck.deckId" v-on:click="$router.push({name: 'deck', params: {deckId: deck.deckId}})">
       <h3>{{ deck.deckName }}</h3>
-    </div></router-link>
+    </div>
   </div>
 </template>
 
@@ -46,5 +46,5 @@ a:hover{
   text-decoration: none;
 
 }
-
+/* <router-link class="list-decks" v-bind:to="{name: 'deck', params: {deckId: deck.deckId}}"> */
 </style>

@@ -30,9 +30,11 @@ export default{
     methods: {
         addDeck(){
             
-            deckService.addDeck(this.deck);
-            this.deck.deckName = "";
-            this.isAddDeckVisible = !this.isAddDeckVisible;
+            deckService.addDeck(this.deck).then(() => {
+                this.deck.deckName = "";
+                this.isAddDeckVisible = !this.isAddDeckVisible;
+                location.reload();
+            });
         }
     },
 }

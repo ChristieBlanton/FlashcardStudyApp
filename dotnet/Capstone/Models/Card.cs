@@ -12,6 +12,7 @@ namespace Capstone.Models
         public string CardFront { get; set; }
         public string CardBack { get; set; }
         public int UserId { get; set; }
+        public int DeckId { get; set; }
 
     }
 }

@@ -25,7 +25,7 @@ namespace Capstone.Controllers
         {
             ActionResult result;
 
-            Card card = cardDao.AddCard(newCard.CardFront, newCard.CardBack, newCard.UserId);
+            Card card = cardDao.AddCard(newCard.CardFront, newCard.CardBack, newCard.UserId, newCard.DeckId);
 
             if(card != null)
             {
@@ -39,8 +39,25 @@ namespace Capstone.Controllers
             return result;
         }
 
-      
+        [HttpGet("{deckId}")]
+        public ActionResult<List<Card>> GetCardsInDeck(int deckId)
+        {
+            ActionResult result;
 
-        
+            List<Card> cards = cardDao.GetCardsInDeck(deckId);
+
+            if (cards != null)
+            {
+                result = Ok(cards);
+            }
+            else
+            {
+                result = BadRequest(new { message = "Unable to retrieve cards." });
+            }
+
+            return result;
+        }
+
+
     }
 }

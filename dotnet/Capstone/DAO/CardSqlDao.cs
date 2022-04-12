@@ -17,9 +17,11 @@ namespace Capstone.DAO
             connectionString = dbConnectionString;
         }
 
-        string sqlAddCard = "INSERT INTO card (card_front, card_back, user_id) OUTPUT inserted.card_id VALUES(@card_front, @card_back, @user_id)";
+        string sqlAddCard = "INSERT INTO card (card_front, card_back, user_id) OUTPUT inserted.card_id VALUES(@card_front, @card_back, @user_id);";
+        string sqlAddCardToDeck = "INSERT INTO card_deck (card_id, deck_id) VALUES (@card_id, @deck_id);";
         string sqlGetCard = "SELECT * FROM card WHERE card_id = @card_id";
-        public Card AddCard(string cardFront, string cardBack, int userId)
+        string sqlGetCardsInDeck = "SELECT * FROM card WHERE card_id IN (SELECT card_id FROM card_deck WHERE deck_id = @deck_id);";
+        public Card AddCard(string cardFront, string cardBack, int userId, int deckId)
         {
             int cardId = -1;
 
@@ -40,8 +42,61 @@ namespace Capstone.DAO
             {
                 throw;
             }
+            AddCardToDeck(cardId, deckId);
 
             return GetCard(cardId);
+        }
+
+        public bool AddCardToDeck(int cardId, int deckId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sqlAddCardToDeck, conn);
+                    cmd.Parameters.AddWithValue("@card_id", cardId);
+                    cmd.Parameters.AddWithValue("@deck_id", deckId);
+                    
+                    cmd.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            
+        }
+
+        public List<Card> GetCardsInDeck(int deckId)
+        {
+            List<Card> cards = new List<Card>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sqlGetCardsInDeck, conn);
+                    cmd.Parameters.AddWithValue("@deck_id", deckId);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Card card = GetCardFromReader(reader);
+                        cards.Add(card);
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            return cards;
         }
 
         public Card GetCard(int cardId)
