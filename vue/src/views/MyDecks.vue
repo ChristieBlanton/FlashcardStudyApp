@@ -1,7 +1,7 @@
 <template>
     <div class="my-decks">
-        <add-deck  />
-        <list-decks />
+        <add-deck class="add-deck" />
+        <list-decks class="list-decks" />
     </div>
 </template>
 
@@ -20,3 +20,7 @@ export default {
     },
 }
 </script>
+
+<style>
+
+</style>
