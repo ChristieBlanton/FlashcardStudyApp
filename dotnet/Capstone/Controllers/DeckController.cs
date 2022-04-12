@@ -37,5 +37,38 @@ namespace Capstone.Controllers
             }
             return result;
         }
+
+        [HttpGet("mydecks/{id}")]
+        public ActionResult<List<Deck>> MyDecks(int id)
+        {
+            //int? userId = GetCurrentUserId();
+            //if (!userId.HasValue)
+            //{
+            //    return BadRequest();
+            //}
+
+            ActionResult result;
+
+            List<Deck> myDecks = deckDao.MyDecks(id);
+
+            if (myDecks != null)
+            {
+                result = Ok(myDecks);
+            }
+            else
+            {
+                result = BadRequest(new { message = "Unable to retrieve decks." });
+            }
+
+            return result;
+        }
+
+        private int? GetCurrentUserId()
+        {
+            string userId = User.FindFirst("sub")?.Value;
+            if (string.IsNullOrWhiteSpace(userId)) return null;
+            int.TryParse(userId, out int userIdInt);
+            return userIdInt;
+        }
     }
 }

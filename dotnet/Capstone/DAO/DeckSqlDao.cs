@@ -19,6 +19,7 @@ namespace Capstone.DAO
 
         string sqlAddDeck = "INSERT INTO decks (user_id, deck_name) OUTPUT inserted.deck_id VALUES(@user_id, @deck_name) ";
         string sqlGetDeck = "SELECT * FROM decks WHERE deck_id = @deck_id";
+        string sqlMyDecks = "SELECT * FROM decks WHERE user_id = @user_id";
         public Deck AddDeck (int userId, string deckName)
         {
             int deckId = -1;
@@ -68,6 +69,35 @@ namespace Capstone.DAO
                 throw;
             }
             return deck;
+        }
+
+        public List<Deck> MyDecks(int userId)
+        {
+            List<Deck> decks = new List<Deck>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sqlMyDecks, conn);
+                    cmd.Parameters.AddWithValue("@user_id", userId);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Deck deck = GetDeckFromReader(reader);
+                        decks.Add(deck);
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            return decks;
         }
 
         private Deck GetDeckFromReader(SqlDataReader reader)

@@ -8,6 +8,7 @@ export default {
 
   register(user) {
     return axios.post('login/register', user)
-  }
+  },
+
 
 }
