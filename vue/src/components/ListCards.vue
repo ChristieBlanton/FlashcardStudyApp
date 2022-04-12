@@ -2,7 +2,7 @@
   <div class="list-cards">
     <div class="card teal-btn" v-for="card in cards"  v-bind:key="card.cardId" v-on:click="toggleFlip(card.cardId)">
       <h3 v-if="!showBack.includes(card.cardId)">{{ card.cardFront }}</h3>
-      <h3 v-else>{{ card.cardBack }}</h3>
+      <h4 v-else>{{ card.cardBack }}</h4>
     </div>
   </div>
 </template>

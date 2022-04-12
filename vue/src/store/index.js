@@ -19,7 +19,11 @@ if (currentToken != null) {
 export default new Vuex.Store({
   state: {
     token: currentToken || '',
-    user: currentUser || {}
+    user: currentUser || {},
+    editDeck: {
+      deckId: 0,
+      deckName: ""
+    },
   },
 
   mutations: {
@@ -38,6 +42,10 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+    EDIT_DECK(state, deck) {
+      state.editDeck.deckId = deck.deckId;
+      state.editDeck.deckName = deck.deckName;
     }
   }
 })
