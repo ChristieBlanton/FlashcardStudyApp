@@ -4,7 +4,7 @@
 
         <div class="add-card-form"  v-if="isAddCardVisible">
             <input type="text" name="card-front" id="card-front" placeholder="Card Front" v-model="card.cardFront">
-            <input type="text" name="card-back" id="card-back" placeholder="Card Back" v-model="card.cardBack">
+            <textarea rows="5" cols="40" name="card-back" id="card-back" placeholder="Card Back" v-model="card.cardBack"></textarea>
             <div class="form-btn">
                 <button class="teal-btn" v-on:click="addCard()">Submit</button>
                 <button class="teal-btn" v-on:click="isAddCardVisible = false">Cancel</button>

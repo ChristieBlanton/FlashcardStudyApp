@@ -8,6 +8,7 @@ import store from '../store/index'
 import MyDecks from '../views/MyDecks.vue'
 import Index from '../views/Index.vue'
 import Deck from '../views/Deck.vue'
+import EditDeck from '../components/EditDeck.vue'
 
 Vue.use(Router)
 
@@ -76,6 +77,14 @@ const router = new Router({
       path: '/mydecks/:deckId',
       name: "deck",
       component: Deck,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/editdeck',
+      name: "editdeck",
+      component: EditDeck,
       meta: {
         requiresAuth: false
       }
