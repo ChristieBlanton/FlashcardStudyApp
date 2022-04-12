@@ -38,8 +38,8 @@ namespace Capstone.Controllers
             return result;
         }
 
-        [HttpGet("mydecks/{id}")]
-        public ActionResult<List<Deck>> MyDecks(int id)
+        [HttpGet("mydecks")]
+        public ActionResult<List<Deck>> MyDecks(User user)
         {
             //int? userId = GetCurrentUserId();
             //if (!userId.HasValue)
@@ -49,7 +49,7 @@ namespace Capstone.Controllers
 
             ActionResult result;
 
-            List<Deck> myDecks = deckDao.MyDecks(id);
+            List<Deck> myDecks = deckDao.MyDecks(user.UserId);
 
             if (myDecks != null)
             {

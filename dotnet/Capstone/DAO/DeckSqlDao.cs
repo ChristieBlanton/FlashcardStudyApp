@@ -17,9 +17,9 @@ namespace Capstone.DAO
             connectionString = dbConnectionString;
         }
 
-        string sqlAddDeck = "INSERT INTO decks (user_id, deck_name) OUTPUT inserted.deck_id VALUES(@user_id, @deck_name) ";
-        string sqlGetDeck = "SELECT * FROM decks WHERE deck_id = @deck_id";
-        string sqlMyDecks = "SELECT * FROM decks WHERE user_id = @user_id";
+        string sqlAddDeck = "INSERT INTO deck (user_id, deck_name) OUTPUT inserted.deck_id VALUES(@user_id, @deck_name) ";
+        string sqlGetDeck = "SELECT * FROM deck WHERE deck_id = @deck_id";
+        string sqlMyDecks = "SELECT * FROM deck WHERE user_id = @user_id";
         public Deck AddDeck (int userId, string deckName)
         {
             int deckId = -1;
