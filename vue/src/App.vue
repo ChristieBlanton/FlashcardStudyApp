@@ -28,9 +28,24 @@
   background-color: whitesmoke;
   width: 80%;
   margin: auto;
+  padding: 30px;
+  box-shadow: 0 3px 5px lightgray;
 }
 .login, .register{
   padding: 0 15px 0 15px;
 }
-
+* > .teal-btn{
+  background-color: aquamarine;
+  border: none;
+  background-color: aquamarine;
+  box-shadow: -2px 3px 5px lightgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: black;
+}
+* > .teal-btn:hover{
+  background-color: rgb(70, 233, 178);
+}
 </style>
