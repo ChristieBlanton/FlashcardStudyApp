@@ -17,5 +17,7 @@ namespace Capstone.DAO.Interfaces
         public Deck UpdateDeck(int deckId, string deckName, string deckDescription);
         public bool DeleteDeck(int deckId);
 
+        
+
     }
 }

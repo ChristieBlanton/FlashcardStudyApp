@@ -20,6 +20,21 @@ namespace Capstone.Controllers
             deckDao = _deckDao;
         }
 
+        [HttpGet("{deckId}")]
+        public ActionResult<Deck> GetDeck(int deckId)
+        {
+            Deck deck = deckDao.GetDeck(deckId);
+
+            if (deck != null)
+            {
+                return Ok(deck);
+            }
+            else
+            {
+                return BadRequest(new { message = "Unable to retrieve deck." });
+            }
+        }
+
         [HttpPost]
         public ActionResult<Deck> AddDeck(Deck newDeck)
         {

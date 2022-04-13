@@ -10,5 +10,11 @@ export default {
   },
   editDeck(deck) {
     return axios.put('/deck/mydecks', deck)
+  },
+  deleteDeck(id){
+    return axios.delete(`/deck/mydecks/${id}`)
+  },
+  getDeck(deckId){
+    return axios.get(`/deck/${deckId}`)
   }
 }

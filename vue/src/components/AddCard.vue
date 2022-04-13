@@ -1,5 +1,6 @@
 <template>
     <div class="add-card">
+        
         <button class="new-card-btn teal-btn" v-on:click="isAddCardVisible = !isAddCardVisible" v-if="!isAddCardVisible">New Card</button>
 
         <div class="add-card-form"  v-if="isAddCardVisible">
@@ -22,6 +23,7 @@ export default{
     data(){
         return{
             isAddCardVisible: false,
+            deckDescription: '',
             card: {
                 cardFront: "",
                 cardBack: "",
@@ -42,6 +44,7 @@ export default{
             
         }
     },
+    
 }
 </script>
 

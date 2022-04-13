@@ -1,12 +1,17 @@
 <template>
   <div class="list-decks">
-    <div class="deck teal-btn" v-on:mouseover="currentdeck = deck.deckId" v-on:mouseleave="currentdeck = 0" v-for="deck in decks" v-bind:key="deck.deckId" v-on:click.self="$router.push({name: 'deck', params: {deckId: deck.deckId}})">
+    <div class="deck teal-btn" 
+      v-on:mouseover="currentdeck = deck.deckId" 
+      v-on:mouseleave="currentdeck = 0" 
+      v-for="deck in decks" 
+      v-bind:key="deck.deckId" 
+      v-on:click.self="viewDeck(deck)">
       <div class="hover-btn">
         <img class="edit" src="../assets/settings.svg" v-show="currentdeck == deck.deckId" v-on:click="editDeck(deck)" />
-        <img class="edit" src="../assets/close.svg" v-show="currentdeck == deck.deckId" v-on:click="editDeck(deck)" />
+        <img class="edit" src="../assets/close.svg" v-show="currentdeck == deck.deckId" v-on:click="deleteDeck(currentdeck)" />
 
       </div>
-      <h3 v-on:click.self="$router.push({name: 'deck', params: {deckId: deck.deckId}})">{{ deck.deckName }}</h3>
+      <h3 v-on:click.self="viewDeck(deck)">{{ deck.deckName }}</h3>
     </div>
   </div>
 </template>
@@ -26,12 +31,18 @@ export default {
     };
   },
   methods: {
-    getDecks() {
-      
+    viewDeck(deck){
+      this.$store.commit("EDIT_DECK", deck)
+      this.$router.push({name: 'deck', params: {deckId: deck.deckId}})
     },
     editDeck(deck) {
       this.$store.commit("EDIT_DECK", deck)
       this.$router.push({name: "editdeck"})
+    },
+    deleteDeck(id){
+      deckService.deleteDeck(id).then(() => {
+        location.reload()
+      });
     }
   },
   created() {

@@ -1,5 +1,6 @@
 <template>
     <div class="deck-details">
+        <deck-details />
         <add-card />
         <list-cards />
     </div>
@@ -8,11 +9,16 @@
 <script>
 import ListCards from '../components/ListCards.vue'
 import AddCard from '../components/AddCard.vue'
+import DeckDetails from '../components/DeckDetails.vue'
 export default {
     name: 'deck',
+    
     components: {
         AddCard,
-        ListCards
-    }
+        ListCards, 
+        DeckDetails,
+    },
+    
 }
 </script>
+
