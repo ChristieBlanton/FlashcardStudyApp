@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link class="home" v-bind:to="{ name: 'home' }">Home</router-link>
-      <router-link class="my-decks" v-bind:to="{ name: 'mydecks' }" v-if="$store.state.token != ''">My Decks</router-link>
+      <router-link class="my-decks-btn" v-bind:to="{ name: 'mydecks' }" v-if="$store.state.token != ''">My Decks</router-link>
       <router-link class="logout" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
       <router-link class="register" v-bind:to="{ name: 'register' }" v-if="$store.state.token == ''">Register</router-link>
       <router-link class="login" v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''">Login</router-link>
@@ -12,17 +12,24 @@
 </template>
 
 <style>
-
+html, body, #app{
+  height: 100%;
+}
+*{
+  font-family:sans-serif;
+}
 #nav{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   font-size: 2em;
   padding: 0 20px 0 20px;
   background-color: aquamarine;
+  
 }
 #nav a{
   text-decoration: none;
-
+  color: rgb(71, 71, 71);
+  font-weight: bold;
 }
 .main{
   background-color: whitesmoke;
@@ -31,8 +38,11 @@
   padding: 30px;
   box-shadow: 0 3px 5px lightgray;
 }
-.login, .register{
+.login, .register, .my-decks-btn, .logout{
   padding: 0 15px 0 15px;
+}
+.my-decks-btn, .home{
+  flex-grow: 1;
 }
 * > .teal-btn{
   background-color: aquamarine;
@@ -43,6 +53,7 @@
   align-items: center;
   flex-direction: column;
   color: black;
+  border-radius: 5px;
 }
 * > .teal-btn:hover{
   background-color: rgb(70, 233, 178);

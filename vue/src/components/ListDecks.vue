@@ -1,9 +1,12 @@
 <template>
   <div class="list-decks">
     <div class="deck teal-btn" v-on:mouseover="currentdeck = deck.deckId" v-on:mouseleave="currentdeck = 0" v-for="deck in decks" v-bind:key="deck.deckId" v-on:click.self="$router.push({name: 'deck', params: {deckId: deck.deckId}})">
+      <div class="hover-btn">
+        <img class="edit" src="../assets/settings.svg" v-show="currentdeck == deck.deckId" v-on:click="editDeck(deck)" />
+        <img class="edit" src="../assets/close.svg" v-show="currentdeck == deck.deckId" v-on:click="editDeck(deck)" />
+
+      </div>
       <h3 v-on:click.self="$router.push({name: 'deck', params: {deckId: deck.deckId}})">{{ deck.deckName }}</h3>
-      <button class="teal-btn" v-show="currentdeck == deck.deckId" v-on:click="editDeck(deck)" >Edit</button>
-      <button class="teal-btn" v-show="currentdeck == deck.deckId">Delete</button>
     </div>
   </div>
 </template>
@@ -42,7 +45,7 @@ export default {
 .deck {
   width: 350px;
   height: 200px;
-  
+  padding: 10px;
   
   
 }
@@ -52,6 +55,7 @@ button {
 .list-decks{
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
   margin-top: 40px;
 }
@@ -59,8 +63,17 @@ a:hover{
   text-decoration: none;
 
 }
+h3{
+  flex-grow: 1;
+}
 .hover-btn{
-  margin: 0px;
+  height: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.edit{
+  width: 40px;
 }
 
 
