@@ -25,7 +25,7 @@ namespace Capstone.Controllers
         {
             ActionResult result;
 
-            Card card = cardDao.AddCard(newCard.CardFront, newCard.CardBack, newCard.UserId, newCard.DeckId);
+            Card card = cardDao.AddCard(newCard.CardFront, newCard.CardBack, newCard.UserId, newCard.DeckId, newCard.Tags);
 
             if(card != null)
             {

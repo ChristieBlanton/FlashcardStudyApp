@@ -13,6 +13,6 @@ namespace Capstone.Models
         public string CardBack { get; set; }
         public int UserId { get; set; }
         public int DeckId { get; set; }
-
+        public string[] Tags { get; set; }
     }
 }
