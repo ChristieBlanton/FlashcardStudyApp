@@ -38,7 +38,7 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
     {
@@ -70,7 +70,7 @@ const router = new Router({
       name: "mydecks",
       component: MyDecks,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
     {
@@ -78,7 +78,7 @@ const router = new Router({
       name: "deck",
       component: Deck,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
     {
@@ -86,7 +86,7 @@ const router = new Router({
       name: "editdeck",
       component: EditDeck,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
   ]
