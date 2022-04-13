@@ -2,8 +2,8 @@
   <div class="list-decks">
     <div class="deck teal-btn" v-on:mouseover="currentdeck = deck.deckId" v-on:mouseleave="currentdeck = 0" v-for="deck in decks" v-bind:key="deck.deckId" v-on:click.self="$router.push({name: 'deck', params: {deckId: deck.deckId}})">
       <h3 v-on:click.self="$router.push({name: 'deck', params: {deckId: deck.deckId}})">{{ deck.deckName }}</h3>
-      <button v-show="currentdeck == deck.deckId" v-on:click="editDeck(deck)" class="hover-btn">Edit</button>
-      <button v-show="currentdeck == deck.deckId" class="hover-btn">Delete</button>
+      <button class="teal-btn" v-show="currentdeck == deck.deckId" v-on:click="editDeck(deck)" >Edit</button>
+      <button class="teal-btn" v-show="currentdeck == deck.deckId">Delete</button>
     </div>
   </div>
 </template>
@@ -45,6 +45,9 @@ export default {
   
   
   
+}
+button {
+  background-color: grey;
 }
 .list-decks{
   display: flex;

@@ -4,6 +4,7 @@
 
         <div class="add-deck-form" v-if="isAddDeckVisible">
             <input type="text" name="deck-name" id="deck-name" placeholder="Deck Name" v-model="deck.deckName">
+            <textarea rows="5" cols="40" name="deck-description" id="deck-description" placeholder="Deck Description" v-model="deck.deckDescription"></textarea>
             <div class="form-btn">
                 <button class="teal-btn" v-on:click="addDeck()">Submit</button>
                 <button class="teal-btn" v-on:click="isAddDeckVisible = false">Cancel</button>
@@ -23,6 +24,7 @@ export default{
             isAddDeckVisible: false,
             deck: {
                 deckName: "",
+                deckDescription: "",
                 userId: this.$store.state.user.userId,
             }
         }

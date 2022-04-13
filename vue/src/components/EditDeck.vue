@@ -4,9 +4,11 @@
         <div class="edit-deck-form">
             <label for="deck-name">Deck Name: </label>
             <input type="text" name="deck-name" id="deck-name" v-model="deck.deckName">
+            <label for="deck-description">Deck Description: </label>
+            <textarea rows="5" cols="40" name="deck-description" id="deck-description" v-model="deck.deckDescription"></textarea>
             <div class="form-btn">
                 <button class="teal-btn" v-on:click="editDeck()">Submit</button>
-                <button class="teal-btn" v-on:click="isAddDeckVisible = false">Cancel</button>
+                <button class="teal-btn" v-on:click="$router.push({name: 'mydecks'})">Cancel</button>
 
             </div>
         </div>
@@ -22,34 +24,38 @@ export default{
         return{
             isAddDeckVisible: false,
             deck: {
-                deckName: this.$store.state.editDeck.deckName,
-                
+                deckId: 0,
+                deckName: "",
+                deckDescription: ""
             }
         }
     },
     methods: {
         editDeck(){
             
-            deckService.addDeck(this.deck).then(() => {
-                this.deck.deckName = "";
-                this.isAddDeckVisible = !this.isAddDeckVisible;
-                location.reload();
+            deckService.editDeck(this.deck).then(() => {
+                this.$router.push({name: "mydecks"});
             });
         }
     },
+    created() {
+        this.deck.deckId = this.$store.state.editDeck.deckId
+        this.deck.deckName = this.$store.state.editDeck.deckName
+        this.deck.deckDescription = this.$store.state.editDeck.deckDescription
+    }
 }
 </script>
 
-<style>
+<style scoped>
 .new-deck-btn{
     height: 40px;
     width: 200px;
 }
-.add-deck{
+.edit-deck{
     display: flex;
     justify-content: center;
 }
-.add-deck-form{
+.edit-deck-form{
     display: flex;
     flex-direction: column;
 }

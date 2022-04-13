@@ -28,6 +28,8 @@ CREATE TABLE deck (
 	deck_id int IDENTITY (101, 1) NOT NULL,
 	user_id int NOT NULL,
 	deck_name varchar(50) NOT NULL,
+	deck_description varchar(100) NOT NULL,
+	isPublic bit DEFAULT(0) NOT NULL,
 	CONSTRAINT PK_deck PRIMARY KEY (deck_id),
 	CONSTRAINT FK_deck FOREIGN KEY (user_id) REFERENCES users(user_id)
 )
@@ -37,6 +39,7 @@ CREATE TABLE card (
 	card_front varchar(200) NOT NULL,
 	card_back varchar(200) NOT NULL,
 	user_id int NOT NULL,
+	isPublic bit DEFAULT(0) NOT NULL,
 	CONSTRAINT FK_card FOREIGN KEY (user_id) REFERENCES users(user_id),
 	CONSTRAINT PK_card PRIMARY KEY (card_id)
 )
@@ -67,12 +70,12 @@ CREATE TABLE card_deck(
 
 --populate default data
 -- user/password
-INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
+INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user@email.com','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
 
 -- admin/password
-INSERT INTO users (username, password_hash, salt, user_role) VALUES ('admin','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
+INSERT INTO users (username, password_hash, salt, user_role) VALUES ('admin@email.com','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
 
-INSERT INTO deck (user_id, deck_name) VALUES (1, 'Test Deck');
+INSERT INTO deck (user_id, deck_name, deck_description) VALUES (1, 'Test Deck', 'Test Description');
 
 INSERT INTO card (card_front, card_back, user_id) VALUES ('Test', 'TestAnswer', 1);
 

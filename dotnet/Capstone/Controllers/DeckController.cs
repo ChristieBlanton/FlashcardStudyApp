@@ -25,7 +25,7 @@ namespace Capstone.Controllers
         {
             ActionResult result;
 
-            Deck deck = deckDao.AddDeck(newDeck.UserId, newDeck.DeckName);
+            Deck deck = deckDao.AddDeck(newDeck.UserId, newDeck.DeckName, newDeck.DeckDescription);
 
             if (deck != null)
             {
@@ -63,7 +63,7 @@ namespace Capstone.Controllers
             return result;
         }
 
-        [HttpPut("mydecks/{id}")]
+        [HttpPut("mydecks")]
         public ActionResult<Deck> UpdateDeck(Deck updatedDeck)
         {
             ActionResult result;
@@ -80,6 +80,21 @@ namespace Capstone.Controllers
             }
 
             return result;
+        }
+
+        [HttpDelete("mydecks/{deckId}")]
+        public ActionResult DeleteDeck(int deckId)
+        {
+
+            bool result = deckDao.DeleteDeck(deckId);
+            if (result)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest(new { message = "An error occured. Unable to delete deck." });
+            }
         }
 
         private int? GetCurrentUserId()

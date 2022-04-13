@@ -22,7 +22,8 @@ export default new Vuex.Store({
     user: currentUser || {},
     editDeck: {
       deckId: 0,
-      deckName: ""
+      deckName: "",
+      deckDescription: ""
     },
   },
 
@@ -46,6 +47,7 @@ export default new Vuex.Store({
     EDIT_DECK(state, deck) {
       state.editDeck.deckId = deck.deckId;
       state.editDeck.deckName = deck.deckName;
+      state.editDeck.deckDescription = deck.deckDescription;
     }
   }
 })

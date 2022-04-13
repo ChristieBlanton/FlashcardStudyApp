@@ -37,7 +37,6 @@
 * > .teal-btn{
   background-color: aquamarine;
   border: none;
-  background-color: aquamarine;
   box-shadow: -2px 3px 5px lightgray;
   display: flex;
   justify-content: center;

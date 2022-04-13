@@ -8,4 +8,7 @@ export default {
   myDecks(id){
       return axios.get(`/deck/mydecks/${id}`)
   },
+  editDeck(deck) {
+    return axios.put('/deck/mydecks', deck)
+  }
 }
