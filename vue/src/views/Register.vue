@@ -1,5 +1,9 @@
 <template>
   <div id="register" class="text-center">
+    <div class="logo-header">
+            <img class="logo" src="../assets/flasher-logo.png" >
+            <h1>Flasher</h1>
+      </div>
     <form class="form-register" @submit.prevent="register">
       <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
@@ -90,4 +94,33 @@ export default {
 };
 </script>
 
-<style></style>
+<style >
+.form-register{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+}
+#register{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-start;
+}
+#register{
+    background-image: url("../assets/wrtiting-tools.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.logo{
+  width: 350px;
+  margin: auto;
+}
+
+h1{
+    font-size: 100px;
+    font-weight: 100;
+}
+</style>

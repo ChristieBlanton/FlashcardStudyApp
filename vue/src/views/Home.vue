@@ -30,74 +30,7 @@ export default {
   text-align: center;
   width: 100%;
 }
-* > .new-teal-btn{
-  background-color: #1ac0af;
-  width: 300px;
-  height: 200px;
-  padding: 20px;
-  margin: 10px;
-  border: none;
-  border-radius: 20px;
-  box-shadow: -2px 3px 5px lightgray;
-  justify-content: center;
-  align-items: center;
-  color: black;
-  font-size: 22px;
-}
-* > .new-teal-btn:hover{
-  background-color: #1ac0af;
-}
-* > .purple-btn{
-  background-color: #6B48FF;
-  width: 300px;
-  height: 200px;
-  padding: 20px;
-  margin: 10px;
-  border: none;
-  border-radius: 20px;
-  box-shadow: -2px 3px 5px lightgray;
-  justify-content: center;
-  align-items: center;
-  color: whitesmoke;
-  font-size: 22px;
-}
-* > .purple-btn:hover{
-  background-color: #5a3dda;
-}
-* > .lt-btn{
-  background-color: #F2F4F6;
-  width: 300px;
-  height: 200px;
-  padding: 20px;
-  margin: 10px;
-  border: none;
-  border-radius: 20px;
-  box-shadow: -2px 3px 5px lightgray;
-  justify-content: center;
-  align-items: center;
-  color: black;
-  font-size: 22px;
-}
-* > .lt-btn:hover{
-  background-color: #babbbb;
-}
-* > .navy-btn{
-  background-color: #0D3F67;
-  width: 300px;
-  height: 200px;
-  padding: 20px;
-  margin: 10px;
-  border: none;
-  border-radius: 20px;
-  box-shadow: -2px 3px 5px lightgray;
-  justify-content: center;
-  align-items: center;
-  color: whitesmoke;
-  font-size: 22px;
-}
-* > .navy-btn:hover{
-  background-color: #092c49;
-}
+
 
 .home-options{
   display: flex;
