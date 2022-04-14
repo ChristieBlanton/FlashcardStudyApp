@@ -1,5 +1,9 @@
 <template>
   <div id="login" class="text-center">
+    <div class="logo-header">
+            <img class="logo" src="../assets/flasher-logo.png" >
+            <h1>Flasher</h1>
+      </div>
     <form class="form-signin" @submit.prevent="login">
       <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
       <div
@@ -60,7 +64,7 @@ export default {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
-            this.$router.push("/");
+            this.$router.push("/home");
           }
         })
         .catch(error => {
@@ -74,3 +78,34 @@ export default {
   }
 };
 </script>
+
+<style >
+.form-signin{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+}
+#login{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-start;
+}
+#login{
+    background-image: url("../assets/wrtiting-tools.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.logo{
+  width: 350px;
+  margin: auto;
+}
+
+h1{
+    font-size: 100px;
+    font-weight: 100;
+}
+</style>
