@@ -9,6 +9,8 @@ import MyDecks from '../views/MyDecks.vue'
 import Index from '../views/Index.vue'
 import Deck from '../views/Deck.vue'
 import EditDeck from '../components/EditDeck.vue'
+import EditCard from '../components/EditCard.vue'
+import MyCards from '../views/MyCards.vue'
 
 Vue.use(Router)
 
@@ -85,6 +87,22 @@ const router = new Router({
       path: '/editdeck',
       name: "editdeck",
       component: EditDeck,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/mydecks/:deckId/:cardId',
+      name: "editcard",
+      component: EditCard,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/mycards',
+      name: "mycards",
+      component: MyCards,
       meta: {
         requiresAuth: true
       }

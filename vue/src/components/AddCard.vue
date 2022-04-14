@@ -1,19 +1,19 @@
 <template>
     <div class="add-card">
         
-        <button class="new-card-btn teal-btn" v-on:click="isAddCardVisible = !isAddCardVisible" v-if="!isAddCardVisible">New Card</button>
+        <button class="new-card-btn teal-btn" 
+            v-on:click="isAddCardVisible = !isAddCardVisible" 
+            v-if="!isAddCardVisible">New Card</button>
 
         <div class="add-card-form"  v-if="isAddCardVisible">
             <input type="text" name="card-front" id="card-front" placeholder="Card Front" v-model="card.cardFront">
             <textarea rows="5" cols="40" name="card-back" id="card-back" placeholder="Card Back" v-model="card.cardBack"></textarea>
             <div class="tags">
-                <label for="tags-basic">Type a new tag and press enter</label>
-                <!-- <b-form-tags input-id="tags-basic" v-model="card.tags"></b-form-tags>
-                <p class="mt-2">Value: {{ card.tags }}</p> -->
-                <input type="text" v-on:keyup.enter="addTag()" v-model="tag">
+                <label for="tags-basic">Type a new tag and press enter</label><br>
+                <input  type="text" v-on:keyup.enter="addTag()" v-model="tag">
                 <p>Tags: </p>
                 <div class="list-tags" v-for="tag in card.tags" v-bind:key="tag">
-                    <p>{{ tag }} </p>
+                    <p>{{ tag }} <img class="edit" src="../assets/close.svg" v-on:click="removeTag(tag)" /></p>
 
                 </div>
             </div>
@@ -53,13 +53,19 @@ export default{
                 this.card.cardBack = "";
                 this.isAddCardVisible = !this.isAddCardVisible;
                 this.card.tags = [];
-                location.reload(true);
+                location.reload(true)
+                // cardService.getCardsInDeck(parseInt(this.$route.params.deckId)).then((response) => {this.$store.commit('SET_CARDS',response.data)})
             });
             
         },
         addTag(){
             this.card.tags.push(this.tag);
             this.tag = '';
+        },
+        removeTag(tag){
+            this.card.tags = this.card.tags.filter(a => {
+                return a != tag
+            })
         }
     },
     

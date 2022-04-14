@@ -25,6 +25,14 @@ export default new Vuex.Store({
       deckName: "",
       deckDescription: ""
     },
+    editCard: {
+      cardId: 0,
+      cardFront: "",
+      cardBack: "",
+      tags: []
+    },
+    cards: [],
+    decks: [],
   },
 
   mutations: {
@@ -44,10 +52,22 @@ export default new Vuex.Store({
       state.user = {};
       axios.defaults.headers.common = {};
     },
+    SET_CARDS(state, cards){
+      state.cards = cards;
+    },
+    SET_DECKs(state, decks){
+      state.decks = decks;
+    },
     EDIT_DECK(state, deck) {
       state.editDeck.deckId = deck.deckId;
       state.editDeck.deckName = deck.deckName;
       state.editDeck.deckDescription = deck.deckDescription;
+    },
+    EDIT_CARD(state, card) {
+      state.editCard.cardId = card.cardId;
+      state.editCard.cardFront = card.cardFront;
+      state.editCard.cardBack = card.cardBack;
+      state.editCard.tags = card.tags;
     }
   }
 })

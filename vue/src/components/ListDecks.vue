@@ -7,7 +7,7 @@
       v-bind:key="deck.deckId" 
       v-on:click.self="viewDeck(deck)">
       <div class="hover-btn">
-        <img class="edit" src="../assets/settings.svg" v-show="currentdeck == deck.deckId" v-on:click="editDeck(deck)" />
+        <img class="edit" src="../assets/cog.svg" v-show="currentdeck == deck.deckId" v-on:click="editDeck(deck)" />
         <img class="edit" src="../assets/close.svg" v-show="currentdeck == deck.deckId" v-on:click="deleteDeck(currentdeck)" />
 
       </div>

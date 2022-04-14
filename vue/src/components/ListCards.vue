@@ -7,7 +7,7 @@
         v-on:mouseover="currentCard = card.cardId" 
         v-on:mouseleave="currentCard = 0" >
         <div class="hover-btn">
-        <img class="edit" src="../assets/settings.svg" v-show="currentCard == card.cardId" v-on:click="editCard(card)" />
+        <img class="edit" src="../assets/cog.svg" v-show="currentCard == card.cardId" v-on:click="editCard(card)" />
         <img class="edit" src="../assets/close.svg" v-show="currentCard == card.cardId" v-on:click="deleteCard(currentCard)" />
 
       </div>
@@ -39,11 +39,15 @@ export default {
               })
           }
       },
-      deleteCard(){
-
+      deleteCard(cardId){
+        cardService.deleteCard(this.$route.params.deckId, cardId).then(() => {
+        location.reload(true)
+        // cardService.getCardsInDeck(parseInt(this.$route.params.deckId)).then((response) => {this.$store.commit('SET_CARDS',response.data)})
+      });
       },
-      editCard(){
-
+      editCard(card){
+        this.$store.commit("EDIT_CARD", card)
+        this.$router.push({name: "editcard", params: {deckId: this.$route.params.deckId, cardId: this.currentCard}})
       }
   },
   created() {
@@ -58,6 +62,8 @@ export default {
   width: 350px;
   height: 200px;
   padding: 10px;
+  display: flex;
+  justify-content: flex-start;
 }
 .list-cards{
   display: flex;

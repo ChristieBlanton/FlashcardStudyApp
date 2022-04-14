@@ -8,4 +8,13 @@ export default {
   getCardsInDeck(id){
       return axios.get(`/card/${id}`)
   },
+  editCard(card){
+      return axios.put(`/card`, card)
+  },
+  deleteCard(deckId, cardId){
+      return axios.delete(`/card/${deckId}/${cardId}`)
+  },
+  getCardsByUser(userId){
+      return axios.get(`/card/mycards/${userId}`)
+  }
 }

@@ -20,7 +20,7 @@ namespace Capstone.DAO.Interfaces
 
         Card UpdateCard(string cardFront, string cardBack, int cardId, string[] tags);
 
-        
+        List<Card> GetCardsByUser(int userId);
 
     }
 }

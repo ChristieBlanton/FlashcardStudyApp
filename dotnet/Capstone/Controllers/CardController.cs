@@ -58,6 +58,25 @@ namespace Capstone.Controllers
             return result;
         }
 
+        [HttpGet("mycards/{userId}")]
+        public ActionResult<List<Card>> GetCardsByUser(int userId)
+        {
+            ActionResult result;
+
+            List<Card> cards = cardDao.GetCardsByUser(userId);
+
+            if (cards != null)
+            {
+                result = Ok(cards);
+            }
+            else
+            {
+                result = BadRequest(new { message = "Unable to retrieve cards." });
+            }
+
+            return result;
+        }
+
         [HttpDelete("{deckId}/{cardId}")]
         public ActionResult DeleteCardFromDeck(int cardId, int deckId)
         {

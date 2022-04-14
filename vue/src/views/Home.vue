@@ -5,7 +5,7 @@
       <button class="navy-btn">Community Decks</button>
       <button class="purple-btn">Community Cards</button>
       <button class="new-teal-btn" v-on:click="$router.push({name: 'mydecks'})">Your Decks</button>
-      <button class="lt-btn">Your Cards</button>
+      <button class="lt-btn" v-on:click="$router.push({name: 'mycards'})">Your Cards</button>
 
     </div>
   </div>
