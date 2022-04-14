@@ -25,6 +25,9 @@ namespace Capstone.DAO
         string sqlFindTagId = "SELECT tag_id FROM tag WHERE tag_name = @tag_name";
         string sqlAddTagToCard = "INSERT INTO card_tag (card_id, tag_id) VALUES (@card_id, @tag_id)";
         string sqlAddTagToTags = "INSERT INTO tag (tag_name) OUTPUT inserted.tag_id VALUES (@tag_name)";
+        string sqlDeleteCardFromDeck = "DELETE FROM card_deck WHERE card_id = @card_id AND deck_id = @deck_id;";
+        string sqlUpdateCard = "UPDATE card SET card_front = @card_front, card_back = @card_back WHERE card_id = @card_id;";
+        string sqlDeleteCardTags = "DELETE FROM card_tag WHERE card_id = @card_id;";
         public Card AddCard(string cardFront, string cardBack, int userId, int deckId, string[] tags)
         {
             int cardId = -1;
@@ -43,7 +46,7 @@ namespace Capstone.DAO
                 }
 
             }
-            catch(SqlException)
+            catch (SqlException)
             {
                 throw;
             }
@@ -61,11 +64,11 @@ namespace Capstone.DAO
                 {
                     conn.Open();
 
-                    for(int i = 0; i < tags.Length; i++)
+                    for (int i = 0; i < tags.Length; i++)
                     {
                         SqlCommand cmd = new SqlCommand(sqlFindTagId, conn);
                         cmd.Parameters.AddWithValue("@tag_name", tags[i].ToLower());
-                    
+
                         SqlDataReader reader = cmd.ExecuteReader();
 
                         if (reader.Read())
@@ -76,7 +79,7 @@ namespace Capstone.DAO
                             SqlCommand cmd2 = new SqlCommand(sqlAddTagToCard, conn);
                             cmd2.Parameters.AddWithValue("@card_id", cardId);
                             cmd2.Parameters.AddWithValue("@tag_id", tagId);
-                            
+
                             cmd2.ExecuteNonQuery();
                         }
                         else
@@ -85,7 +88,7 @@ namespace Capstone.DAO
                             conn.Open();
                             SqlCommand cmd4 = new SqlCommand(sqlAddTagToTags, conn);
                             cmd4.Parameters.AddWithValue("@tag_name", tags[i].ToLower());
-                            
+
                             int newId = Convert.ToInt32(cmd4.ExecuteScalar());
                             conn.Close();
                             conn.Open();
@@ -115,7 +118,7 @@ namespace Capstone.DAO
                     SqlCommand cmd = new SqlCommand(sqlAddCardToDeck, conn);
                     cmd.Parameters.AddWithValue("@card_id", cardId);
                     cmd.Parameters.AddWithValue("@deck_id", deckId);
-                    
+
                     cmd.ExecuteNonQuery();
                 }
                 return true;
@@ -124,7 +127,31 @@ namespace Capstone.DAO
             {
                 throw;
             }
-            
+
+        }
+
+        public bool DeleteCardFromDeck(int cardId, int deckId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sqlDeleteCardFromDeck, conn);
+
+                    cmd.Parameters.AddWithValue("@deck_id", deckId);
+                    cmd.Parameters.AddWithValue("@card_id", cardId);
+
+                    int lines = cmd.ExecuteNonQuery();
+                    return lines > 0;
+
+                }
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public List<Card> GetCardsInDeck(int deckId)
@@ -163,7 +190,7 @@ namespace Capstone.DAO
 
             try
             {
-                using(SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
 
@@ -189,12 +216,69 @@ namespace Capstone.DAO
                     }
                 }
             }
-            catch(SqlException)
+            catch (SqlException)
             {
                 throw;
             }
             card.Tags = tags.ToArray();
             return card;
+        }
+
+        public Card UpdateCard(string cardFront, string cardBack, int cardId, string[] tags)
+        {
+
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sqlUpdateCard, conn);
+                    cmd.Parameters.AddWithValue("@card_front", cardFront);
+                    cmd.Parameters.AddWithValue("@card_back", cardBack);
+                    cmd.Parameters.AddWithValue("@card_id", cardId);
+
+
+                    cmd.ExecuteNonQuery();
+
+
+                }
+                DeleteTagsFromCard(cardId);
+                AddTagsToCard(tags, cardId);
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            return GetCard(cardId);
+
+        }
+
+        public bool DeleteTagsFromCard(int cardId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+
+
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sqlDeleteCardTags, conn);
+                    cmd.Parameters.AddWithValue("@card_id", cardId);
+
+                    int lines = cmd.ExecuteNonQuery();
+                    return lines > 0;
+
+
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            
         }
 
         private Card GetCardFromReader(SqlDataReader reader)
