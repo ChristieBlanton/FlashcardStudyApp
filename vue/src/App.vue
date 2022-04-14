@@ -4,7 +4,7 @@
       
     </div>
     
-    <router-link class="home" v-bind:to="{ name: 'home' }"><img class="logo-nav" src="./assets/flasher-logo-gray-small.png" ></router-link>
+    <router-link class="home-btn" v-bind:to="{ name: 'home' }"><img class="logo-nav" src="./assets/flasher-logo-gray-small.png" ></router-link>
       <router-link class="my-decks-btn" v-bind:to="{ name: 'mydecks' }" v-if="$store.state.token != ''"><img class="menu-icon" src="./assets/menu.svg" />My Decks</router-link>
       <router-link class="logout" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
       <router-link class="register" v-bind:to="{ name: 'register' }" v-if="$store.state.token == '' && $route.path == '/'">
@@ -12,7 +12,7 @@
       </router-link>
       <router-link class="login" v-bind:to="{ name: 'login' }" v-if="$store.state.token == '' && $route.path == '/'">
         <div class="fade-button"><div class="login-text">Login</div></div></router-link>
-    <router-view class="view" v-bind:class="{main: $route.path != {name: 'index'}}" />
+    <router-view class="main" v-bind:class="{view: $route.path != '/'&& $route.path != '/login' && $route.path != '/register'}" />
 
     <div class="footer">
 
@@ -84,10 +84,10 @@ h1{
   justify-content: center;
   align-items: center;
 }
-.home, .my-decks-btn, .logout, .register, .login{
+.home-btn, .my-decks-btn, .logout, .register, .login{
   position: absolute;
 }
-.home{
+.home-btn{
   left: 3%;
   top: 3%;
 }
@@ -108,7 +108,7 @@ h1{
 }
 .footer{
   grid-area: footer;
-  background-color: aquamarine;
+  background-color: #1ee3cf;
   width: 25%;
   height: 150%;
   top:-10%;
@@ -120,7 +120,8 @@ h1{
 }
 .view{
   grid-area: view;
-
+  width: 75% !important;
+  margin: auto;
 }
 /* #app{
   display: grid;
@@ -144,7 +145,7 @@ h1{
   justify-content: space-between; */
   font-size: 2em;
   /* padding: 0 20px 0 20px; */
-  background-color: aquamarine;
+  background-color: #1ee3cf;
   
 }
 #nav a{
@@ -156,9 +157,8 @@ h1{
   color: grey;
 }
 .main{
-  width: 80%;
-  margin: auto;
   padding: 30px;
+  margin: auto;
 }
 .login, .register, .my-decks-btn, .logout{
   padding: 0 15px 0 15px;
@@ -182,7 +182,7 @@ h1{
   background-color: rgb(70, 233, 178);
 }
 * > .new-teal-btn{
-  background-color: #1ac0af;
+  background-color: #1ee3cf;
   width: 300px;
   height: 200px;
   padding: 20px;
