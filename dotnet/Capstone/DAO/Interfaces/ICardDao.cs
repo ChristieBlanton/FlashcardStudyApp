@@ -16,5 +16,11 @@ namespace Capstone.DAO.Interfaces
 
         List<Card> GetCardsInDeck(int deckId);
 
+        bool DeleteCardFromDeck(int cardId, int deckId);
+
+        Card UpdateCard(string cardFront, string cardBack, int cardId, string[] tags);
+
+        
+
     }
 }

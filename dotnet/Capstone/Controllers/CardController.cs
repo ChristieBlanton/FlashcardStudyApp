@@ -27,9 +27,9 @@ namespace Capstone.Controllers
 
             Card card = cardDao.AddCard(newCard.CardFront, newCard.CardBack, newCard.UserId, newCard.DeckId, newCard.Tags);
 
-            if(card != null)
+            if (card != null)
             {
-                result = Created(card.CardFront,card);
+                result = Created(card.CardFront, card);
             }
             else
             {
@@ -56,6 +56,34 @@ namespace Capstone.Controllers
             }
 
             return result;
+        }
+
+        [HttpDelete("{deckId}/{cardId}")]
+        public ActionResult DeleteCardFromDeck(int cardId, int deckId)
+        {
+            bool result = cardDao.DeleteCardFromDeck(cardId, deckId);
+            if (result)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest(new { message = "An error occured. Unable to remove card from deck." });
+            }
+        }
+
+        [HttpPut]
+        public ActionResult<Card> UpdateCard(Card cardToUpdate)
+        {
+            Card card = cardDao.UpdateCard(cardToUpdate.CardFront, cardToUpdate.CardBack, cardToUpdate.CardId, cardToUpdate.Tags);
+            if(card != null)
+            {
+                return Ok(card);
+            }
+            else
+            {
+                return BadRequest(new { message = "An error occured. Unable to update card." });
+            }
         }
 
 
