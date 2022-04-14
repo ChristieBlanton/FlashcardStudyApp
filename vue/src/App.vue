@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link class="home" v-bind:to="{ name: 'home' }">Home</router-link>
-      <router-link class="my-decks-btn" v-bind:to="{ name: 'mydecks' }" v-if="$store.state.token != ''">My Decks</router-link>
+      <router-link class="my-decks-btn" v-bind:to="{ name: 'mydecks' }">My Decks</router-link>
       <router-link class="logout" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
       <router-link class="register" v-bind:to="{ name: 'register' }" v-if="$store.state.token == ''">Register</router-link>
       <router-link class="login" v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''">Login</router-link>
@@ -31,6 +31,9 @@ html, body, #app{
   color: rgb(71, 71, 71);
   font-weight: bold;
 }
+#nav a.router-link-exact-active {
+  color: grey;
+}
 .main{
   background-color: whitesmoke;
   width: 80%;
@@ -41,7 +44,7 @@ html, body, #app{
 .login, .register, .my-decks-btn, .logout{
   padding: 0 15px 0 15px;
 }
-.my-decks-btn, .home{
+.my-decks-btn, .mydecks {
   flex-grow: 1;
 }
 * > .teal-btn{
@@ -58,4 +61,5 @@ html, body, #app{
 * > .teal-btn:hover{
   background-color: rgb(70, 233, 178);
 }
+
 </style>
