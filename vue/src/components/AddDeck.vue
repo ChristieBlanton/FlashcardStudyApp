@@ -1,13 +1,13 @@
 <template>
     <div class="add-deck">
-        <button class="new-deck-btn teal-btn" v-on:click="isAddDeckVisible = !isAddDeckVisible" v-if="!isAddDeckVisible">New Deck</button>
+        <button class="new-deck-btn small-new-teal-btn" v-on:click="isAddDeckVisible = !isAddDeckVisible" v-if="!isAddDeckVisible">New Deck</button>
 
         <div class="add-deck-form" v-if="isAddDeckVisible">
             <input type="text" name="deck-name" id="deck-name" placeholder="Deck Name" v-model="deck.deckName">
             <textarea rows="5" cols="40" name="deck-description" id="deck-description" placeholder="Deck Description" v-model="deck.deckDescription"></textarea>
             <div class="form-btn">
-                <button class="teal-btn" v-on:click="addDeck()">Submit</button>
-                <button class="teal-btn" v-on:click="isAddDeckVisible = false">Cancel</button>
+                <button class="small-new-teal-btn" v-on:click="addDeck()">Submit</button>
+                <button class="small-lt-btn" v-on:click="isAddDeckVisible = false">Cancel</button>
 
             </div>
         </div>
@@ -44,7 +44,6 @@ export default{
 
 <style>
 .new-deck-btn{
-    height: 40px;
     width: 200px;
 }
 .add-deck{

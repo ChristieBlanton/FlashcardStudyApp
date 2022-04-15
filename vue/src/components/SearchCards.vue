@@ -10,7 +10,7 @@
       />
     </div>
     <div
-      class="card teal-btn"
+      class="card purple-btn"
       v-for="card in filteredCards"
       v-bind:key="card.cardId"
       v-on:click.self="toggleFlip(card.cardId)"

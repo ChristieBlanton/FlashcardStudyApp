@@ -1,7 +1,7 @@
 <template>
     <div class="add-card">
         
-        <button class="new-card-btn teal-btn" 
+        <button class="new-card-btn small-new-teal-btn" 
             v-on:click="isAddCardVisible = !isAddCardVisible" 
             v-if="!isAddCardVisible">New Card</button>
 
@@ -74,7 +74,7 @@ export default{
 
 <style>
 .new-card-btn{
-    height: 40px;
+ 
     width: 200px;
 }
 .add-card{

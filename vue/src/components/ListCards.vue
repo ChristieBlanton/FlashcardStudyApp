@@ -1,6 +1,6 @@
 <template>
   <div class="list-cards">
-    <div class="card teal-btn" 
+    <div class="card purple-btn" 
         v-for="card in cards"  
         v-bind:key="card.cardId" 
         v-on:click="toggleFlip(card.cardId)"
