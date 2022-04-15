@@ -9,6 +9,7 @@
         v-model="searchQuery"
       />
     </div>
+    <div class="search-cards-container">
     <div
       class="card purple-btn"
       v-for="card in filteredCards"
@@ -28,7 +29,7 @@
           <option value="none" selected disabled hidden>Choose</option>
           <option v-for="deck in decks" v-bind:key="deck.deckId" v-bind:value="deck.deckId">{{deck.deckName}}</option> 
         </select>
-        <button class="add-card-btn lt-btn" v-if="showDropDown && currentCard == card.cardId" v-on:click="addCardToDeck()">Add</button>
+        <button class="add-card-btn" v-if="showDropDown && currentCard == card.cardId" v-on:click="addCardToDeck()">Add</button>
       </div>
       <h3 v-if="!showBack.includes(card.cardId)" v-on:click.self="toggleFlip(card.cardId)">{{ card.cardFront }}</h3>
       <h4 v-else v-on:click.self="toggleFlip(card.cardId)">{{ card.cardBack }}</h4>
@@ -37,6 +38,7 @@
           {{ tag }}
         </p>
       </div>
+    </div>
     </div>
   </div>
 </template>
@@ -125,14 +127,15 @@ export default {
 
 <style>
 .add-card-btn{
+  box-shadow: none;
+  padding: none;
+  margin: none;
+  font-size: 15px;
+  background-color: #cacaca;
+  align-items: center;
+  border-radius: 5px;
+}
 
-}
-.card-button-color{
-  background-color: white;
-  border-radius: 8px;
-  height: 30px;
-  width: 30px !important;
-}
 .card-tags {
   display: flex;
   gap: 5px;
@@ -146,9 +149,16 @@ export default {
 }
 .search-cards {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 10px;
   margin-top: 40px;
+}
+.search-cards-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 a:hover {
   text-decoration: none;

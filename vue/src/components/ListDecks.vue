@@ -84,6 +84,7 @@ h3{
 }
 .edit{
   width: 40px;
+  filter: invert();
 }
 
 
