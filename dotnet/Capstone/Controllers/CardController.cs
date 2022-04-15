@@ -105,6 +105,18 @@ namespace Capstone.Controllers
             }
         }
 
-
+        [HttpPut("{deckId}/{cardId}")]
+        public ActionResult AddCardToDeck(int cardId, int deckId)
+        {
+            bool result = cardDao.AddCardToDeck(cardId, deckId);
+            if (result)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest(new { message = "And error occured. Card was not able to be added to the deck." });
+            }
+        }
     }
 }
