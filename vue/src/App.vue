@@ -1,29 +1,44 @@
 <template>
   <div id="app">
+    <div class="app-overlay">
+
     <div id="header">
       
     </div>
-    
-    <router-link class="home-btn" v-bind:to="{ name: 'home' }"><img class="logo-nav" src="./assets/flasher-logo-gray-small.png" ></router-link>
-      <router-link class="my-decks-btn" v-bind:to="{ name: 'mydecks' }" v-if="$store.state.token != ''"><img class="menu-icon" src="./assets/menu.svg" />My Decks</router-link>
-      <router-link class="logout" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
+    <div class="footer">
 
+    </div>
+    </div>
+
+
+
+      <div class="left-head-nav">
+        <router-link class="home-btn" v-bind:to="{ name: 'home' }"><img class="logo-nav" src="./assets/flasher-logo-gray-small.png" ></router-link>
+        <router-link class="my-decks-btn" v-bind:to="{ name: 'mydecks' }" v-if="$store.state.token != ''">My Decks</router-link>
+        <router-link class="my-cards-btn" v-bind:to="{ name: 'mycards' }" v-if="$store.state.token != ''">My Cards</router-link>
+
+        <router-link class="logout" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
+
+      </div>
+      <!-- <img class="menu-icon" src="./assets/menu.svg" /> -->
       
 
 
     <router-view class="main" v-bind:class="{view: $route.path != '/'&& $route.path != '/login' && $route.path != '/register'}" />
 
-    <div class="footer">
-
-    </div>
+    
 
   </div>
+
+
 </template>
 
 <style>
 html, body, #app{
   height: 100%;
 }
+
+
 
 
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
@@ -43,7 +58,6 @@ h1{
   
 }
 .logout{
-  position: absolute;
   top: 25%;
 }
 
@@ -52,8 +66,11 @@ h1{
 
 
 
-.home-btn, .my-decks-btn, .logout{
-  position: absolute;
+
+
+.home-btn, .my-decks-btn, .logout, .my-cards-btn{
+  position: fixed;
+  font-size: 20px;
 }
 .home-btn{
   left: 3%;
@@ -61,6 +78,7 @@ h1{
 }
 .my-decks-btn{
   top: 20%;
+
 }
 #header{
   grid-area: nav;
@@ -69,7 +87,7 @@ h1{
   top:-20%;
   left: -20%;
   transform: rotate(13deg);
-  position:absolute;
+  position:fixed;
   box-shadow:  inset 0 0 10px  gray;
     box-shadow:  0 0 7px  gray;
 
@@ -82,7 +100,7 @@ h1{
   top:-10%;
   left: 93%;
   transform: rotate(13deg);
-  position:absolute;
+  position:fixed;
   box-shadow:  inset 0 0 7px  gray;
   
 }
@@ -99,8 +117,12 @@ h1{
 } */
 #app{
   display: flex;
-  overflow: hidden;
   position: relative;
+}
+.app-overlay{
+  overflow: hidden;
+  
+  height: 100% !important;
 }
 
 
