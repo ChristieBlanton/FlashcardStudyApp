@@ -1,6 +1,6 @@
 <template>
     <div class="edit-card">
-        
+        <h2>Edit Card</h2>
 
         <div class="edit-card-form">
             <label for="card-front">Front</label>
@@ -17,8 +17,8 @@
                 </div>
             </div>
             <div class="form-btn">
-                <button class="teal-btn" v-on:click="editCard()">Submit</button>
-                <button class="teal-btn" v-on:click="$router.push({name: 'deck', params: {deckId: $route.params.deckId}})">Cancel</button>
+                <button class="small-navy-btn" v-on:click="editCard()">Submit</button>
+                <button class="small-lt-btn" v-on:click="$router.push({name: 'deck', params: {deckId: $route.params.deckId}})">Cancel</button>
 
             </div>
         </div>
@@ -69,16 +69,25 @@ export default{
 </script>
 
 <style scoped>
+h2 {
+    font-size: 50px;
+    font-weight: bold;
+    font-family: 'Calendas Plus';
+    text-align: center;
+    color: #0D3F67;
+}
 .edit-card-btn{
     height: 40px;
     width: 200px;
 }
 .edit-card{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
 }
 .edit-card-form{
+    margin: 100px;
     display: flex;
+    width: 60%;
     flex-direction: column;
 }
 #card-name{

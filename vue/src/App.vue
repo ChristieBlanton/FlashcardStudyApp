@@ -188,8 +188,24 @@ h1{
 * > .new-teal-btn:hover{
   background-color: #1ac0af;
 }
+* > .small-new-teal-btn{
+  background-color: #1ee3cf;
+  padding: 15px;
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: -2px 3px 5px lightgray;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-size: 26px;
+
+}
+* > .small-new-teal-btn:hover{
+  background-color: #1ac0af;
+}
 * > .purple-btn{
-  background-color: #6B48FF;
+  background-color: #593cda;
   width: 300px;
   height: 200px;
   padding: 20px;
@@ -203,10 +219,25 @@ h1{
   font-size: 22px;
 }
 * > .purple-btn:hover{
-  background-color: #5a3dda;
+  background-color: #4b32bb;
+}
+* > .small-purple-btn{
+  background-color: #593cda;
+  padding: 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: -2px 3px 5px lightgray;
+  justify-content: center;
+  align-items: center;
+  color: whitesmoke;
+  font-size: 22px;
+}
+* > .small-purple-btn:hover{
+  background-color: #4b32bb;
 }
 * > .lt-btn{
-  background-color: #F2F4F6;
+  background-color: #cacaca;
   width: 300px;
   height: 200px;
   padding: 20px;
@@ -220,7 +251,22 @@ h1{
   font-size: 22px;
 }
 * > .lt-btn:hover{
-  background-color: #babbbb;
+  background-color: #afafaf;
+}
+* > .small-lt-btn{
+  background-color: #cacaca;
+  padding: 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: -2px 3px 5px lightgray;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-size: 22px;
+}
+* > .small-lt-btn:hover{
+  background-color: #afafaf;
 }
 * > .navy-btn{
   background-color: #0D3F67;
@@ -237,6 +283,21 @@ h1{
   font-size: 22px;
 }
 * > .navy-btn:hover{
+  background-color: #092c49;
+}
+* > .small-navy-btn{
+  background-color: #0D3F67;
+  width: 300px;
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: -2px 3px 5px lightgray;
+  justify-content: center;
+  align-items: center;
+  color: whitesmoke;
+  font-size: 22px;
+}
+* > .small-navy-btn:hover{
   background-color: #092c49;
 }
 </style>
