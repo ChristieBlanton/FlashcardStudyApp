@@ -16,5 +16,8 @@ export default {
   },
   getCardsByUser(userId){
       return axios.get(`/card/mycards/${userId}`)
+  },
+  addCardToDeck(cardId, deckId){
+    return axios.put(`/card/${deckId}/${cardId}`)
   }
 }
