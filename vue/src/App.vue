@@ -14,7 +14,7 @@
 
       <div class="left-head-nav">
         <router-link class="home-btn" v-bind:to="{ name: 'home' }"><img class="logo-nav" src="./assets/flasher-logo-gray-small.png" ></router-link>
-        <router-link class="my-decks-btn" v-bind:to="{ name: 'mydecks' }" v-if="$store.state.token != ''">My Decks</router-link>
+        <router-link class="my-decks-btn" v-bind:to="{ name: 'mydecks' }" v-if="$store.state.token != ''"><div class="nav-btn-text">My Decks</div></router-link>
         <router-link class="my-cards-btn" v-bind:to="{ name: 'mycards' }" v-if="$store.state.token != ''">My Cards</router-link>
 
         <router-link class="logout" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
@@ -58,7 +58,7 @@ h1{
   
 }
 .logout{
-  top: 25%;
+  top: 30%;
 }
 
 
@@ -68,17 +68,31 @@ h1{
 
 
 
-.home-btn, .my-decks-btn, .logout, .my-cards-btn{
-  position: fixed;
-  font-size: 20px;
-}
+
+
 .home-btn{
+  position: fixed;
   left: 3%;
   top: 3%;
 }
 .my-decks-btn{
   top: 20%;
+  
+}
 
+.my-cards-btn{
+  top: 23%;
+}
+.my-decks-btn, .logout, .my-cards-btn{
+  padding: 0 10px 0 10px;
+  font-size: 20px;
+  font-weight:bold;
+  position: fixed;
+  color: #092c49;
+}
+.my-decks-btn:hover, .logout:hover, .my-cards-btn:hover{
+  
+  color: #6B48FF;
 }
 #header{
   grid-area: nav;
@@ -86,6 +100,7 @@ h1{
   height: 150%;
   top:-20%;
   left: -20%;
+  
   transform: rotate(13deg);
   position:fixed;
   box-shadow:  inset 0 0 10px  gray;
@@ -150,26 +165,24 @@ h1{
   padding: 30px;
   margin: auto;
 }
-.login, .register, .my-decks-btn, .logout{
-  padding: 0 15px 0 15px;
-}
+
 /* .my-decks-btn, .home{
   flex-grow: 1;
 } */
 * > .teal-btn{
-  background-color: aquamarine;
+  background-color: #1ee3cf;
   border: none;
+  border-radius: 20px;
   box-shadow: -2px 3px 5px lightgray;
-  display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   color: black;
-  border-radius: 5px;
+  font-size: 22px;
 
 }
 * > .teal-btn:hover{
-  background-color: rgb(70, 233, 178);
+    background-color: #1ac0af;
+
 }
 * > .new-teal-btn{
   background-color: #1ee3cf;
@@ -187,6 +200,7 @@ h1{
 }
 * > .new-teal-btn:hover{
   background-color: #1ac0af;
+
 }
 * > .purple-btn{
   background-color: #6B48FF;

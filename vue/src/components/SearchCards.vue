@@ -13,24 +13,25 @@
       class="card teal-btn"
       v-for="card in filteredCards"
       v-bind:key="card.cardId"
-      v-on:click="toggleFlip(card.cardId)"
+      v-on:click.self="toggleFlip(card.cardId)"
       v-on:mouseover="currentCard = card.cardId"
       v-on:mouseleave="currentCard = 0; showDropDown = false"
     >
       <div class="hover-btn">
         <img
-          class="edit"
-          src="../assets/cog.svg"
+          class="edit card-button-color"
+          src="../assets/add-outline.svg"
           v-show="currentCard == card.cardId"
           v-on:click="showDropDown = true"
         />
         <select name="deck-names" id="deck-names" v-if="showDropDown && currentCard == card.cardId" v-model="deckSelection">
+          <option value="none" selected disabled hidden>Choose</option>
           <option v-for="deck in decks" v-bind:key="deck.deckId" v-bind:value="deck.deckId">{{deck.deckName}}</option> 
         </select>
-        <button v-if="showDropDown && currentCard == card.cardId" v-on:click="addCardToDeck()">Add</button>
+        <button class="add-card-btn lt-btn" v-if="showDropDown && currentCard == card.cardId" v-on:click="addCardToDeck()">Add</button>
       </div>
-      <h3 v-if="!showBack.includes(card.cardId)">{{ card.cardFront }}</h3>
-      <h4 v-else>{{ card.cardBack }}</h4>
+      <h3 v-if="!showBack.includes(card.cardId)" v-on:click.self="toggleFlip(card.cardId)">{{ card.cardFront }}</h3>
+      <h4 v-else v-on:click.self="toggleFlip(card.cardId)">{{ card.cardBack }}</h4>
       <div class="card-tags">
         <p class="tag-name" v-for="tag in card.tags" v-bind:key="tag">
           {{ tag }}
@@ -123,6 +124,15 @@ export default {
 </script>
 
 <style>
+.add-card-btn{
+
+}
+.card-button-color{
+  background-color: white;
+  border-radius: 8px;
+  height: 30px;
+  width: 30px !important;
+}
 .card-tags {
   display: flex;
   gap: 5px;
