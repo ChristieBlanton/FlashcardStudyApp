@@ -27,8 +27,6 @@ export default {
 #home-header {
   font-weight: bold;
   color: #071E3D;
-  text-align: center;
-  width: 100%;
 }
 
 

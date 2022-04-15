@@ -7,11 +7,10 @@
     <router-link class="home-btn" v-bind:to="{ name: 'home' }"><img class="logo-nav" src="./assets/flasher-logo-gray-small.png" ></router-link>
       <router-link class="my-decks-btn" v-bind:to="{ name: 'mydecks' }" v-if="$store.state.token != ''"><img class="menu-icon" src="./assets/menu.svg" />My Decks</router-link>
       <router-link class="logout" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
-      <router-link class="register" v-bind:to="{ name: 'register' }" v-if="$store.state.token == '' && $route.path == '/'">
-        <div class="fade-button"><div class="register-text">Register</div></div>
-      </router-link>
-      <router-link class="login" v-bind:to="{ name: 'login' }" v-if="$store.state.token == '' && $route.path == '/'">
-        <div class="fade-button"><div class="login-text">Login</div></div></router-link>
+
+      
+
+
     <router-view class="main" v-bind:class="{view: $route.path != '/'&& $route.path != '/login' && $route.path != '/register'}" />
 
     <div class="footer">
@@ -47,44 +46,13 @@ h1{
   position: absolute;
   top: 25%;
 }
-.login{
-  top: 57%;
-  left: 40.5%;
-  
-}
 
-.register{
-  top: 65%;
-  left: 40%;
-}
-.register, .login{
-  background-color: rgba(127, 255, 212, 0);
-  width: 350px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  position: relative;
-}
-.login-text, .register-text{
-  transform: rotate(-13deg);
-  font-size: 20px;
-  font-weight: bold;
-  color: rgb(48, 48, 48);
-}
-.fade-button{
-  
-  background-color: aquamarine;
-  height: 250%;
-  width: 100%;
-  position: relative;
-  transform: rotate(13deg);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.home-btn, .my-decks-btn, .logout, .register, .login{
+
+
+
+
+
+.home-btn, .my-decks-btn, .logout{
   position: absolute;
 }
 .home-btn{

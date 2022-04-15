@@ -3,6 +3,16 @@
         <div class="logo-text">
             <img class="logo" src="../assets/flasher-logo.png" >
             <h1>Flasher</h1>
+
+            <div class="login-register">
+
+            <router-link class="login btn btn-lg btn-primary btn-block signin-button" v-bind:to="{ name: 'login' }" v-if="$store.state.token == '' && $route.path == '/'">
+            <div class="login-text">Login</div></router-link>
+            <router-link class="register btn btn-lg btn-primary btn-block signin-button" v-bind:to="{ name: 'register' }" v-if="$store.state.token == '' && $route.path == '/'">
+            <div class="register-text">Register</div></router-link>
+            
+
+            </div>
         </div>
     </div>
 </template>
@@ -13,6 +23,27 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+
+
+.register, .login{
+  background-color: #6B48FF;
+  width: 350px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: skew(-13deg);
+  margin: 15px;
+}
+.login-text, .register-text{
+  transform: skew(13deg);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+
 .main{
     width: 100%;
     height: 100%;

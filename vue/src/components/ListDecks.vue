@@ -1,6 +1,6 @@
 <template>
   <div class="list-decks">
-    <div class="deck teal-btn" 
+    <div class="deck navy-btn" 
       v-on:mouseover="currentdeck = deck.deckId" 
       v-on:mouseleave="currentdeck = 0" 
       v-for="deck in decks" 
