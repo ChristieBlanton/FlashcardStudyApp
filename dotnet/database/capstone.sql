@@ -117,22 +117,22 @@ INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1001);
 INSERT INTO card (card_front, card_back, user_id) VALUES ('What is encapsulation?', 'Bundling of data with the methods that operate on that data, 
 	or restricting of direct access to some of an objects components.', 3); --1002
 INSERT INTO card_deck (card_id, deck_id) VALUES (1002, 101);
-INSERT INTO card_tag (tag_id, card_id) VALUES (2002, 1002);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1002);
 
 INSERT INTO card (card_front, card_back, user_id) VALUES ('What is inheritance?', 'Allows a child class to take on the properties of and methods defined
 	in a parent class.', 3); --1003
 INSERT INTO card_deck (card_id, deck_id) VALUES (1003, 101);
-INSERT INTO card_tag (tag_id, card_id) VALUES (2002, 1003);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1003);
 
 INSERT INTO card (card_front, card_back, user_id) VALUES ('What is polymorphism?', 'Allows differnt types of objects to be treated as the same type of thing
 	within a program.', 3); --1004
 INSERT INTO card_deck (card_id, deck_id) VALUES (1004, 101);
-INSERT INTO card_tag (tag_id, card_id) VALUES (2002, 1004);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1004);
 
 INSERT INTO card (card_front, card_back, user_id) VALUES ('What is a class?', 'The blueprint of an object that defines the properties and methods. 
 	They are the embodiment of an object oriented programming.', 3); --1005
 INSERT INTO card_deck (card_id, deck_id) VALUES (1005, 101);
-INSERT INTO card_tag (tag_id, card_id) VALUES (2002, 1005);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1005);
 
 INSERT INTO card (card_front, card_back, user_id) VALUES ('What is a method?', 'A reusable unit of code that may return a value.', 3); --1006
 INSERT INTO card_deck (card_id, deck_id) VALUES (1006, 103);
@@ -268,22 +268,22 @@ INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1029);
 INSERT INTO card (card_front, card_back, user_id) VALUES ('What is encapsulation?', 'Bundling of data with the methods that operate on that data, 
 	or restricting of direct access to some of an objects components.', 4); --1030
 INSERT INTO card_deck (card_id, deck_id) VALUES (1030, 105);
-INSERT INTO card_tag (tag_id, card_id) VALUES (2002, 1030);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1030);
 
 INSERT INTO card (card_front, card_back, user_id) VALUES ('What is inheritance?', 'Allows a child class to take on the properties of and methods defined
 	in a parent class.', 4); --1031
 INSERT INTO card_deck (card_id, deck_id) VALUES (1031, 105);
-INSERT INTO card_tag (tag_id, card_id) VALUES (2002, 1031);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1031);
 
 INSERT INTO card (card_front, card_back, user_id) VALUES ('What is polymorphism?', 'Allows differnt types of objects to be treated as the same type of thing
 	within a program.', 4); --1032
 INSERT INTO card_deck (card_id, deck_id) VALUES (1032, 105);
-INSERT INTO card_tag (tag_id, card_id) VALUES (2002, 1032);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1032);
 
 INSERT INTO card (card_front, card_back, user_id) VALUES ('What is a class?', 'The blueprint of an object that defines the properties and methods. 
 	They are the embodiment of an object oriented programming.', 4); --1033
 INSERT INTO card_deck (card_id, deck_id) VALUES (1033, 105);
-INSERT INTO card_tag (tag_id, card_id) VALUES (2002, 1033);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1033);
 
 INSERT INTO card (card_front, card_back, user_id) VALUES ('What is a method?', 'A reusable unit of code that may return a value.', 4); --1034
 INSERT INTO card_deck (card_id, deck_id) VALUES (1034, 107);
@@ -418,22 +418,22 @@ INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1058);
 INSERT INTO card (card_front, card_back, user_id) VALUES ('What is encapsulation?', 'Bundling of data with the methods that operate on that data, 
 	or restricting of direct access to some of an objects components.', 5); --1059
 INSERT INTO card_deck (card_id, deck_id) VALUES (1059, 109);
-INSERT INTO card_tag (tag_id, card_id) VALUES (2002, 1059);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1059);
 
 INSERT INTO card (card_front, card_back, user_id) VALUES ('What is inheritance?', 'Allows a child class to take on the properties of and methods defined
 	in a parent class.', 5); --1060
 INSERT INTO card_deck (card_id, deck_id) VALUES (1060, 109);
-INSERT INTO card_tag (tag_id, card_id) VALUES (2002, 1060);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1060);
 
 INSERT INTO card (card_front, card_back, user_id) VALUES ('What is polymorphism?', 'Allows differnt types of objects to be treated as the same type of thing
 	within a program.', 5); --1061
 INSERT INTO card_deck (card_id, deck_id) VALUES (1061, 109);
-INSERT INTO card_tag (tag_id, card_id) VALUES (2002, 1061);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1061);
 
 INSERT INTO card (card_front, card_back, user_id) VALUES ('What is a class?', 'The blueprint of an object that defines the properties and methods. 
 	They are the embodiment of an object oriented programming.', 5); --1062
 INSERT INTO card_deck (card_id, deck_id) VALUES (1062, 109);
-INSERT INTO card_tag (tag_id, card_id) VALUES (2002, 1062);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1062);
 
 INSERT INTO card (card_front, card_back, user_id) VALUES ('What is a method?', 'A reusable unit of code that may return a value.', 5); --1063
 INSERT INTO card_deck (card_id, deck_id) VALUES (1063, 111);
@@ -568,22 +568,22 @@ INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1087);
 INSERT INTO card (card_front, card_back, user_id) VALUES ('What is encapsulation?', 'Bundling of data with the methods that operate on that data, 
 	or restricting of direct access to some of an objects components.', 6); --1088
 INSERT INTO card_deck (card_id, deck_id) VALUES (1088, 113);
-INSERT INTO card_tag (tag_id, card_id) VALUES (2002, 1088);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1088);
 
 INSERT INTO card (card_front, card_back, user_id) VALUES ('What is inheritance?', 'Allows a child class to take on the properties of and methods defined
 	in a parent class.', 6); --1089
 INSERT INTO card_deck (card_id, deck_id) VALUES (1089, 113);
-INSERT INTO card_tag (tag_id, card_id) VALUES (2002, 1089);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1089);
 
 INSERT INTO card (card_front, card_back, user_id) VALUES ('What is polymorphism?', 'Allows differnt types of objects to be treated as the same type of thing
 	within a program.', 6); --1090
 INSERT INTO card_deck (card_id, deck_id) VALUES (1090, 113);
-INSERT INTO card_tag (tag_id, card_id) VALUES (2002, 1090);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1090);
 
 INSERT INTO card (card_front, card_back, user_id) VALUES ('What is a class?', 'The blueprint of an object that defines the properties and methods. 
 	They are the embodiment of an object oriented programming.', 6); --1091
 INSERT INTO card_deck (card_id, deck_id) VALUES (1091, 113);
-INSERT INTO card_tag (tag_id, card_id) VALUES (2002, 1091);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1091);
 
 INSERT INTO card (card_front, card_back, user_id) VALUES ('What is a method?', 'A reusable unit of code that may return a value.', 6); --1092
 INSERT INTO card_deck (card_id, deck_id) VALUES (1092, 115);
