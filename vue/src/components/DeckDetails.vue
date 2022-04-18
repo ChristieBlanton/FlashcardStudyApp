@@ -1,9 +1,10 @@
 <template>
   <div class="deck-details">
-    <h1>
-      {{ deckName }}<br />
-      <h4 v-if="$route.name != 'startstudysession'">{{ deckDescription }}</h4>
+    <h1 class="deck-details-name">
+      {{ deckName }}
+      
     </h1>
+    <h4 class="deck-details-desc" v-if="$route.name != 'startstudysession'">{{ deckDescription }}</h4>
   </div>
 </template>
 
@@ -28,9 +29,19 @@ export default {
 </script>
 
 <style>
-.deck-details {
-  display: flex;
-  justify-content: center;
-  width: 100%;
+
+.deck-details-name, .deck-details-desc{
+    text-align: center;
+    margin-bottom: 20px;
 }
+.deck-details-name{
+    line-height: 15vh;
+    font-size: 7vh;
+
+}
+.deck-details-desc{
+    margin-bottom: 50px;
+    
+}
+
 </style>

@@ -24,8 +24,8 @@
       <!-- <img class="menu-icon" src="./assets/menu.svg" /> -->
       
 
+      <router-view class="main" v-bind:class="{view: $route.path != '/'&& $route.path != '/login' && $route.path != '/register'}" />
 
-    <router-view class="main" v-bind:class="{view: $route.path != '/'&& $route.path != '/login' && $route.path != '/register'}" />
 
     
 
@@ -176,6 +176,7 @@ h1{
   grid-area: view;
   width: 75% !important;
 }
+
 /* #app{
   display: grid;
   grid-template-columns: 1fr 5fr 1fr;
@@ -209,6 +210,7 @@ h1{
 .main{
   padding: 30px;
   margin: auto;
+  
 }
 
 /* .my-decks-btn, .home{

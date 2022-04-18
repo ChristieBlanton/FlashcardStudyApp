@@ -19,6 +19,5 @@ export default {
 </script>
 
 <style>
-.search-cards-view{
-}
+
 </style>
