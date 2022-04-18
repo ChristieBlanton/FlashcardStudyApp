@@ -1,39 +1,36 @@
 <template>
-    <div class="deck-details">
-            <h2>{{deckName}}<br><h4>{{deckDescription}}</h4></h2>
-            
-    </div>
+  <div class="deck-details">
+    <h1>
+      {{ deckName }}<br />
+      <h4 v-if="$route.name != 'startstudysession'">{{ deckDescription }}</h4>
+    </h1>
+  </div>
 </template>
 
 <script>
+import deckService from "../services/DeckService";
 export default {
+  name: "deck-details",
+  data() {
+    return {
+      deckName: "",
+      deckDescription: "",
+    };
+  },
 
-    name: 'deck-details',
-    data(){
-        return {
-            
-        }
-    },
-    
-    computed: {
-        deckName(){
-            if(this.$route.name == 'deck'){
-                return this.$store.state.decks.filter(d => {
-                    return d.deckId == this.$route.params.deckId;
-                }).deckDescription
-            }
-            else{
-                return 'hi';
-            }
-        }
-    }
-}
+  created() {
+    deckService.getDeck(this.$route.params.deckId).then((response) => {
+      this.deckName = response.data.deckName;
+      this.deckDescription = response.data.deckDescription;
+    });
+  },
+};
 </script>
 
 <style>
-.deck-details{
-    display: flex;
-    justify-content: center;
-    width: 100%;
+.deck-details {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 </style>

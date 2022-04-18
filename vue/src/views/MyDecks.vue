@@ -1,6 +1,6 @@
 <template>
     <div class="my-decks">
-        <deck-details />
+        <h1>My Flashcard Decks</h1>
         <add-deck class="add-deck" />
         <list-decks class="list-decks" />
     </div>
@@ -9,7 +9,6 @@
 <script>
 import AddDeck from '../components/AddDeck.vue'
 import ListDecks from '../components/ListDecks.vue'
-import DeckDetails from '../components/DeckDetails.vue'
 
 export default {
     name: 'my-decks',
@@ -20,11 +19,12 @@ export default {
     components: {
         AddDeck,
         ListDecks,
-        DeckDetails
     },
 }
 </script>
 
-<style>
-
+<style scoped>
+h1{
+    text-align: center;
+}
 </style>

@@ -46,3 +46,14 @@ export default {
   }
 };
 </script>
+
+<style>
+.choose-study-session{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+h1{
+    text-align: center;
+}
+</style>
