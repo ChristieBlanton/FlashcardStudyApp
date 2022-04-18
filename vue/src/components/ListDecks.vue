@@ -58,8 +58,8 @@ export default {
 
 <style>
 .deck {
-  width: 350px;
-  height: 200px;
+  width: 18vw;
+  height: 20vh;
   padding: 10px;
   display: flex;
   flex-direction: column;

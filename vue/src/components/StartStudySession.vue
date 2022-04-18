@@ -1,7 +1,7 @@
 <template>
     <div class="start-study-session">
         <deck-details class="study-deck-name" />
-        <div class="study-session" v-if="!endSession">
+        <div class="current-study-session" v-if="!endSession">
             <button class="current-flash-card card purple-btn" v-on:click="showBack = !showBack">
                 <h3 class="current-card-front" v-if="!showBack">{{currentCard.cardFront}}</h3>
                 <h3 class="current-card-back" v-else>{{currentCard.cardBack}}</h3>
@@ -20,8 +20,8 @@
         </div>
         
         <div class="end-study-session" v-else>
-            <h3>You got {{correct}} cards correct</h3>
-            <h3>You got {{incorrect}} cards incorrect</h3>
+            <h3>Number of cards correct: {{correct}}</h3>
+            <h3>Number of cards incorrect: {{incorrect}}</h3>
 
         </div>
     </div>
@@ -83,7 +83,7 @@ export default {
 .study-deck-name{
     flex-grow: 1;
 }
-.study-session{
+.current-study-session{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -101,6 +101,10 @@ export default {
     margin-bottom: 40px;
     height: 50px;
     padding: 5px 30px;
+}
+.end-study-session{
+    flex-grow: 3;
+
 }
 .answer-btns{
     flex-grow: 1;

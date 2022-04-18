@@ -55,7 +55,7 @@ h1{
   width: 40px;
 }
 .logo-nav{
-  width: 100px;
+  width: 12vh;
   opacity: 0;
   animation-name: logo-nav-load;
   animation-delay: .6s;
@@ -175,7 +175,6 @@ h1{
 .view{
   grid-area: view;
   width: 75% !important;
-  margin: auto;
 }
 /* #app{
   display: grid;

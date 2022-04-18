@@ -1,6 +1,7 @@
 <template>
     <div class="study-session">
         <h1>Choose A Deck To Use</h1>
+
         <choose-study-session />
     </div>
 </template>
