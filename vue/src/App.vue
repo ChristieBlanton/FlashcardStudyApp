@@ -16,6 +16,7 @@
         <router-link class="home-btn" v-bind:to="{ name: 'home' }"><img class="logo-nav" src="./assets/flasher-logo-gray-small.png" ></router-link>
         <router-link class="my-decks-btn" v-bind:to="{ name: 'mydecks' }" v-if="$store.state.token != ''"><div class="nav-btn-text">My Decks</div></router-link>
         <router-link class="my-cards-btn" v-bind:to="{ name: 'mycards' }" v-if="$store.state.token != ''">My Cards</router-link>
+        <router-link class="study-btn" v-bind:to="{ name: 'studysession' }" v-if="$store.state.token != ''">Study</router-link>
 
         <router-link class="logout" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
 
@@ -67,7 +68,7 @@ h1{
   to{opacity: 1; transform: scale(100%);}
 }
 .logout{
-  top: 30%;
+  top: 32vh;
 }
 
 
@@ -92,14 +93,17 @@ h1{
 .my-cards-btn{
   top: 23vh;
 }
-.my-decks-btn, .logout, .my-cards-btn{
+.study-btn{
+  top: 26vh;
+}
+.my-decks-btn, .logout, .my-cards-btn, .study-btn{
   padding: 0 10px 0 10px;
   font-size: 2vh;
   font-weight:bold;
   position: fixed;
   color: #092c49;
 }
-.my-decks-btn:hover, .logout:hover, .my-cards-btn:hover{
+.my-decks-btn:hover, .logout:hover, .my-cards-btn:hover, .study-btn:hover{
   
   color: #6B48FF;
 }
