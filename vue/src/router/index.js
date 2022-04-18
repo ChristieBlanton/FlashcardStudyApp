@@ -11,6 +11,10 @@ import Deck from '../views/Deck.vue'
 import EditDeck from '../components/EditDeck.vue'
 import EditCard from '../components/EditCard.vue'
 import MyCards from '../views/MyCards.vue'
+import StudySession from '../views/StudySession.vue'
+import StartStudySession from '../components/StartStudySession.vue'
+
+
 
 Vue.use(Router)
 
@@ -103,6 +107,22 @@ const router = new Router({
       path: '/mycards',
       name: "mycards",
       component: MyCards,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/studysession',
+      name: "studysession",
+      component: StudySession,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/studysession/:deckId',
+      name: "startstudysession",
+      component: StartStudySession,
       meta: {
         requiresAuth: true
       }
