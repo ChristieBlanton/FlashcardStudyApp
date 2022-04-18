@@ -11,7 +11,7 @@
         <img class="edit" src="../assets/close.svg" v-show="currentdeck == deck.deckId" v-on:click="deleteDeck(currentdeck)" />
 
       </div>
-      <h3 v-on:click.self="viewDeck(deck)">{{ deck.deckName }}</h3>
+      <h3 class="listdecks-deck-text" v-on:click.self="viewDeck(deck)">{{ deck.deckName }}</h3>
     </div>
   </div>
 </template>
@@ -23,7 +23,6 @@ export default {
   data() {
     
     return {
-      decks: [],
       showbutton: false,
       currentdeck: 0
       
@@ -37,18 +36,23 @@ export default {
     },
     editDeck(deck) {
       this.$store.commit("EDIT_DECK", deck)
-      this.$router.push({name: "editdeck"})
+      this.$router.push({name: "editdeck", params: {deckId: this.currentdeck}})
     },
     deleteDeck(id){
       deckService.deleteDeck(id).then(() => {
-        location.reload()
+        deckService.myDecks(this.$store.state.user.userId).then((response) => {this.$store.commit("SET_DECKS", response.data )});
       });
     }
   },
   created() {
 
-    deckService.myDecks(this.$store.state.user.userId).then((response) => {this.decks = response.data});
+    deckService.myDecks(this.$store.state.user.userId).then((response) => {this.$store.commit("SET_DECKS", response.data )});
   },
+  computed: {
+    decks(){
+      return this.$store.state.decks
+    }
+  }
 };
 </script>
 
@@ -57,8 +61,12 @@ export default {
   width: 350px;
   height: 200px;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
   
-  
+}
+.listdecks-deck-text{
+  pointer-events: none;
 }
 button {
   background-color: grey;
@@ -66,6 +74,7 @@ button {
 .list-decks{
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
   margin-top: 40px;
 }

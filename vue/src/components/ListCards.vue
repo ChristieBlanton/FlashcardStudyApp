@@ -1,9 +1,9 @@
 <template>
   <div class="list-cards">
-    <div class="card purple-btn" 
+    <button class="card purple-btn" 
         v-for="card in cards"  
         v-bind:key="card.cardId" 
-        v-on:click="toggleFlip(card.cardId)"
+        v-on:click.self="toggleFlip(card.cardId)"
         v-on:mouseover="currentCard = card.cardId" 
         v-on:mouseleave="currentCard = 0" >
         <div class="hover-btn">
@@ -11,9 +11,9 @@
         <img class="edit" src="../assets/close.svg" v-show="currentCard == card.cardId" v-on:click="deleteCard(currentCard)" />
 
       </div>
-      <h3 v-if="!showBack.includes(card.cardId)">{{ card.cardFront }}</h3>
-      <h4 v-else>{{ card.cardBack }}</h4>
-    </div>
+      <h3 class="list-cards-text" v-if="!showBack.includes(card.cardId)">{{ card.cardFront }}</h3>
+      <h4 class="list-cards-text" v-else>{{ card.cardBack }}</h4>
+    </button>
   </div>
 </template>
 
@@ -23,7 +23,6 @@ export default {
   name: "list-cards",
   data() {
     return {
-      cards: [],
       showBack: [],
       currentCard: 0,
     };
@@ -41,8 +40,7 @@ export default {
       },
       deleteCard(cardId){
         cardService.deleteCard(this.$route.params.deckId, cardId).then(() => {
-        location.reload(true)
-        // cardService.getCardsInDeck(parseInt(this.$route.params.deckId)).then((response) => {this.$store.commit('SET_CARDS',response.data)})
+        cardService.getCardsInDeck(parseInt(this.$route.params.deckId)).then((response) => {this.$store.commit('SET_CARDS',response.data)})
       });
       },
       editCard(card){
@@ -52,8 +50,13 @@ export default {
   },
   created() {
 
-    cardService.getCardsInDeck(parseInt(this.$route.params.deckId)).then((response) => {this.cards = response.data});
+    cardService.getCardsInDeck(parseInt(this.$route.params.deckId)).then((response) => {this.$store.commit("SET_CARDS", response.data)});
   },
+  computed: {
+    cards(){
+      return this.$store.state.cards;
+    }
+  }
 };
 </script>
 
@@ -63,17 +66,21 @@ export default {
   height: 200px;
   padding: 10px;
   display: flex;
-  justify-content: flex-start;
+  cursor: default !important;
 }
 .list-cards{
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
   margin-top: 40px;
 }
 a:hover{
   text-decoration: none;
 
+}
+.list-cards-text{
+  pointer-events: none;
 }
 .hover-btn{
   height: 40px;
@@ -83,5 +90,6 @@ a:hover{
 }
 .edit{
   width: 35px;
+  cursor: pointer;
 }
 </style>

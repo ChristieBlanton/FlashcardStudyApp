@@ -83,6 +83,16 @@ export default {
       })
       this.showDropDown = false;
     },
+    isCardInDeck(deckId) {
+      cardService.getCardsInDeck(deckId).then(response => {
+        if(!response.data.filter(card => {
+          return card.cardId == this.currentCard
+        }).length > 0) {
+          return true;
+          }
+      })
+      return false;
+    },
     // filteredDecks() {
     //   return this.decks.filter(deck => {
     //     return this.deckCards.filter(d => {

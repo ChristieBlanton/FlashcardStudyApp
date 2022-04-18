@@ -76,7 +76,6 @@ h2 {
     text-align: center;
     color: #0D3F67;
 }
-
 .edit-card-btn{
     height: 40px;
     width: 200px;

@@ -5,7 +5,7 @@
     <div id="header">
       
     </div>
-    <div class="footer">
+    <div id="footer">
 
     </div>
     </div>
@@ -55,7 +55,16 @@ h1{
 }
 .logo-nav{
   width: 100px;
-  
+  opacity: 0;
+  animation-name: logo-nav-load;
+  animation-delay: .6s;
+  animation-duration: .1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+}
+@keyframes logo-nav-load {
+  from {opacity: 0; transform: scale(0);}
+  to{opacity: 1; transform: scale(100%);}
 }
 .logout{
   top: 30%;
@@ -72,20 +81,20 @@ h1{
 
 .home-btn{
   position: fixed;
-  left: 3%;
-  top: 3%;
+  left: 40px;
+  top: 20px;
 }
 .my-decks-btn{
-  top: 20%;
+  top: 20vh;
   
 }
 
 .my-cards-btn{
-  top: 23%;
+  top: 23vh;
 }
 .my-decks-btn, .logout, .my-cards-btn{
   padding: 0 10px 0 10px;
-  font-size: 20px;
+  font-size: 2vh;
   font-weight:bold;
   position: fixed;
   color: #092c49;
@@ -94,30 +103,70 @@ h1{
   
   color: #6B48FF;
 }
-#header{
+/* #header{
   grid-area: nav;
-  width: 25%;
-  height: 150%;
-  top:-20%;
-  left: -20%;
+  width: calc(30vw + 100px);
+  height: 100%;
+  left: -30vw;
+  transform: skew(-13deg);
+  background-color: #1ee3cf;
   
-  transform: rotate(13deg);
   position:fixed;
   box-shadow:  inset 0 0 10px  gray;
     box-shadow:  0 0 7px  gray;
 
-}
-.footer{
-  grid-area: footer;
+} */
+#header{
+  width: calc(30vw + 100px);
+  height: 100vh;
+  left: -30vw;
+  top: -100vh;
   background-color: #1ee3cf;
-  width: 25%;
-  height: 150%;
-  top:-10%;
-  left: 93%;
-  transform: rotate(13deg);
+  transform: skew(-13deg);
+  position:fixed;
+  box-shadow:  inset 0 0 10px  gray;
+    box-shadow:  0 0 7px  gray;
+  animation-name: header-load;
+  animation-delay: .1s;
+  animation-duration: .4s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+}
+
+@keyframes header-load {
+  from {top: -100vh;}
+  to {top: 0; }
+}
+/* #footer{
+  background-color: #1ee3cf;
+  width: calc(30vw +100px);
+  height: 100vw;
+  top:0;
+  left: -10vw;
+  transform: skew(13deg);
   position:fixed;
   box-shadow:  inset 0 0 7px  gray;
   
+} */
+#footer{
+  width: calc(30vw + 100px);
+  height: 100vh;
+  left: 95vw;
+  top: 100vh;
+  background-color: #1ee3cf;
+  transform: skew(-13deg);
+  position:fixed;
+  box-shadow:  inset 0 0 10px  gray;
+  animation-name: footer-load;
+  animation-delay: .1s;
+  animation-duration: .4s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+
+}
+@keyframes footer-load {
+  from {top: 100vh;}
+  to {top: 0; }
 }
 .view{
   grid-area: view;
@@ -145,14 +194,7 @@ h1{
 *{
   font-family:sans-serif;
 }
-#header{
-  /* display: flex;
-  justify-content: space-between; */
-  font-size: 2em;
-  /* padding: 0 20px 0 20px; */
-  background-color: #1ee3cf;
-  
-}
+
 #nav a{
   text-decoration: none;
   color: rgb(71, 71, 71);
@@ -282,7 +324,7 @@ h1{
 * > .small-lt-btn:hover{
   background-color: #afafaf;
 }
-* > .navy-btn{
+/* * > .navy-btn{
   background-color: #0D3F67;
   width: 300px;
   height: 200px;
@@ -295,6 +337,22 @@ h1{
   align-items: center;
   color: whitesmoke;
   font-size: 22px;
+} */
+* > .navy-btn{
+  background-color: #0D3F67;
+  min-width: 300px;
+  width: 20vw;
+  height: 200px;
+  padding: 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 20px;
+  box-shadow: -2px 3px 5px lightgray;
+  justify-content: center;
+  align-items: center;
+  color: whitesmoke;
+  font-size: 22px;
+  cursor:default !important;
 }
 * > .navy-btn:hover{
   background-color: #092c49;

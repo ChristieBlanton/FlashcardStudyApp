@@ -49,12 +49,12 @@ export default{
         addCard(){
             
             cardService.addCard(this.card).then(() => {
+                cardService.getCardsInDeck(parseInt(this.$route.params.deckId)).then((response) => {this.$store.commit('SET_CARDS',response.data)})
+
                 this.card.cardFront = "";
                 this.card.cardBack = "";
-                this.isAddCardVisible = !this.isAddCardVisible;
+                this.isAddCardVisible = false;
                 this.card.tags = [];
-                location.reload(true)
-                // cardService.getCardsInDeck(parseInt(this.$route.params.deckId)).then((response) => {this.$store.commit('SET_CARDS',response.data)})
             });
             
         },
