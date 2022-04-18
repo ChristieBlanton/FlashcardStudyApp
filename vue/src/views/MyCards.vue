@@ -19,5 +19,7 @@ export default {
 </script>
 
 <style>
-
+.search-cards-view{
+    margin: 0;
+}
 </style>

@@ -1,11 +1,12 @@
 <template>
   <div class="search-cards">
+    <h1 class="my-cards-header">My Flashcards</h1>
     <div class="search-form">
       <input
         type="text"
         name="search-query"
         id="search-query"
-        placeholder="Search Cards"
+        placeholder="Search Cards By Tag"
         v-model="searchQuery"
       />
     </div>
@@ -136,6 +137,10 @@ export default {
 </script>
 
 <style>
+.my-cards-header{
+  margin: 0 0 50px 0;
+  flex-grow: 1;
+}
 .add-card-btn{
   box-shadow: none;
   padding: none;
@@ -162,7 +167,6 @@ export default {
 .search-cards {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 10px;
   margin-top: 40px;

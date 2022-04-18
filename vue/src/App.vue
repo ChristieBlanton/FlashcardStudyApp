@@ -273,7 +273,7 @@ h1{
   margin: 10px;
   border: none;
   border-radius: 20px;
-  box-shadow: -2px 3px 5px lightgray;
+  box-shadow: 0px 3px 7px gray;
   justify-content: center;
   align-items: center;
   color: whitesmoke;
