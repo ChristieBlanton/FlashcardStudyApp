@@ -76,7 +76,7 @@ const router = new Router({
       }
     },
     {
-      path: '/mydecks/:deckId',
+      path: '/mydecks/deck/:deckId',
       name: "deck",
       component: Deck,
       meta: {
@@ -84,7 +84,7 @@ const router = new Router({
       }
     },
     {
-      path: '/editdeck',
+      path: '/mydecks/editdeck/:deckId',
       name: "editdeck",
       component: EditDeck,
       meta: {

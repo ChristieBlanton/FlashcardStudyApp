@@ -33,10 +33,12 @@ export default{
         addDeck(){
             
             deckService.addDeck(this.deck).then(() => {
+                deckService.myDecks(this.$store.state.user.userId).then((response) => {this.$store.commit("SET_DECKS", response.data )});
                 this.deck.deckName = "";
                 this.isAddDeckVisible = !this.isAddDeckVisible;
-                location.reload();
+                
             });
+            
         }
     },
 }

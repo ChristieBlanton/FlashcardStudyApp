@@ -6,22 +6,26 @@
 </template>
 
 <script>
-import deckService from '../services/DeckService'
 export default {
 
     name: 'deck-details',
     data(){
         return {
-            deckName: '',
-            deckDescription: ''
+            
         }
     },
     
-    created() {
-        deckService.getDeck(this.$route.params.deckId).then((response) => {
-            this.deckName = response.data.deckName;
-            this.deckDescription = response.data.deckDescription;
-        });
+    computed: {
+        deckName(){
+            if(this.$route.name == 'deck'){
+                return this.$store.state.decks.filter(d => {
+                    return d.deckId == this.$route.params.deckId;
+                }).deckDescription
+            }
+            else{
+                return 'hi';
+            }
+        }
     }
 }
 </script>
@@ -31,6 +35,5 @@ export default {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin: auto;
 }
 </style>

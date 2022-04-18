@@ -55,7 +55,7 @@ export default new Vuex.Store({
     SET_CARDS(state, cards){
       state.cards = cards;
     },
-    SET_DECKs(state, decks){
+    SET_DECKS(state, decks){
       state.decks = decks;
     },
     EDIT_DECK(state, deck) {
@@ -68,6 +68,7 @@ export default new Vuex.Store({
       state.editCard.cardFront = card.cardFront;
       state.editCard.cardBack = card.cardBack;
       state.editCard.tags = card.tags;
-    }
+    },
+    
   }
 })

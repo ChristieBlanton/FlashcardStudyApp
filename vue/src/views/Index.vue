@@ -1,7 +1,7 @@
 <template>
     <div class="main index">
         <div class="logo-text">
-            <img class="logo" src="../assets/flasher-logo.png" >
+            <img class="logo logo-animate" src="../assets/flasher-logo.png" >
             <h1>Flasher</h1>
 
             <div class="login-register">
@@ -55,6 +55,22 @@
   width: 350px;
   margin: auto;
 }
+
+.logo-animate, .logo-text{
+    opacity: 0;
+    animation-name: logo-load;
+    animation-delay: .1s;
+    animation-duration: .2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in;
+}
+@keyframes logo-load {
+    from{opacity: 0;}
+    to{opacity: 1;}
+}
+
+
+
 .logo-text{
     display: flex;
     flex-direction: column;
