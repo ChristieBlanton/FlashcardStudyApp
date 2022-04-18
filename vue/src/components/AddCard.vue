@@ -6,14 +6,14 @@
             v-if="!isAddCardVisible">New Card</button>
 
         <div class="add-card-form"  v-if="isAddCardVisible">
-            <input type="text" name="card-front" id="card-front" placeholder="Card Front" v-model="card.cardFront">
-            <textarea rows="5" cols="40" name="card-back" id="card-back" placeholder="Card Back" v-model="card.cardBack"></textarea>
+            <input type="text" required name="card-front" id="card-front" placeholder="Card Front" v-model="card.cardFront">
+            <textarea rows="5" cols="40" required name="card-back" id="card-back" placeholder="Card Back" v-model="card.cardBack"></textarea>
             <div class="tags">
                 <label for="tags-basic">Type a new tag and press enter</label><br>
                 <input  type="text" v-on:keyup.enter="addTag()" v-model="tag">
                 <p>Tags: </p>
                 <div class="list-tags" v-for="tag in card.tags" v-bind:key="tag">
-                    <p>{{ tag }} <img class="edit" src="../assets/close.svg" v-on:click="removeTag(tag)" /></p>
+                    <p>{{ tag }} <img class="remove-tag-btn" src="../assets/close.svg" v-on:click="removeTag(tag)" /></p>
 
                 </div>
             </div>
@@ -59,6 +59,8 @@ export default{
             
         },
         addTag(){
+            
+            this.tag = this.tag[0].toUpperCase() + this.tag.substring(1)
             this.card.tags.push(this.tag);
             this.tag = '';
         },
@@ -100,5 +102,9 @@ export default{
     font-size: 20px;
 
 }
-
+.remove-tag-btn{
+    width: 20px;
+    margin-bottom: 4px;
+    cursor: pointer;
+}
 </style>

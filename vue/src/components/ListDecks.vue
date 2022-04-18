@@ -67,6 +67,7 @@ export default {
 }
 .listdecks-deck-text{
   pointer-events: none;
+  text-align: center;
 }
 button {
   background-color: grey;

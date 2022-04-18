@@ -3,7 +3,7 @@
         <button class="new-deck-btn small-new-teal-btn" v-on:click="isAddDeckVisible = !isAddDeckVisible" v-if="!isAddDeckVisible">New Deck</button>
 
         <div class="add-deck-form" v-if="isAddDeckVisible">
-            <input type="text" name="deck-name" id="deck-name" placeholder="Deck Name" v-model="deck.deckName">
+            <input type="text" name="deck-name" id="deck-name" placeholder="Deck Name" required v-model="deck.deckName">
             <textarea rows="5" cols="40" name="deck-description" id="deck-description" placeholder="Deck Description" v-model="deck.deckDescription"></textarea>
             <div class="form-btn">
                 <button class="small-new-teal-btn" v-on:click="addDeck()">Submit</button>
@@ -31,10 +31,16 @@ export default{
     },
     methods: {
         addDeck(){
-            
+
+            this.deck.deckName = this.deck.deckName[0].toUpperCase() + this.deck.deckName.substring(1);
+            if(this.deck.deckDescription){
+                this.deck.deckDescription = this.deck.deckDescription[0].toUpperCase() + this.deck.deckName.substring(1);
+            }
+
             deckService.addDeck(this.deck).then(() => {
                 deckService.myDecks(this.$store.state.user.userId).then((response) => {this.$store.commit("SET_DECKS", response.data )});
                 this.deck.deckName = "";
+                this.deck.deckDescription = "";
                 this.isAddDeckVisible = !this.isAddDeckVisible;
                 
             });
