@@ -75,11 +75,35 @@ INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user@email
 -- admin/password
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('admin@email.com','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
 
-INSERT INTO deck (user_id, deck_name, deck_description) VALUES (1, 'Test Deck', 'Test Description');
+INSERT INTO users (username, password_hash, salt, user_role) VALUES ('christie@email.com','3vzKJie2mWj1w+bhypXrw9gCmZs=','zPsuX5l8uEE=','user');
+INSERT INTO users (username, password_hash, salt, user_role) VALUES ('maggie@email.com','J7SOHtPJG5k4M1VGCnM1lSNxNw0=','K42Yxzk5N2k=','user');
+INSERT INTO users (username, password_hash, salt, user_role) VALUES ('nick@email.com','zPMw3Sd47iyNbuZzvpHwjjbMJNg=', 'YTyhrq4+5VI=', 'user');
+INSERT INTO users (username, password_hash, salt, user_role) VALUES ('sam@email.com','XsEiS6F75bbCSN33tcKuPNkrNe0=','QMdy+AEe9nc=','user');
 
-INSERT INTO card (card_front, card_back, user_id) VALUES ('Test', 'TestAnswer', 1);
+INSERT INTO tag (tag_name) VALUES ('OOP');
+INSERT INTO tag (tag_name) VALUES ('SQL');
+INSERT INTO tag (tag_name) VALUES ('vue.js');
+INSERT INTO tag (tag_name) VALUES ('testing');
+INSERT INTO tag (tag_name) VALUES ('loops and arrays in C#');
+INSERT INTO tag (tag_name) VALUES ('Collections in C#');
+INSERT INTO tag (tag_name) VALUES ('CSS');
+INSERT INTO tag (tag_name) VALUES ('html');
+INSERT INTO tag (tag_name) VALUES ('javascript');
+INSERT INTO tag (tag_name) VALUES ('API');
+INSERT INTO tag (tag_name) VALUES ('web services');
 
+INSERT INTO deck (user_id, deck_name, deck_description) VALUES (3, 'Object Oriented Programming', 'Cards related to OOP principles');
+INSERT INTO deck (user_id, deck_name, deck_description) VALUES (3, 'Data types, arrays, and collections in C#', '');
+
+INSERT INTO card (card_front, card_back, user_id) VALUES ('What are the 3 principles of OOP', 'Encapsulation, Inheritance, and Polymorphism', 3);
 INSERT INTO card_deck (card_id, deck_id) VALUES (1001, 101);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1001);
+
+INSERT INTO card (card_front, card_back, user_id) VALUES ('What encapsulation?', 'Hiding details of a class behind similar', 3);
+INSERT INTO card_deck (card_id, deck_id) VALUES (1001, 101);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1001);
+
+
 
 
 
