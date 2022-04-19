@@ -1,6 +1,6 @@
 <template>
   <div class="list-cards">
-    <button class="card purple-btn" 
+    <button class="card purple-btn btn btn-lg btn-primary btn-block" 
         v-for="card in cards"  
         v-bind:key="card.cardId" 
         v-on:click.self="toggleFlip(card.cardId)"
@@ -62,11 +62,18 @@ export default {
 
 <style>
 .card {
-  width: 350px;
-  height: 200px;
+  width: 18vw;
+  height: 20vh;
   padding: 10px;
   display: flex;
   cursor: default !important;
+  overflow: scroll;
+}
+.card::-webkit-scrollbar {
+  width: 20px;
+}
+.card::-webkit-scrollbar-corner {
+  opacity: 0;
 }
 .list-cards{
   display: flex;

@@ -1,9 +1,9 @@
 <template>
     <div class="add-card">
         
-        <button class="new-card-btn small-new-teal-btn" 
+        <button class="new-card-btn small-new-teal-btn btn btn-lg btn-primary btn-block skew-btn" 
             v-on:click="isAddCardVisible = !isAddCardVisible" 
-            v-if="!isAddCardVisible">New Card</button>
+            v-if="!isAddCardVisible"><div>New Card</div></button>
 
         <div class="add-card-form"  v-if="isAddCardVisible">
             <input type="text" required name="card-front" id="card-front" placeholder="Card Front" v-model="card.cardFront">
@@ -78,6 +78,9 @@ export default{
 .new-card-btn{
  
     width: 200px;
+}
+.new-card-btn:hover{
+    color: black;
 }
 .add-card{
     display: flex;

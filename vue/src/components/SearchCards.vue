@@ -12,7 +12,7 @@
     </div>
     <div class="search-cards-container">
     <button
-      class="card purple-btn"
+      class="card purple-btn btn btn-lg btn-primary btn-block signin-button"
       v-for="card in filteredCards"
       v-bind:key="card.cardId"
       v-on:click.self="toggleFlip(card.cardId)"

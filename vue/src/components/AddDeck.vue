@@ -1,6 +1,6 @@
 <template>
     <div class="add-deck">
-        <button class="new-deck-btn small-new-teal-btn" v-on:click="isAddDeckVisible = !isAddDeckVisible" v-if="!isAddDeckVisible">New Deck</button>
+        <button class="new-deck-btn small-new-teal-btn skew-btn btn btn-lg btn-primary btn-block" v-on:click="isAddDeckVisible = !isAddDeckVisible" v-if="!isAddDeckVisible"><div>New Deck</div></button>
 
         <div class="add-deck-form" v-if="isAddDeckVisible">
             <input type="text" name="deck-name" id="deck-name" placeholder="Deck Name" required v-model="deck.deckName">
@@ -53,6 +53,9 @@ export default{
 <style>
 .new-deck-btn{
     width: 200px;
+}
+.new-deck-btn:hover{
+    color: black;
 }
 .add-deck{
     display: flex;

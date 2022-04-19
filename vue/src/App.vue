@@ -257,8 +257,8 @@ h1{
 }
 * > .purple-btn{
   background-color: #593cda;
-  width: 300px;
-  height: 200px;
+  width: 18vw;
+  height: 20vh;
   padding: 20px;
   margin: 10px;
   border: none;

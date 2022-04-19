@@ -118,7 +118,7 @@ export default {
     height: 30vh;
     width: 30vw;
     box-shadow: 0px 3px 8px gray;
-
+    display: flex;
 }
 .mark-correct, .mark-incorrect{
     height: 5vh;
