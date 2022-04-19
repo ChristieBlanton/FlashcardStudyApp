@@ -72,6 +72,13 @@ export default {
   border-color: rgba(255, 255, 255, 0.301);
   border-style: solid;
 }
+.card:hover{
+  border-color: rgb(56, 255, 255);
+}
+.card:focus{
+  background-color: #4b32bb;
+  border-color: aquamarine;
+}
 .card::-webkit-scrollbar {
   width: 20px;
 }
