@@ -1,5 +1,17 @@
 <template>
     <div class="start-study-session">
+        <form  v-on:submit.prevent="studyTimer(); timer = timerInput; startSession = true" v-if="!startSession">
+        <input type="number" id="timer" v-model="timerInput">
+        <label for="timer"> Time per Card: {{timer}}</label>
+        <input type="checkbox" id="isTimed" v-model="isTimed">
+        <label for="isTimed">Would you like to time your study session?</label>
+        <input type="checkbox" id="isRandom" v-model="isRandom">
+        <label for="isRandom">Would you like to randomize the order of the cards in the deck?</label>
+        <button type="submit" >Begin Session</button>
+        <div>{{timer}}</div>
+        </form >
+        <div id="show-cards" v-else>
+        <div>{{timer}}</div>
         <deck-details class="study-deck-name" />
         <div class="current-study-session" v-if="!endSession">
             <button class="current-flash-card card purple-btn" v-on:click="showBack = !showBack">
@@ -24,6 +36,7 @@
             <h3>Number of cards incorrect: {{incorrect}}</h3>
 
         </div>
+        </div>
     </div>
 </template>
 
@@ -43,7 +56,14 @@ export default {
             showBack: false,
             correct: 0,
             incorrect: 0,
-            endSession: false
+            endSession: false,
+            timer: 10,
+            timerInput: 0,
+            isTimed: false,
+            isRandom: false,
+            startSession: false,
+
+            
         }
     },
     methods: {
@@ -53,6 +73,8 @@ export default {
                 this.currentCardIndex ++;
                 this.currentCard = this.cards[this.currentCardIndex];
                 this.showBack = false;
+                this.timer = this.timerInput;
+                this.studyTimer();
             }
             else{
                 this.endSession = true;
@@ -64,11 +86,27 @@ export default {
                 this.currentCardIndex ++;
                 this.currentCard = this.cards[this.currentCardIndex];
                 this.showBack = false;
+                this.timer = this.timerInput;
+                this.studyTimer();
             }
             else{
                 this.endSession = true;
             }
         },
+        studyTimer() {
+            if(this.isTimed === true){
+                 
+                if(this.timer > 0) {
+                    setTimeout(() => {
+                        this.timer -= 1
+                        this.studyTimer()
+                    }, 1000)
+                }else{
+                    this.markIncorrect();
+                }
+            }
+            },
+        
     },
     created(){
         cardService.getCardsInDeck(this.$route.params.deckId).then(response => {
