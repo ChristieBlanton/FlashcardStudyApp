@@ -68,17 +68,21 @@ export default {
   display: flex;
   cursor: default !important;
   overflow: scroll;
+
   border-width: 3px;
   border-color: rgba(255, 255, 255, 0.301);
   border-style: solid;
 }
 .card:hover{
-  border-color: rgb(56, 255, 255);
+  border-color: rgb(56, 255, 255) !important;
 }
 .card:focus{
-  background-color: #4b32bb;
-  border-color: aquamarine;
+  background-color: #593cda;
+  border-color: rgba(255, 255, 255, 0.301);
+  
+  box-shadow: 0 3px 5px gray;
 }
+
 .card::-webkit-scrollbar {
   width: 20px;
 }
