@@ -68,6 +68,9 @@ export default {
   display: flex;
   cursor: default !important;
   overflow: scroll;
+  border-width: 3px;
+  border-color: rgba(255, 255, 255, 0.301);
+  border-style: solid;
 }
 .card::-webkit-scrollbar {
   width: 20px;

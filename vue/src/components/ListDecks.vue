@@ -63,7 +63,9 @@ export default {
   padding: 10px;
   display: flex;
   flex-direction: column;
-  
+  border-width: 3px;
+  border-color: rgba(255, 255, 255, 0.301);
+  border-style: solid;
 }
 .listdecks-deck-text{
   pointer-events: none;
