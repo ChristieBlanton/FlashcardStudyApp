@@ -1,6 +1,6 @@
 <template>
     <div class="start-study-session">
-        <form  v-on:submit.prevent="studyTimer(); timer = timerInput; startSession = true; onSubmit" v-if="!startSession">
+        <form  v-on:submit.prevent="studyTimer(); timer = timerInput; startSession = true; randomizeDeck(cards); onSubmit();" v-if="!startSession">
         <input type="checkbox" id="isTimed" v-model="isTimed">
         <label for="isTimed">Would you like to time your study session?</label>
         <label for="timer" v-if="isTimed"> Time per Card:</label>
@@ -14,12 +14,20 @@
         <div v-if="isTimed">{{timer}}</div>
         <deck-details class="study-deck-name" />
         <div class="current-study-session" v-if="!endSession">
-            <button class="current-flash-card card purple-btn" v-on:click="showBack = !showBack">
+            <button class="current-flash-card card purple-btn" v-on:click="showBack = !showBack" v-if="!isRandom">
                 <h3 class="current-card-front" v-if="!showBack">{{currentCard.cardFront}}</h3>
                 <h3 class="current-card-back" v-else>{{currentCard.cardBack}}</h3>
 
 
             </button>
+
+            <button class="current-flash-card card purple-btn" v-on:click="showBack = !showBack" v-else>
+                <h3 class="current-card-front" v-if="!showBack">{{currentCard.cardFront}}</h3>
+                <h3 class="current-card-back" v-else>{{currentCard.cardBack}}</h3>
+
+
+            </button>
+
             <div class="answer-btns">
                 <button class="mark-incorrect skew-btn small-purple-btn" v-if="showBack" v-on:click="markIncorrect"><div>Incorrect</div></button>
 
@@ -71,8 +79,16 @@ export default {
         markCorrect(){
             this.correct ++;
             if(this.cards.length > this.currentCardIndex + 1){
+                
                 this.currentCardIndex ++;
-                this.currentCard = this.cards[this.currentCardIndex];
+
+                if(this.isRandom){
+                    this.currentCard = this.randomCards[this.currentCardIndex];
+                }
+                else{
+                    this.currentCard = this.cards[this.currentCardIndex];
+
+                }
                 this.showBack = false;
                 this.timer = this.timerInput;
                 this.studyTimer();
@@ -114,15 +130,15 @@ export default {
                     var temp = cards[i]; 
                     cards[i] = cards[j];
                     cards[j] = temp;
-                    return cards;
     }
             }
+                    this.randomCards = cards;
 
         },
         onSubmit(){
             if(this.isRandom){
 
-                this.randomizeDeck(this.cards);
+                this.currentCard = this.randomCards[0];
             }
         },
         
