@@ -2,6 +2,7 @@
     <div class="start-study-session">
         <deck-details class="study-deck-name" />
         <div class="current-study-session" v-if="!endSession">
+            
             <button class="current-flash-card card purple-btn" v-on:click="showBack = !showBack">
                 <h3 class="current-card-front" v-if="!showBack">{{currentCard.cardFront}}</h3>
                 <h3 class="current-card-back" v-else>{{currentCard.cardBack}}</h3>

@@ -1,19 +1,42 @@
 <template>
   <div class="list-cards">
-    <button class="card purple-btn btn btn-lg btn-primary btn-block" 
-        v-for="card in cards"  
-        v-bind:key="card.cardId" 
-        v-on:click.self="toggleFlip(card.cardId)"
-        v-on:mouseover="currentCard = card.cardId" 
-        v-on:mouseleave="currentCard = 0" >
-        <div class="hover-btn">
-        <img class="edit" src="../assets/cog.svg" v-show="currentCard == card.cardId" v-on:click="editCard(card)" />
-        <img class="edit" src="../assets/close.svg" v-show="currentCard == card.cardId" v-on:click="deleteCard(currentCard)" />
-
+    
+    <button
+      class="card purple-btn btn btn-lg btn-primary btn-block"
+      v-for="card in cards"
+      v-bind:key="card.cardId"
+      v-on:click.self="toggleFlip(card.cardId)"
+      v-on:mouseover="currentCard = card.cardId"
+      v-on:mouseleave="currentCard = 0"
+    >
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+      <div class="hover-btn">
+        <img
+          class="edit"
+          src="../assets/cog.svg"
+          v-show="currentCard == card.cardId"
+          v-on:click="editCard(card)"
+        />
+        <img
+          class="edit"
+          src="../assets/close.svg"
+          v-show="currentCard == card.cardId"
+          v-on:click="deleteCard(currentCard)"
+        />
       </div>
-      <h3 class="list-cards-text" v-if="!showBack.includes(card.cardId)">{{ card.cardFront }}</h3>
-      <h4 class="list-cards-text" v-else>{{ card.cardBack }}</h4>
+      <h3 class="list-cards-text" v-if="!showBack.includes(card.cardId)">
+        {{ card.cardFront }}
+      </h3>
+        </div>
+        <div class ="flip-card-back">
+      <h4 class="list-cards-text">{{ card.cardBack }}</h4>
+        </div>
+      </div>
+    </div>
     </button>
+    
   </div>
 </template>
 
@@ -28,35 +51,44 @@ export default {
     };
   },
   methods: {
-      toggleFlip(cardId){
-          if(!this.showBack.includes(cardId)){
-              this.showBack.push(cardId);
-          }
-          else{
-              this.showBack = this.showBack.filter(a => {
-                  return a != cardId;
-              })
-          }
-      },
-      deleteCard(cardId){
-        cardService.deleteCard(this.$route.params.deckId, cardId).then(() => {
-        cardService.getCardsInDeck(parseInt(this.$route.params.deckId)).then((response) => {this.$store.commit('SET_CARDS',response.data)})
-      });
-      },
-      editCard(card){
-        this.$store.commit("EDIT_CARD", card)
-        this.$router.push({name: "editcard", params: {deckId: this.$route.params.deckId, cardId: this.currentCard}})
+    toggleFlip(cardId) {
+      if (!this.showBack.includes(cardId)) {
+        this.showBack.push(cardId);
+      } else {
+        this.showBack = this.showBack.filter((a) => {
+          return a != cardId;
+        });
       }
+    },
+    deleteCard(cardId) {
+      cardService.deleteCard(this.$route.params.deckId, cardId).then(() => {
+        cardService
+          .getCardsInDeck(parseInt(this.$route.params.deckId))
+          .then((response) => {
+            this.$store.commit("SET_CARDS", response.data);
+          });
+      });
+    },
+    editCard(card) {
+      this.$store.commit("EDIT_CARD", card);
+      this.$router.push({
+        name: "editcard",
+        params: { deckId: this.$route.params.deckId, cardId: this.currentCard },
+      });
+    },
   },
   created() {
-
-    cardService.getCardsInDeck(parseInt(this.$route.params.deckId)).then((response) => {this.$store.commit("SET_CARDS", response.data)});
+    cardService
+      .getCardsInDeck(parseInt(this.$route.params.deckId))
+      .then((response) => {
+        this.$store.commit("SET_CARDS", response.data);
+      });
   },
   computed: {
-    cards(){
+    cards() {
       return this.$store.state.cards;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -75,7 +107,7 @@ export default {
 .card::-webkit-scrollbar-corner {
   opacity: 0;
 }
-.list-cards{
+.list-cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -83,21 +115,53 @@ export default {
   gap: 10px;
   margin-top: 40px;
 }
-a:hover{
+a:hover {
   text-decoration: none;
-
 }
-.list-cards-text{
+.list-cards-text {
   pointer-events: none;
 }
-.hover-btn{
+.hover-btn {
   height: 40px;
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
-.edit{
+.edit {
   width: 35px;
   cursor: pointer;
+}
+.flip-card {
+  width: 300px;
+  height: 200px;
+  perspective: 1000px; 
+  
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card.clicked .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+
+.flip-card-back {
+  transform: rotateY(180deg);
 }
 </style>
