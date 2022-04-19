@@ -1,6 +1,6 @@
 <template>
     <div class="start-study-session">
-        <form  v-on:submit.prevent="studyTimer(); timer = timerInput; startSession = true; onSubmit()" v-if="!startSession">
+        <form  v-on:submit.prevent="studyTimer(); timer = timerInput; startSession = true; onSubmit" v-if="!startSession">
         <input type="checkbox" id="isTimed" v-model="isTimed">
         <label for="isTimed">Would you like to time your study session?</label>
         <label for="timer" v-if="isTimed"> Time per Card:</label>
@@ -109,7 +109,7 @@ export default {
             },
         randomizeDeck(cards){
             if(this.isRandom === true){
-                for( var i = 0;i < cards.length; i++) {
+                for( var i = cards.length; --i;) {
                     var j = Math.floor( Math.random() * (i+1));
                     var temp = cards[i]; 
                     cards[i] = cards[j];
