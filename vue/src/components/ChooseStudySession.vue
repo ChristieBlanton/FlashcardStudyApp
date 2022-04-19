@@ -1,7 +1,7 @@
 <template>
   <div class="choose-study-session">
         <div
-        class="deck navy-btn"
+        class="deck navy-btn btn btn btn-lg btn-primary btn-block"
         v-on:mouseover="currentdeck = deck.deckId"
         v-on:mouseleave="currentdeck = 0"
         v-for="deck in decks"

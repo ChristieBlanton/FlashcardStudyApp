@@ -92,7 +92,7 @@ export default {
   background-color: #6B48FF;
   border-color: #6B48FF;
   margin-top: 7px;
-  box-shadow: -2px 4px 5px gray;
+  box-shadow: 0px 4px 5px gray;
 }
 .signin-button:hover{
   background-color: #1ee3cf;
