@@ -153,17 +153,21 @@ export default {
         }
       }
     },
-    randomizeDeck(cards) {
-      if (this.isRandom === true) {
-        for (var i = 0; i < cards.length; i++) {
-          var j = Math.floor(Math.random() * (i + 1));
-          var temp = cards[i];
-          cards[i] = cards[j];
-          cards[j] = temp;
-          return cards;
-        }
-      }
-    },
+    randomizeDeck(cards){
+            if(this.isRandom === true){
+                for( var i = cards.length; --i;) {
+                    var j = Math.floor( Math.random() * (i+1));
+                    var temp = cards[i]; 
+                    cards[i] = cards[j];
+                    cards[j] = temp;
+    }
+            }
+                    this.randomCards = cards;
+
+        },
+    
+        
+    
     onSubmit() {
       if (this.isRandom) {
         this.randomizeDeck(this.cards);
