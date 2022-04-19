@@ -3,6 +3,7 @@
     <h1 class="my-cards-header">My Flashcards</h1>
     <div class="search-form">
       <input
+        class="search-cards-input"
         type="text"
         name="search-query"
         id="search-query"
@@ -137,6 +138,10 @@ export default {
 </script>
 
 <style>
+.search-cards-input{
+  width: 15vw;
+  margin-bottom: 5vh;
+}
 .my-cards-header{
   margin: 0 0 50px 0;
   flex-grow: 1;

@@ -53,6 +53,8 @@ export default{
 <style>
 .new-deck-btn{
     width: 200px;
+    padding: 0;
+    height: 50px;
 }
 .new-deck-btn:hover{
     color: black;

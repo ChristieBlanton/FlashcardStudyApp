@@ -8,8 +8,10 @@
       v-on:click.self="toggleFlip(card.cardId)"
       v-on:mouseover="currentCard = card.cardId"
       v-on:mouseleave="currentCard = 0"
+      
     >
     <div class="flip-card" onclick="this.classList.toggle('clicked')">
+    
       <div class="flip-card-inner">
         <div class="flip-card-front">
       <div class="hover-btn">
@@ -34,10 +36,10 @@
       <h4 class="list-cards-text">{{ card.cardBack }}</h4>
         </div>
       </div>
-    </div>
-    </button>
-    
   </div>
+    </button>
+    </div>
+    
 </template>
 
 <script>
@@ -100,7 +102,21 @@ export default {
   display: flex;
   cursor: default !important;
   overflow: scroll;
+
+  border-width: 3px;
+  border-color: rgba(255, 255, 255, 0.301);
+  border-style: solid;
 }
+.card:hover{
+  border-color: rgb(56, 255, 255) !important;
+}
+.card:focus{
+  background-color: #593cda;
+  border-color: rgba(255, 255, 255, 0.301);
+  
+  box-shadow: 0 3px 5px gray;
+}
+
 .card::-webkit-scrollbar {
   width: 20px;
 }
@@ -148,7 +164,7 @@ a:hover {
 }
 
 .flip-card.clicked .flip-card-inner {
-  transform: rotateY(180deg);
+  transform: rotateY(-180deg);
 }
 
 
@@ -162,6 +178,6 @@ a:hover {
 
 
 .flip-card-back {
-  transform: rotateY(180deg);
+  transform: rotateY(-180deg);
 }
 </style>
