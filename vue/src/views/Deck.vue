@@ -1,7 +1,13 @@
 <template>
     <div class="deck-details">
         <deck-details />
-        <add-card />
+
+        <div class="add-study">
+            <add-card />
+            <!-- <button class="deck-start-study small-new-teal-btn">Study</button> -->
+
+        </div>
+
         <list-cards />
     </div>
 </template>
@@ -21,4 +27,14 @@ export default {
     
 }
 </script>
+
+<style>
+.add-study{
+    display: flex;
+    justify-content: space-around;
+}
+.deck-start-study{
+
+}
+</style>
 

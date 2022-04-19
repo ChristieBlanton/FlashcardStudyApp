@@ -71,15 +71,6 @@ h1{
   top: 32vh;
 }
 
-
-
-
-
-
-
-
-
-
 .home-btn{
   position: fixed;
   left: 40px;
@@ -136,7 +127,6 @@ h1{
   animation-fill-mode: forwards;
   animation-timing-function: ease-out;
 }
-
 @keyframes header-load {
   from {top: -100vh;}
   to {top: 0; }
@@ -239,7 +229,7 @@ h1{
   margin: 10px;
   border: none;
   border-radius: 20px;
-  box-shadow: -2px 3px 5px lightgray;
+  box-shadow: 0px 3px 5px gray;
   justify-content: center;
   align-items: center;
   color: black;
@@ -305,7 +295,7 @@ h1{
   margin: 10px;
   border: none;
   border-radius: 20px;
-  box-shadow: -2px 3px 5px lightgray;
+  box-shadow: 0px 3px 5px gray;
   justify-content: center;
   align-items: center;
   color: black;
@@ -352,7 +342,7 @@ h1{
   margin: 10px;
   border: none;
   border-radius: 20px;
-  box-shadow: -2px 3px 5px lightgray;
+  box-shadow: 0px 3px 7px gray;
   justify-content: center;
   align-items: center;
   color: whitesmoke;
@@ -368,7 +358,7 @@ h1{
   margin: 10px;
   border: none;
   border-radius: 10px;
-  box-shadow: -2px 3px 5px lightgray;
+  box-shadow: px 3px 5px gray;
   justify-content: center;
   align-items: center;
   color: whitesmoke;

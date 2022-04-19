@@ -17,6 +17,15 @@
     </div>
 </template>
 
+<script>
+export default {
+    created(){
+        this.$store.commit("LOGOUT");
+
+    }
+}
+</script>
+
 <style>
 .index{
     background-image: url("../assets/wrtiting-tools.jpg");
