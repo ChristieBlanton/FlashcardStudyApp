@@ -1,17 +1,17 @@
 <template>
     <div class="start-study-session">
-        <form  v-on:submit.prevent="studyTimer(); timer = timerInput; startSession = true" v-if="!startSession">
-        <input type="number" id="timer" v-model="timerInput">
-        <label for="timer"> Time per Card: {{timer}}</label>
+        <form  v-on:submit.prevent="studyTimer(); timer = timerInput; startSession = true; onSubmit()" v-if="!startSession">
         <input type="checkbox" id="isTimed" v-model="isTimed">
         <label for="isTimed">Would you like to time your study session?</label>
+        <label for="timer" v-if="isTimed"> Time per Card:</label>
+        <input type="number" id="timer" v-model="timerInput" v-if="isTimed">
         <input type="checkbox" id="isRandom" v-model="isRandom">
         <label for="isRandom">Would you like to randomize the order of the cards in the deck?</label>
         <button type="submit" >Begin Session</button>
         <div>{{timer}}</div>
         </form >
         <div id="show-cards" v-else>
-        <div>{{timer}}</div>
+        <div v-if="isTimed">{{timer}}</div>
         <deck-details class="study-deck-name" />
         <div class="current-study-session" v-if="!endSession">
             <button class="current-flash-card card purple-btn" v-on:click="showBack = !showBack">
@@ -51,6 +51,7 @@ export default {
     data(){
         return {
             cards: [],
+            randomCards: [],
             currentCard: {},
             currentCardIndex: 0,
             showBack: false,
@@ -106,6 +107,24 @@ export default {
                 }
             }
             },
+        randomizeDeck(cards){
+            if(this.isRandom === true){
+                for( var i = 0;i < cards.length; i++) {
+                    var j = Math.floor( Math.random() * (i+1));
+                    var temp = cards[i]; 
+                    cards[i] = cards[j];
+                    cards[j] = temp;
+                    return cards;
+    }
+            }
+
+        },
+        onSubmit(){
+            if(this.isRandom){
+
+                this.randomizeDeck(this.cards);
+            }
+        },
         
     },
     created(){
