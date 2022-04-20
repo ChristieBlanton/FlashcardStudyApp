@@ -360,7 +360,6 @@ h1{
 } */
 * > .navy-btn{
   background-color: #0D3F67;
-  min-width: 300px;
   width: 20vw;
   height: 200px;
   padding: 20px;

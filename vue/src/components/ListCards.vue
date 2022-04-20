@@ -21,7 +21,7 @@
           <!-- <h3 class="list-cards-text" v-if="!showBack.includes(card.cardId)">{{ card.cardFront }}</h3>
           <h3 class="list-cards-text" v-else>{{ card.cardBack }}</h3> -->
           <h3 class="list-cards-text" v-show="!showBack.includes(card.cardId)">{{ card.cardFront }}</h3>
-          <img :src="(card.cardImage)" alt="card image" v-show="(!showBack.includes(card.cardId)) ">
+          <img :src="(card.cardImage)" alt="card image" v-show="(!showBack.includes(card.cardId)) && card.cardImage">
           <h3 class="list-cards-text" v-show="showBack.includes(card.cardId)">{{ card.cardBack }}</h3>
 
         <!-- </div> -->
