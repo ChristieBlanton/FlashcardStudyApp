@@ -11,10 +11,11 @@ namespace Capstone.Models
 
         public string CardFront { get; set; }
         public string CardBack { get; set; }
+        public string CardImage { get; set; }
         public int UserId { get; set; }
         public int DeckId { get; set; }
         public int[] DeckIds { get; set; }
         public string[] Tags { get; set; }
-        public bool IsPublic { get; set; }
+        public bool IsCardPublic { get; set; }
     }
 }

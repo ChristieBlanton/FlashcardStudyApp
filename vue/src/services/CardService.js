@@ -19,5 +19,8 @@ export default {
   },
   addCardToDeck(cardId, deckId){
     return axios.put(`/card/${deckId}/${cardId}`)
+  },
+  getPublicCards(){
+    return axios.get('/card')
   }
 }
