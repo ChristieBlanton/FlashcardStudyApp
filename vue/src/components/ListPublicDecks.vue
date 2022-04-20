@@ -27,7 +27,7 @@ export default {
   methods: {
     viewDeck(deck){
       this.$store.commit("EDIT_DECK", deck)
-      this.$router.push({name: 'deck', params: {deckId: deck.deckId}})
+      this.$router.push({name: 'communitydeck', params: {deckId: deck.deckId}})
     },
 
   },

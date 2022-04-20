@@ -6,6 +6,8 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import PublicDecks from '../views/PublicDecks.vue'
+import ListPublicCards from '../components/ListPublicCards'
+import PublicCards from '../views/PublicCards'
 import MyDecks from '../views/MyDecks.vue'
 import Index from '../views/Index.vue'
 import Deck from '../views/Deck.vue'
@@ -73,9 +75,25 @@ const router = new Router({
       }
     },
     {
-      path:"/comminitydecks",
-      name:"communitydecks",
+      path: "/communitydecks",
+      name: "communitydecks",
       component: PublicDecks,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/communitydecks/:deckId",
+      name: "communitydeck",
+      component: ListPublicCards,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/communitycards",
+      name: "communitycards",
+      component: PublicCards,
       meta: {
         requiresAuth: false
       }
