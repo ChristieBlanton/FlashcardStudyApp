@@ -3,14 +3,14 @@
         
         <button class="new-card-btn small-new-teal-btn btn btn-lg btn-primary btn-block skew-btn" 
             v-on:click="isAddCardVisible = !isAddCardVisible" 
-            v-if="!isAddCardVisible"><div>New Card</div></button>
+            v-show="!isAddCardVisible"><div>New Card</div></button>
 
-        <div class="add-card-form"  v-if="isAddCardVisible">
-            <input type="text" required name="card-front" id="card-front" placeholder="Card Front" v-model="card.cardFront">
+        <div class="add-card-form skew-btn small-new-teal-btn"  v-show="isAddCardVisible">
+            <div class="add-card-input"><input type="text" required name="card-front" id="card-front" placeholder="Card Front" v-model="card.cardFront"></div>
             <textarea rows="5" cols="40" required name="card-back" id="card-back" placeholder="Card Back" v-model="card.cardBack"></textarea>
             <div class="tags">
-                <label for="tags-basic">Type a new tag and press enter</label><br>
-                <input  type="text" v-on:keyup.enter="addTag()" v-model="tag">
+                <!-- <label for="tags-basic">Type a new tag and press enter</label><br> -->
+                <input  type="text" v-on:keyup.enter="addTag()" placeholder="Type a new tag and press enter" v-model="tag">
                 <p>Tags: </p>
                 <div class="list-tags" v-for="tag in card.tags" v-bind:key="tag">
                     <p>{{ tag }} <img class="remove-tag-btn" src="../assets/close.svg" v-on:click="removeTag(tag)" /></p>
@@ -75,6 +75,28 @@ export default{
 </script>
 
 <style>
+.add-card-form{
+    background-color: aqua;
+    padding: 50px;
+    /* animation-name: add-card-form-animate;
+    animation-duration: 1s;
+    transform: rotateX(90deg); */
+}
+/* @keyframes add-card-form-animate {
+    from{transform: rotateX(90deg);}
+    to{transform: rotateX(0deg);}
+} */
+.add-card-form div input{
+    width: 95%;
+    border: none;
+}
+.add-card-input{
+    border-color: aqua;
+    border-width: 3px;
+    border-style: outset;
+    display: flex;
+    justify-content: center;
+}
 .new-card-btn{
     height: 50px;
     padding: 0;

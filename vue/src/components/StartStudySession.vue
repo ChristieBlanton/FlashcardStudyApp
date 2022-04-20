@@ -3,7 +3,7 @@
     <form
       class="session-form"
       v-on:submit.prevent="
-        studyTimer();
+        
         timer = timerInput;
         startSession = true;
         onSubmit();
@@ -38,7 +38,7 @@
       </button>
 
       <!-- <label for="isRandom">Would you like to randomize the order of the cards in the deck?</label> -->
-      <button class="session-form-submit small-navy-btn skew-btn" type="submit">
+      <button v-on:click="studyTimer()" class="session-form-submit small-navy-btn skew-btn" type="submit">
         <div>Begin Session</div>
       </button>
     </form>
@@ -46,6 +46,13 @@
       <deck-details class="study-deck-name" />
       <div class="card-timer small-navy-btn skew-btn" v-if="isTimed">
         <div>{{ timer }}</div>
+        
+
+      </div>
+      <div class="card-timer small-navy-btn skew-btn" v-if="isTimed">
+        <div>{{ timer2 }}</div>
+        
+
       </div>
 
       <div class="current-study-session" v-if="!endSession">
@@ -62,7 +69,7 @@
           <button
             class="mark-incorrect skew-btn small-purple-btn"
             v-if="showBack"
-            v-on:click="markIncorrect"
+            v-on:click.prevent="markIncorrect"
           >
             <div>Incorrect</div>
           </button>
@@ -70,7 +77,7 @@
           <button
             class="mark-correct skew-btn small-new-teal-btn"
             v-if="showBack"
-            v-on:click="markCorrect"
+            v-on:click.prevent="markCorrect"
           >
             <div>Correct</div>
           </button>
@@ -84,8 +91,9 @@
       </div>
 
       <div class="end-study-session" v-else>
-        <h3>Number of cards correct: {{ correct }}</h3>
-        <h3>Number of cards incorrect: {{ incorrect }}</h3>
+        <button class="session-result deck new-teal-btn"><div><h3>{{ correct }}</h3></div></button>
+        <button class="session-result deck navy-btn"><div><h3>{{ incorrect }}</h3></div></button>
+
       </div>
     </div>
   </div>
@@ -110,6 +118,8 @@ export default {
       incorrect: 0,
       endSession: false,
       timer: 0,
+      timer2: 0,
+      isTimer1: true,
       timerInput: 0,
       isTimed: false,
       isRandom: false,
@@ -123,8 +133,24 @@ export default {
         this.currentCardIndex++;
         this.currentCard = this.cards[this.currentCardIndex];
         this.showBack = false;
-        this.timer = this.timerInput;
-        this.studyTimer();
+        if(this.isTimer1){
+                this.timer = 0;
+                this.timer2 = this.timerInput;
+                this.isTimer1 = false;
+                this.studyTimer2();
+            }
+            else{
+                this.timer2 = 0;
+                this.timer = this.timerInput;
+                this.isTimer1 = true;
+                this.studyTimer();
+            }
+
+        // else{
+        //     this.timer = this.timerInput;
+            
+        //     this.studyTimer();
+        // }
       } else {
         this.endSession = true;
       }
@@ -135,8 +161,25 @@ export default {
         this.currentCardIndex++;
         this.currentCard = this.cards[this.currentCardIndex];
         this.showBack = false;
-        this.timer = this.timerInput;
-        this.studyTimer();
+            if(this.isTimer1){
+                this.timer = 0;
+                this.timer2 = this.timerInput;
+                this.isTimer1 = false;
+                this.studyTimer2();
+            }
+            else{
+                this.timer2 = 0;
+                this.timer = this.timerInput;
+                this.isTimer1 = true;
+                this.studyTimer();
+            }
+
+        
+        // else{
+        //     this.timer = this.timerInput;
+            
+        //     this.studyTimer();
+        // }
       } else {
         this.endSession = true;
       }
@@ -148,7 +191,23 @@ export default {
             this.timer -= 1;
             this.studyTimer();
           }, 1000);
-        } else {
+        } 
+        
+        else {
+          this.markIncorrect();
+        }
+      }
+    },
+    studyTimer2() {
+      if (this.isTimed === true) {
+        if (this.timer2 > 0) {
+          setTimeout(() => {
+            this.timer2 -= 1;
+            this.studyTimer2();
+          }, 1000);
+        } 
+        
+        else {
           this.markIncorrect();
         }
       }
@@ -184,6 +243,20 @@ export default {
 </script>
 
 <style>
+.session-result{
+    transform: rotateX(90deg);
+    animation-name: session-result-animate;
+    animation-duration: .4s;
+    animation-fill-mode: forwards;
+}
+.session-result div h3{
+    font-size: 6vh;
+}
+@keyframes session-result-animate {
+    from{transform: rotateX(90deg);}
+    to{transform: rotateX(0deg);}
+}
+    
 .session-form {
   display: flex;
   flex-direction: column;
