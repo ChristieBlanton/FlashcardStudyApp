@@ -10,6 +10,14 @@
       "
       v-if="!startSession"
     >
+    <button
+        class="small-purple-btn skew-btn"
+        v-bind:class="{ 'session-form-selected': isRandom }"
+        id="isRandom"
+        v-on:click.prevent="isRandom = !isRandom"
+      >
+        <div>Randomize Cards</div>
+      </button>
       <button
         class="small-purple-btn skew-btn"
         id="isTimed"
@@ -28,14 +36,7 @@
         v-if="isTimed"
       />
       <!-- <input type="checkbox" id="isRandom" v-model="isRandom"> -->
-      <button
-        class="small-purple-btn skew-btn"
-        v-bind:class="{ 'session-form-selected': isRandom }"
-        id="isRandom"
-        v-on:click.prevent="isRandom = !isRandom"
-      >
-        <div>Randomize Cards</div>
-      </button>
+      
 
       <!-- <label for="isRandom">Would you like to randomize the order of the cards in the deck?</label> -->
       <button class="session-form-submit small-navy-btn skew-btn" type="submit">
@@ -53,7 +54,7 @@
       <div class="current-study-session" v-if="!endSession">
         <button
           class="current-flash-card purple-btn"
-          v-on:click="showBack = !showBack"
+          v-on:click="toggleFlip()"
         >
           <h3 class="current-card-front" v-if="!showBack">
             {{ currentCard.cardFront }}
@@ -72,10 +73,10 @@
           <h3 class="current-card-back" v-else>{{ randomCards.cardBack }}</h3>
         </button> -->
 
-        <div class="answer-btns">
+        <div class="answer-btns" v-bind:class="{'answer-btns-fade-in': showBack}">
           <button
             class="mark-incorrect skew-btn small-purple-btn"
-            v-if="showBack"
+            v-show="showBack"
             v-on:click="markIncorrect"
           >
             <div>Incorrect</div>
@@ -85,7 +86,7 @@
 
           <button
             class="mark-correct skew-btn small-new-teal-btn"
-            v-if="showBack"
+            v-show="showBack"
             v-on:click="markCorrect"
           >
             <div>Correct</div>
@@ -134,6 +135,25 @@ export default {
     };
   },
   methods: {
+      toggleFlip() {
+        const cardClasses = document.querySelector(".current-flash-card");
+          cardClasses.classList.remove('flip-card-animate');
+          setTimeout(() => {
+          cardClasses.classList.add('flip-card-animate');
+          }, 50);
+
+        setTimeout(() => {
+        this.showBack = !this.showBack;
+            
+          }, 200);
+        
+      
+        
+    },
+      toggleFlipAnimate(cardId){
+      console.log(cardId);
+      
+    },
     markCorrect() {
       this.correct++;
       if (this.cards.length > this.currentCardIndex + 1) {
@@ -227,14 +247,17 @@ export default {
 .session-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
 }
 .session-form button {
   height: 50px;
   padding: 0;
+  transition: .2s;
 }
 .session-form-submit {
   height: 70px !important;
+  margin-top: 50px;
+  transition: .2s;
 }
 .session-form label {
   text-align: center;
@@ -271,6 +294,7 @@ export default {
   margin-bottom: 40px;
   height: 50px;
   padding: 5px 30px;
+  transition: .2s;
 }
 .end-study-session {
   flex-grow: 3;
@@ -279,8 +303,17 @@ export default {
   flex-grow: 1;
   width: 50%;
   display: flex;
-
+  opacity: 0;
+  transition: opacity .2s;
+  transition-delay: .1s;
   justify-content: center;
+}
+.answer-btns-fade-in{
+    opacity: 1;
+}
+@keyframes answer-btns-fadein {
+    from {opacity: 0;}
+    to{opacity: 1;}
 }
 #show-cards{
     display: flex;
@@ -293,11 +326,24 @@ export default {
   width: 30vw;
   box-shadow: 0px 3px 8px gray;
   display: flex;
+  border-width: 4px;
+  border-style: solid;
+  transition: .2s;
+  border-color: rgba(255, 255, 255, 0.315);
+}
+.current-flash-card:hover{
+    border-color: aqua;
 }
 .mark-correct,
 .mark-incorrect {
   height: 5vh;
   padding: 0 15px;
+  transition: .2s;
+  /* opacity: 0;
+    animation-name: answer-btns-fadein;
+    animation-duration: 5;
+    animation-delay: 1;
+    animation-fill-mode: forwards; */
 }
 
 .skew-btn {
