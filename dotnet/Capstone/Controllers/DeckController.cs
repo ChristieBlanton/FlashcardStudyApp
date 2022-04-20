@@ -68,6 +68,21 @@ namespace Capstone.Controllers
             }
         }
 
+        [HttpGet("study/{userId}")]
+        public ActionResult<List<Deck>> GetDecksForStudy(int userId)
+        {
+            List<Deck> decks = deckDao.GetDecksForStudy(userId);
+
+            if (decks != null)
+            {
+                return Ok(decks);
+            }
+            else
+            {
+                return BadRequest(new { message = "Unable to retrieve decks." });
+            }
+        }
+
         [HttpGet("mydecks/{id}")]
         public ActionResult<List<Deck>> MyDecks(int id)
         {

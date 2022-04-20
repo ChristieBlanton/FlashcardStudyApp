@@ -19,5 +19,8 @@ export default {
   },
   getPublicDecks(){
     return axios.get('/deck')
+  },
+  getDecksForStudy(userId){
+    return axios.get(`/deck/study/${userId}`)
   }
 }

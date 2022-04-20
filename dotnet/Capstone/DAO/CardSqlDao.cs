@@ -28,8 +28,9 @@ namespace Capstone.DAO
         string sqlDeleteCardFromDeck = "DELETE FROM card_deck WHERE card_id = @card_id AND deck_id = @deck_id;";
         string sqlUpdateCard = "UPDATE card SET card_front = @card_front, card_back = @card_back WHERE card_id = @card_id;";
         string sqlDeleteCardTags = "DELETE FROM card_tag WHERE card_id = @card_id;";
-        string sqlGetCardsByUser = "SELECT card_id FROM card WHERE user_id = @user_id;";
+        string sqlGetCardsByUser = "SELECT card_id FROM card WHERE user_id = @user_id";
         string sqlGetPublicCards = "SELECT card_id FROM card WHERE isPublic = 1";
+        string sqlGetCardsForSearch = "SELECT card_id FROM card WHERE user_id = @user_id OR isPublic = 1";
         public Card AddCard(string cardFront, string cardBack, int userId, int deckId, string[] tags)
         {
             int cardId = -1;
@@ -257,6 +258,38 @@ namespace Capstone.DAO
             return cards;
         }
 
+        public List<Card> GetCardsForSearch(int userId)
+        {
+            List<Card> cards = new List<Card>();
+            List<int> cardIds = new List<int>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sqlGetCardsForSearch, conn);
+                    cmd.Parameters.AddWithValue("@user_id", userId);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        cardIds.Add(Convert.ToInt32(reader["card_id"]));
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            for (int i = 0; i < cardIds.Count; i++)
+            {
+                cards.Add(GetCard(cardIds[i]));
+            }
+            return cards;
+        }
         public Card GetCard(int cardId)
         {
             Card card = new Card();

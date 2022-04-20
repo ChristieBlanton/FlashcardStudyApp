@@ -37,7 +37,6 @@ export default {
     
   },
   created() {
-
     deckService.myDecks(this.$store.state.user.userId).then((response) => {this.$store.commit("SET_DECKS", response.data )});
   },
   computed: {

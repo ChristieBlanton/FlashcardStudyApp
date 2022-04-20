@@ -55,6 +55,21 @@ namespace Capstone.Controllers
 
         }
 
+        [HttpGet("search/{userId}")]
+        public ActionResult<List<Card>> GetCardsForSearch(int userId)
+        {
+            List<Card> cards = cardDao.GetCardsForSearch(userId);
+
+            if (cards != null)
+            {
+                return Ok(cards);
+            }
+            else
+            {
+                return BadRequest(new { message = "Unable to retrieve cards" });
+            }
+        }
+
         [HttpGet("{deckId}")]
         public ActionResult<List<Card>> GetCardsInDeck(int deckId)
         {

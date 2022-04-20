@@ -22,6 +22,7 @@ namespace Capstone.DAO.Interfaces
 
         List<Card> GetCardsByUser(int userId);
         List<Card> GetPublicCards();
+        List<Card> GetCardsForSearch(int userId);
 
     }
 }
