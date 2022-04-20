@@ -3,8 +3,8 @@
     <form
       class="session-form"
       v-on:submit.prevent="
-        timer = timerInput;
-        studyTimer();
+        
+        
         startSession = true;
         onSubmit();
       "
@@ -37,9 +37,8 @@
         <div>Randomize Cards</div>
       </button>
 
-
       <!-- <label for="isRandom">Would you like to randomize the order of the cards in the deck?</label> -->
-      <button v-on:click="studyTimer()" class="session-form-submit small-navy-btn skew-btn" type="submit">
+      <button class="session-form-submit small-navy-btn skew-btn" type="submit">
         <div>Begin Session</div>
       </button>
     </form>
@@ -47,13 +46,7 @@
       <deck-details class="study-deck-name" />
       <div class="card-timer small-navy-btn skew-btn" v-if="isTimed">
         <div>{{ timer }}</div>
-        
-
       </div>
-      
-        
-
-      
 
       <div class="current-study-session" v-if="!endSession">
         <button
@@ -65,19 +58,24 @@
           </h3>
           <h3 class="current-card-back" v-else>{{ currentCard.cardBack }}</h3>
         </button>
+
+        
+
         <div class="answer-btns">
           <button
             class="mark-incorrect skew-btn small-purple-btn"
             v-if="showBack"
-            v-on:click.prevent="markIncorrect"
+            v-on:click="markIncorrect"
           >
             <div>Incorrect</div>
           </button>
 
+          
+
           <button
             class="mark-correct skew-btn small-new-teal-btn"
             v-if="showBack"
-            v-on:click.prevent="markCorrect"
+            v-on:click="markCorrect"
           >
             <div>Correct</div>
           </button>
@@ -91,9 +89,8 @@
       </div>
 
       <div class="end-study-session" v-else>
-        <button class="session-result deck new-teal-btn"><div><h3>{{ correct }}</h3></div></button>
-        <button class="session-result deck navy-btn"><div><h3>{{ incorrect }}</h3></div></button>
-
+        <h3>Number of cards correct: {{ correct }}</h3>
+        <h3>Number of cards incorrect: {{ incorrect }}</h3>
       </div>
     </div>
   </div>
@@ -117,13 +114,12 @@ export default {
       correct: 0,
       incorrect: 0,
       endSession: false,
-      timer: 0,
-      // timer2: 0,
-      isTimer1: true,
-      timerInput: 0,
+      timer: 1,
+      timerInput: 1,
       isTimed: false,
       isRandom: false,
       startSession: false,
+      testTimer: false,
     };
   },
   methods: {
@@ -134,7 +130,6 @@ export default {
         this.currentCard = this.cards[this.currentCardIndex];
         this.showBack = false;
         this.timer = this.timerInput;
-        
         
       } else {
         this.endSession = true;
@@ -147,7 +142,7 @@ export default {
         this.currentCard = this.cards[this.currentCardIndex];
         this.showBack = false;
         this.timer = this.timerInput;
-            
+        
       } else {
         this.endSession = true;
       }
@@ -160,13 +155,16 @@ export default {
             this.studyTimer();
           }, 1000);
         } 
-        
-        else {
+        if(!this.endSession && this.timer === 0) {
           this.markIncorrect();
+          this.timer = this.timerInput;
+          this.studyTimer();
+        }
+        if(this.endSession === true){
+          return;
         }
       }
     },
-    
     randomizeDeck(cards){
             if(this.isRandom === true){
                 for( var i = cards.length; --i;) {
@@ -186,6 +184,10 @@ export default {
       if (this.isRandom) {
         this.randomizeDeck(this.cards);
       }
+      if(this.isTimed){
+        this.timer = this.timerInput;
+        this.studyTimer();
+      }
     },
   },
   created() {
@@ -198,20 +200,6 @@ export default {
 </script>
 
 <style>
-.session-result{
-    transform: rotateX(90deg);
-    animation-name: session-result-animate;
-    animation-duration: .4s;
-    animation-fill-mode: forwards;
-}
-.session-result div h3{
-    font-size: 6vh;
-}
-@keyframes session-result-animate {
-    from{transform: rotateX(90deg);}
-    to{transform: rotateX(0deg);}
-}
-    
 .session-form {
   display: flex;
   flex-direction: column;
