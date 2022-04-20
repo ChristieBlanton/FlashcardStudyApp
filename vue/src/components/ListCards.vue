@@ -7,7 +7,7 @@
         v-on:mouseover="currentCard = card.cardId" 
         v-on:mouseleave="currentCard = 0"
         v-bind:class="{'flip-card': showBack.includes(card.cardId)}" >
-        <div class="card-inner" v-bind:class="{'flip-card': showBack.includes(card.cardId)}">
+        <div class="card-inner" v-bind:class="{'flip-text': showBack.includes(card.cardId)}">
           <div class="hover-btn">
             <img class="edit" src="../assets/cog.svg" v-show="currentCard == card.cardId" v-on:click="editCard(card)" />
             <h3 class="list-cards-text" v-show="!showBack.includes(card.cardId)">Front</h3>
@@ -86,8 +86,8 @@ export default {
 
 <style>
 .card {
-  width: 18vw;
-  height: 20vh;
+  width: 18vw !important;
+  height: 20vh !important;
   display: flex;
   cursor: default !important;
   overflow: scroll;
@@ -114,7 +114,10 @@ button#card.card{
   box-shadow: 0 -3px 5px gray !important;
 
 }
+.flip-text{
+  transform: rotateX(180deg);
 
+}
 .card:hover{
   border-color: rgb(56, 255, 255) !important;
 }
