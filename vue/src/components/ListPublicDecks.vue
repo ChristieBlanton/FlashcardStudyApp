@@ -29,15 +29,7 @@ export default {
       this.$store.commit("EDIT_DECK", deck)
       this.$router.push({name: 'deck', params: {deckId: deck.deckId}})
     },
-    editDeck(deck) {
-      this.$store.commit("EDIT_DECK", deck)
-      this.$router.push({name: "editdeck", params: {deckId: this.currentdeck}})
-    },
-    deleteDeck(id){
-      deckService.deleteDeck(id).then(() => {
-        deckService.getPublicDecks(this.$store.state.user.userId).then((response) => {this.$store.commit("SET_DECKS", response.data )});
-      });
-    }
+
   },
   created() {
 
