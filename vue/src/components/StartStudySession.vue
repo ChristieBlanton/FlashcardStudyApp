@@ -3,10 +3,10 @@
     <form
       class="session-form"
       v-on:submit.prevent="
-        
-        
         startSession = true;
         onSubmit();
+        
+        
       "
       v-if="!startSession"
     >
@@ -59,7 +59,16 @@
           <h3 class="current-card-back" v-else>{{ currentCard.cardBack }}</h3>
         </button>
 
-        
+        <!-- <div class="current-study-session" v-if="!endSession && isRandom">
+        <button
+          class="current-flash-card card purple-btn"
+          v-on:click="showBack = !showBack"
+        >
+          <h3 class="current-card-front" v-if="!showBack">
+            {{ randomCards.cardFront }}
+          </h3>
+          <h3 class="current-card-back" v-else>{{ randomCards.cardBack }}</h3>
+        </button> -->
 
         <div class="answer-btns">
           <button
@@ -130,6 +139,12 @@ export default {
         this.currentCard = this.cards[this.currentCardIndex];
         this.showBack = false;
         this.timer = this.timerInput;
+        if(this.isRandom){
+          this.currentCard = this.randomCards[this.currentCardIndex];
+        }
+        if(!this.isRandom){
+            this.currentCard = this.cards[this.currentCardIndex];
+        }
         
       } else {
         this.endSession = true;
@@ -139,9 +154,15 @@ export default {
       this.incorrect++;
       if (this.cards.length > this.currentCardIndex + 1) {
         this.currentCardIndex++;
-        this.currentCard = this.cards[this.currentCardIndex];
+        
         this.showBack = false;
         this.timer = this.timerInput;
+        if(this.isRandom){
+          this.currentCard = this.randomCards[this.currentCardIndex];
+        }
+        if(!this.isRandom){
+            this.currentCard = this.cards[this.currentCardIndex];
+        }
         
       } else {
         this.endSession = true;
@@ -183,6 +204,7 @@ export default {
     onSubmit() {
       if (this.isRandom) {
         this.randomizeDeck(this.cards);
+        this.currentCard = this.randomCards[0];
       }
       if(this.isTimed){
         this.timer = this.timerInput;
