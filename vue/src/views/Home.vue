@@ -3,7 +3,7 @@
     <h2 class="home-header">Welcome to Flasher<br> <h3 class="home-header home-header-small">Your Flash Card Study App</h3></h2>
     <div class="home-options">
       <button class="navy-btn" v-on:click="$router.push({name: 'communitydecks'})">Community Decks</button>
-      <!-- <button class="purple-btn">Community Cards</button> -->
+      <button class="purple-btn" v-on:click="$router.push({name: 'communitycards'})">Community Cards</button>
       <button class="new-teal-btn" v-on:click="$router.push({name: 'mydecks'})">Your Decks</button>
       <button class="lt-btn" v-on:click="$router.push({name: 'mycards'})">Your Cards</button>
 
