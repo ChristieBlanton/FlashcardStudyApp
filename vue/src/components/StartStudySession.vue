@@ -3,8 +3,8 @@
     <form
       class="session-form"
       v-on:submit.prevent="
-        
         timer = timerInput;
+        studyTimer();
         startSession = true;
         onSubmit();
       "
@@ -119,7 +119,7 @@ export default {
       incorrect: 0,
       endSession: false,
       timer: 0,
-      timer2: 0,
+      // timer2: 0,
       isTimer1: true,
       timerInput: 0,
       isTimed: false,
@@ -134,18 +134,20 @@ export default {
         this.currentCardIndex++;
         this.currentCard = this.cards[this.currentCardIndex];
         this.showBack = false;
-        if(this.isTimer1){
-                this.timer = 0;
-                this.timer2 = this.timerInput;
-                this.isTimer1 = false;
-                this.studyTimer2();
-            }
-            else{
-                this.timer2 = 0;
-                this.timer = this.timerInput;
-                this.isTimer1 = true;
-                this.studyTimer();
-            }
+        this.timer = this.timerInput;
+        
+        // if(this.isTimer1){
+        //         this.timer = 0;
+        //         this.timer2 = this.timerInput;
+        //         this.isTimer1 = false;
+        //         this.studyTimer2();
+        //     }
+        //     else{
+        //         this.timer2 = 0;
+        //         this.timer = this.timerInput;
+        //         this.isTimer1 = true;
+        //         this.studyTimer();
+        //     }
 
         // else{
         //     this.timer = this.timerInput;
@@ -162,18 +164,19 @@ export default {
         this.currentCardIndex++;
         this.currentCard = this.cards[this.currentCardIndex];
         this.showBack = false;
-            if(this.isTimer1){
-                this.timer = 0;
-                this.timer2 = this.timerInput;
-                this.isTimer1 = false;
-                this.studyTimer2();
-            }
-            else{
-                this.timer2 = 0;
-                this.timer = this.timerInput;
-                this.isTimer1 = true;
-                this.studyTimer();
-            }
+        this.timer = this.timerInput;
+            // if(this.isTimer1){
+            //     this.timer = 0;
+            //     this.timer2 = this.timerInput;
+            //     this.isTimer1 = false;
+            //     this.studyTimer2();
+            // }
+            // else{
+            //     this.timer2 = 0;
+            //     this.timer = this.timerInput;
+            //     this.isTimer1 = true;
+            //     this.studyTimer();
+            // }
 
         
         // else{
@@ -199,20 +202,20 @@ export default {
         }
       }
     },
-    studyTimer2() {
-      if (this.isTimed === true) {
-        if (this.timer2 > 0) {
-          setTimeout(() => {
-            this.timer2 -= 1;
-            this.studyTimer2();
-          }, 1000);
-        } 
+    // studyTimer2() {
+    //   if (this.isTimed === true) {
+    //     if (this.timer2 > 0) {
+    //       setTimeout(() => {
+    //         this.timer2 -= 1;
+    //         this.studyTimer2();
+    //       }, 1000);
+    //     } 
         
-        else {
-          this.markIncorrect();
-        }
-      }
-    },
+    //     else {
+    //       this.markIncorrect();
+    //     }
+    //   }
+    // },
     randomizeDeck(cards){
             if(this.isRandom === true){
                 for( var i = cards.length; --i;) {
