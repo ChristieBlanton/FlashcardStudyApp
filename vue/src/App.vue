@@ -200,6 +200,7 @@ h1{
 #app{
   display: flex;
   position: relative;
+  background-color: rgba(245, 245, 245, 0.486);
 }
 .app-overlay{
   overflow: hidden;
@@ -371,7 +372,7 @@ h1{
   align-items: center;
   color: whitesmoke;
   font-size: 22px;
-  cursor:default !important;
+  /* cursor:default !important; */
 }
 * > .navy-btn:hover{
   background-color: #092c49;

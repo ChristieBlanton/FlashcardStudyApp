@@ -13,19 +13,22 @@
     </div>
     <div class="search-cards-container">
     <button
-      class="card purple-btn btn btn-lg btn-primary btn-block"
+      class="card purple-btn btn btn-lg btn-primary btn-block "
       v-for="card in filteredCards"
       v-bind:key="card.cardId"
-      v-on:click.self="toggleFlip(card.cardId)"
+      v-bind:value="card.cardId"
+      v-on:click="toggleFlipAnimate(card.cardId); toggleFlip(card.cardId); "
       v-on:mouseover="currentCard = card.cardId"
       v-on:mouseleave="currentCard = 0; showDropDown = false"
+      
     >
+      <!-- v-bind:class="{'flip-card-test': showBack.includes(card.cardId), 'flip-card-front-test': showFront.includes(card.cardId)}" -->
       <div class="hover-btn">
         <img
           class="edit card-button-color"
           src="../assets/add-outline.svg"
           v-show="currentCard == card.cardId"
-          v-on:click="showDropDown = true"
+          v-on:click.stop="showDropDown = true"
         />
         <select name="deck-names" id="deck-names" v-if="showDropDown && currentCard == card.cardId" v-model="deckSelection">
           <option value="none" selected disabled hidden>Choose</option>
@@ -34,7 +37,7 @@
         <button class="add-card-btn" v-if="showDropDown && currentCard == card.cardId" v-on:click="addCardToDeck()">Add</button>
       </div>
       <h3 class="list-cards-text" v-if="!showBack.includes(card.cardId)" v-on:click.self="toggleFlip(card.cardId)">{{ card.cardFront }}</h3>
-      <h3 class="list-cards-text" v-else v-on:click.self="toggleFlip(card.cardId)">{{ card.cardBack }}</h3>
+      <h3 class="list-cards-text text-back" v-else v-on:click.self="toggleFlip(card.cardId)">{{ card.cardBack }}</h3>
       <div class="card-tags">
         <p class="tag-name" v-for="tag in card.tags" v-bind:key="tag">
           {{ tag }}
@@ -60,6 +63,7 @@ export default {
       ],
       currentCard: 0,
       showBack: [],
+      showFront: [],
       searchQuery: "",
       showDropDown: false,
       deckSelection: 0,
@@ -68,11 +72,32 @@ export default {
   methods: {
     toggleFlip(cardId) {
       if (!this.showBack.includes(cardId)) {
+        setTimeout(() => {
         this.showBack.push(cardId);
+            
+          }, 200);
       } else {
+        setTimeout(() => {
         this.showBack = this.showBack.filter((a) => {
           return a != cardId;
         });
+            
+          }, 200);
+        
+      }
+    },
+    toggleFlipAnimate(cardId){
+      console.log(cardId);
+      const cardClasses = document.getElementsByClassName("card");
+      for(let i = 0; i < cardClasses.length; i++){
+        if(cardClasses[i].value == cardId){
+          cardClasses[i].classList.remove('flip-card-animate');
+          setTimeout(() => {
+          cardClasses[i].classList.add('flip-card-animate');
+            
+          }, 50);
+
+        }
       }
     },
     addCardToDeck() {
@@ -141,6 +166,30 @@ export default {
 .search-cards-input{
   width: 15vw;
   margin-bottom: 5vh;
+}
+/* .text-back{
+  transform: rotateX(-180deg);
+} */
+.flip-card-animate{
+  animation-name: flip-card-animate;
+  animation-duration: .3s;
+  animation-fill-mode:forwards;
+}
+/* .flip-card-front-test{
+  animation-name: flip-card-test-animate;
+  animation-duration: 1s;
+  animation-fill-mode:forwards;
+} */
+/* .search-card-flip-test{
+  transition: transform 1s ease-in-out;
+  transform: rotateX(90deg);
+} */
+@keyframes flip-card-animate{
+    0% {transform: rotate3d(0);}
+    50% {transform: rotate3d(1, .02, 0, 90deg);}
+    100% {transform: rotate3d(0);}
+
+
 }
 .my-cards-header{
   margin: 0 0 50px 0;

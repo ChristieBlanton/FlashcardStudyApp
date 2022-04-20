@@ -3,11 +3,13 @@
     <button class="card purple-btn btn btn-lg btn-primary btn-block" id="card"
         v-for="card in cards"  
         v-bind:key="card.cardId" 
-        v-on:click="toggleFlip(card.cardId); flipCard(card.cardId)"
+        v-bind:value="card.cardId"
+        v-on:click="toggleFlipAnimate(card.cardId); toggleFlip(card.cardId)"
         v-on:mouseover="currentCard = card.cardId" 
         v-on:mouseleave="currentCard = 0"
-        v-bind:class="{'flip-card': showBack.includes(card.cardId)}" >
-        <div class="card-inner" v-bind:class="{'flip-text': showBack.includes(card.cardId)}">
+         >
+        <!-- <div class="card-inner" v-bind:class="{'flip-text': showBack.includes(card.cardId)}"> -->
+          <!-- v-bind:class="{'flip-card': showBack.includes(card.cardId)}" -->
           <div class="hover-btn">
             <img class="edit" src="../assets/cog.svg" v-show="currentCard == card.cardId" v-on:click="editCard(card)" />
             <h3 class="list-cards-text" v-show="!showBack.includes(card.cardId)">Front</h3>
@@ -21,7 +23,7 @@
           <h3 class="list-cards-text" v-show="!showBack.includes(card.cardId)">{{ card.cardFront }}</h3>
           <h3 class="list-cards-text" v-show="showBack.includes(card.cardId)">{{ card.cardBack }}</h3>
 
-        </div>
+        <!-- </div> -->
     </button>
   </div>
     
@@ -38,20 +40,36 @@ export default {
     };
   },
   methods: {
-      toggleFlip(cardId){
-          if(!this.showBack.includes(cardId)){
-              this.showBack.push(cardId);
-          }
-          else{
-              this.showBack = this.showBack.filter(a => {
-                  return a != cardId;
-              })
-          }
-      },
-      // flipCard(cardId){
-      //   if(this.currentCard == cardId){}
-      // },
-    //   
+      toggleFlip(cardId) {
+      if (!this.showBack.includes(cardId)) {
+        setTimeout(() => {
+        this.showBack.push(cardId);
+            
+          }, 200);
+      } else {
+        setTimeout(() => {
+        this.showBack = this.showBack.filter((a) => {
+          return a != cardId;
+        });
+            
+          }, 200);
+        
+      }
+    },
+      toggleFlipAnimate(cardId){
+      console.log(cardId);
+      const cardClasses = document.getElementsByClassName("card");
+      for(let i = 0; i < cardClasses.length; i++){
+        if(cardClasses[i].value == cardId){
+          cardClasses[i].classList.remove('flip-card-animate');
+          setTimeout(() => {
+          cardClasses[i].classList.add('flip-card-animate');
+            
+          }, 50);
+
+        }
+      }
+    },
     deleteCard(cardId) {
       cardService.deleteCard(this.$route.params.deckId, cardId).then(() => {
         cardService
@@ -86,7 +104,7 @@ export default {
 
 <style>
 .card {
-  width: 18vw !important;
+  width: 30% !important;
   height: 20vh !important;
   display: flex;
   cursor: default !important;
@@ -112,6 +130,19 @@ button#card.card{
 .flip-card{
   transform: rotateX(180deg);
   box-shadow: 0 -3px 5px gray !important;
+
+}
+.flip-card-animate{
+  animation-name: flip-card-animate;
+  animation-duration: .3s;
+  animation-fill-mode:forwards;
+}
+
+@keyframes flip-card-animate{
+    0% {transform: rotate3d(0);}
+    50% {transform: rotate3d(1, .02, 0, 90deg);}
+    100% {transform: rotate3d(0);}
+
 
 }
 .flip-text{
@@ -157,16 +188,9 @@ a:hover {
 }
 h3.list-cards-text{
   font-size: 2.2vh;
-  opacity: 0;
-  animation-name: cards-text-flip;
-  animation-duration: .2s;
-  animation-delay: .2s;
-  animation-fill-mode: forwards;
+  
 }
-@keyframes cards-text-flip {
-  from{opacity: 0;}
-  to{opacity: 1;}
-}
+
 .edit{
   width: 35px;
   cursor: pointer;

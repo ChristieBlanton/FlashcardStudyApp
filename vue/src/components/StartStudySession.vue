@@ -39,13 +39,13 @@
 
 
       <!-- <label for="isRandom">Would you like to randomize the order of the cards in the deck?</label> -->
-      <button v-on:click="studyTimer()" class="session-form-submit small-navy-btn skew-btn" type="submit">
+      <button  class="session-form-submit small-navy-btn skew-btn" type="submit">
         <div>Begin Session</div>
       </button>
     </form>
     <div id="show-cards" v-else>
       <deck-details class="study-deck-name" />
-      <div class="card-timer small-navy-btn skew-btn" v-if="isTimed">
+      <div class="card-timer small-navy-btn skew-btn" v-if="isTimed && !endSession">
         <div>{{ timer }}</div>
         
 
@@ -57,7 +57,7 @@
 
       <div class="current-study-session" v-if="!endSession">
         <button
-          class="current-flash-card card purple-btn"
+          class="current-flash-card purple-btn"
           v-on:click="showBack = !showBack"
         >
           <h3 class="current-card-front" v-if="!showBack">
@@ -118,8 +118,7 @@ export default {
       incorrect: 0,
       endSession: false,
       timer: 0,
-      // timer2: 0,
-      isTimer1: true,
+      
       timerInput: 0,
       isTimed: false,
       isRandom: false,
@@ -162,7 +161,11 @@ export default {
         } 
         
         else {
-          this.markIncorrect();
+            if(!this.endSession) {
+                this.markIncorrect();
+
+            } 
+
         }
       }
     },
