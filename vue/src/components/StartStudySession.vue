@@ -37,6 +37,7 @@
         <div>Randomize Cards</div>
       </button>
 
+
       <!-- <label for="isRandom">Would you like to randomize the order of the cards in the deck?</label> -->
       <button v-on:click="studyTimer()" class="session-form-submit small-navy-btn skew-btn" type="submit">
         <div>Begin Session</div>

@@ -24,6 +24,7 @@
         </div>
     </button>
   </div>
+    
 </template>
 
 <script>
@@ -50,25 +51,36 @@ export default {
       // flipCard(cardId){
       //   if(this.currentCard == cardId){}
       // },
-      deleteCard(cardId){
-        cardService.deleteCard(this.$route.params.deckId, cardId).then(() => {
-        cardService.getCardsInDeck(parseInt(this.$route.params.deckId)).then((response) => {this.$store.commit('SET_CARDS',response.data)})
+    //   
+    deleteCard(cardId) {
+      cardService.deleteCard(this.$route.params.deckId, cardId).then(() => {
+        cardService
+          .getCardsInDeck(parseInt(this.$route.params.deckId))
+          .then((response) => {
+            this.$store.commit("SET_CARDS", response.data);
+          });
       });
-      },
-      editCard(card){
-        this.$store.commit("EDIT_CARD", card)
-        this.$router.push({name: "editcard", params: {deckId: this.$route.params.deckId, cardId: this.currentCard}})
-      }
+    },
+    editCard(card) {
+      this.$store.commit("EDIT_CARD", card);
+      this.$router.push({
+        name: "editcard",
+        params: { deckId: this.$route.params.deckId, cardId: this.currentCard }
+      });
+    },
   },
   created() {
-
-    cardService.getCardsInDeck(parseInt(this.$route.params.deckId)).then((response) => {this.$store.commit("SET_CARDS", response.data)});
+    cardService
+      .getCardsInDeck(parseInt(this.$route.params.deckId))
+      .then((response) => {
+        this.$store.commit("SET_CARDS", response.data);
+      });
   },
   computed: {
-    cards(){
+    cards() {
       return this.$store.state.cards;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -120,7 +132,7 @@ button#card.card{
 .card::-webkit-scrollbar-corner {
   opacity: 0;
 }
-.list-cards{
+.list-cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -128,14 +140,13 @@ button#card.card{
   gap: 10px;
   margin-top: 40px;
 }
-a:hover{
+a:hover {
   text-decoration: none;
-
 }
-.list-cards-text{
+.list-cards-text {
   pointer-events: none;
 }
-.hover-btn{
+.hover-btn {
   height: 40px;
   width: 100%;
   display: flex;
@@ -162,5 +173,38 @@ h3.list-cards-text{
 @keyframes hover-btn-fade {
   from{opacity: 0;}
   to{opacity: 1;}
+}
+.flip-card {
+  width: 300px;
+  height: 200px;
+  perspective: 1000px; 
+  
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card.clicked .flip-card-inner {
+  transform: rotateY(-180deg);
+}
+
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+
+.flip-card-back {
+  transform: rotateY(-180deg);
 }
 </style>
