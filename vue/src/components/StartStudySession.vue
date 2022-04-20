@@ -316,8 +316,13 @@ export default {
   flex-direction: column;
   align-items: center;
 }
+.end-study-session div button h3{
+    font-size: 6vw;
+    font-weight: bold;
+    /* font-family: 'Pacifico'; */
+}
 .results-start-new-session{
-    margin-top: 15vh;
+    margin-top: 50px;
 }
 .end-study-session div{
     display: flex;
