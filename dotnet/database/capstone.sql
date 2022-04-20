@@ -110,7 +110,7 @@ INSERT INTO deck (user_id, deck_name, deck_description) VALUES (3, 'Object Orien
 INSERT INTO deck (user_id, deck_name, deck_description, isPublic) VALUES (3, 'Data types, arrays, and collections in C#', '', 1); --102
 INSERT INTO deck (user_id, deck_name, deck_description) VALUES (3, 'C# Coding basics', 'Basic coding terminology'); --103
 INSERT INTO deck (user_id, deck_name, deck_description, isPublic) VALUES (3, 'git and shell', 'git and shell definitions and commands', 1); --104
-INSERT INTO deck (user_id, deck_name, deck_description, isPublic) VALUES (3, 'Bird Id','Identify birds by their images',1); --117
+
 
 INSERT INTO card (card_front, card_back, user_id) VALUES ('What are the 3 principles of OOP?', 'Encapsulation, Inheritance, and Polymorphism', 3); --1001
 INSERT INTO card_deck (card_id, deck_id) VALUES (1001, 101);
@@ -710,10 +710,13 @@ INSERT INTO card_tag (tag_id, card_id) VALUES (2013, 1115);
 
 
 
---Additional added cards
+--Additional added decks & cards
+
+INSERT INTO deck (user_id, deck_name, deck_description, isPublic) VALUES (3, 'Bird Id','Identify birds by their images',1); --117
+
 INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('What is this bird?','Male cardinal',
 	'https://images.unsplash.com/photo-1615146101981-cf25d1a1e6a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80',
 	3,1); --1116
 INSERT INTO card_deck (card_id, deck_id) VALUES (1116, 117);
-INSERT INTO card_tag (tag_id, card_id) VALUES (20);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2015, 1116);
 GO
