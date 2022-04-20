@@ -22,6 +22,7 @@ namespace Capstone.DAO
         string sqlMyDecks = "SELECT * FROM deck WHERE user_id = @user_id";
         string sqlUpdateDeck = "UPDATE deck SET deck_name = @deck_name, deck_description = @deck_description WHERE deck_id = @deck_id AND isPublic = 0";
         string sqlDeleteDeck = "DELETE FROM card_deck WHERE deck_id = @deck_id; DELETE FROM deck WHERE deck_id = @deck_id";
+        string sqlGetPublicDecks = "SELECT * FROM deck WHERE isPublic = 1";
         public Deck AddDeck (int userId, string deckName, string deckDescription)
         {
             int deckId = -1;
@@ -103,6 +104,34 @@ namespace Capstone.DAO
             return decks;
         }
 
+        public List<Deck> GetPublicDecks()
+        {
+            List<Deck> decks = new List<Deck>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sqlGetPublicDecks, conn);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Deck deck = GetDeckFromReader(reader);
+                        decks.Add(deck);
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            return decks;
+        }
+
         public Deck UpdateDeck(int deckId, string deckName, string deckDescription)
         {
  
@@ -158,7 +187,8 @@ namespace Capstone.DAO
                 DeckId = Convert.ToInt32(reader["deck_id"]),
                 UserId = Convert.ToInt32(reader["user_id"]),
                 DeckName = Convert.ToString(reader["deck_name"]),
-                DeckDescription = Convert.ToString(reader["deck_description"])
+                DeckDescription = Convert.ToString(reader["deck_description"]),
+                isDeckPublic = Convert.ToBoolean(reader["isPublic"])
             };
             return d;
         }

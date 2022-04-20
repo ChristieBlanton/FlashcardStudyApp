@@ -38,7 +38,7 @@ CREATE TABLE card (
 	card_id int IDENTITY (1001,1) NOT NULL,
 	card_front varchar(200) NOT NULL,
 	card_back varchar(500) NOT NULL,
-	card_image_url varchar(200) DEFAULT('') NOT NULL,
+	card_image varchar(200) DEFAULT('') NOT NULL,
 	user_id int NOT NULL,
 	isPublic bit DEFAULT(0) NOT NULL,
 	CONSTRAINT FK_card FOREIGN KEY (user_id) REFERENCES users(user_id),
@@ -102,13 +102,15 @@ INSERT INTO tag (tag_name) VALUES ('web services'); --2011
 INSERT INTO tag (tag_name) VALUES ('coding basics'); --2012
 INSERT INTO tag (tag_name) VALUES ('git'); --2013
 INSERT INTO tag (tag_name) VALUES ('shell commands'); --2014
+INSERT INTO tag (tag_name) VALUES ('Ohio birds'); --2015
 
 
 --insert data into Christie's profile user_id 3
 INSERT INTO deck (user_id, deck_name, deck_description) VALUES (3, 'Object Oriented Programming', 'Cards related to OOP principles'); --101
-INSERT INTO deck (user_id, deck_name, deck_description) VALUES (3, 'Data types, arrays, and collections in C#', ''); --102
+INSERT INTO deck (user_id, deck_name, deck_description, isPublic) VALUES (3, 'Data types, arrays, and collections in C#', '', 1); --102
 INSERT INTO deck (user_id, deck_name, deck_description) VALUES (3, 'C# Coding basics', 'Basic coding terminology'); --103
-INSERT INTO deck (user_id, deck_name, deck_description) VALUES (3, 'git and shell', 'git and shell definitions and commands'); --104
+INSERT INTO deck (user_id, deck_name, deck_description, isPublic) VALUES (3, 'git and shell', 'git and shell definitions and commands', 1); --104
+
 
 INSERT INTO card (card_front, card_back, user_id) VALUES ('What are the 3 principles of OOP?', 'Encapsulation, Inheritance, and Polymorphism', 3); --1001
 INSERT INTO card_deck (card_id, deck_id) VALUES (1001, 101);
@@ -138,29 +140,29 @@ INSERT INTO card (card_front, card_back, user_id) VALUES ('What is a method?', '
 INSERT INTO card_deck (card_id, deck_id) VALUES (1006, 103);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2012, 1006);
 
-INSERT INTO card (card_front, card_back, user_id) VALUES ('What is the difference between a "for loop" and a "while loop"?', 'A "for loop" runs a 
-	specific number of times. A "while loop" runs until a specified condition is false.', 3); --1007
+INSERT INTO card (card_front, card_back, user_id, isPublic) VALUES ('What is the difference between a "for loop" and a "while loop"?', 'A "for loop" runs a 
+	specific number of times. A "while loop" runs until a specified condition is false.', 3, 1); --1007
 INSERT INTO card_deck (card_id, deck_id) VALUES (1007, 103);
 INSERT INTO card_deck (card_id, deck_id) VALUES (1007, 102);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2005, 1007);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2012, 1007);
 
-INSERT INTO card (card_front, card_back, user_id) VALUES ('What is the difference between a "while loop" and a " do while loop"?', 'A "while loop" may never
-	run if the conditional is false when it gets to the loop. A "do while loop" will always run at least once.', 3); --1008
+INSERT INTO card (card_front, card_back, user_id, isPublic) VALUES ('What is the difference between a "while loop" and a " do while loop"?', 'A "while loop" may never
+	run if the conditional is false when it gets to the loop. A "do while loop" will always run at least once.', 3, 1); --1008
 INSERT INTO card_deck (card_id, deck_id) VALUES (1008, 103);
 INSERT INTO card_deck (card_id, deck_id) VALUES (1008, 102);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2005, 1008);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2012, 1008);
 
-INSERT INTO card (card_front, card_back, user_id) VALUES ('What is the difference between a value or primitive data type and a reference type?', 
+INSERT INTO card (card_front, card_back, user_id, isPublic) VALUES ('What is the difference between a value or primitive data type and a reference type?', 
 	'A primitive type stores a value that consumes a fixed amount of memory. A reference type stores complex data and references a space on the heap 
-	where the data is stored.', 3); --1009
+	where the data is stored.', 3, 1); --1009
 INSERT INTO card_deck (card_id, deck_id) VALUES (1009, 103);
 INSERT INTO card_deck (card_id, deck_id) VALUES (1009, 102);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2012, 1009);
 
-INSERT INTO card (card_front, card_back, user_id) VALUES ('What is an object"?', 'An in-memory data structure that combines state and behavior into a 
-	usable and useful abstraction. A collection of properties and methods.', 3); --1010
+INSERT INTO card (card_front, card_back, user_id, isPublic) VALUES ('What is an object"?', 'An in-memory data structure that combines state and behavior into a 
+	usable and useful abstraction. A collection of properties and methods.', 3, 1); --1010
 INSERT INTO card_deck (card_id, deck_id) VALUES (1010, 101);
 INSERT INTO card_deck (card_id, deck_id) VALUES (1010, 102);
 INSERT INTO card_deck (card_id, deck_id) VALUES (1010, 103);
@@ -173,85 +175,87 @@ INSERT INTO card (card_front, card_back, user_id) VALUES ('What is the differenc
 INSERT INTO card_deck (card_id, deck_id) VALUES (1011, 103);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2012, 1011);
 
-INSERT INTO card (card_front, card_back, user_id) VALUES ('What is an array"?', 'A data structure consisting of elements that have the same type and is a 
-	fixed size.', 3); --1012
+INSERT INTO card (card_front, card_back, user_id, isPublic) VALUES ('What is an array"?', 'A data structure consisting of elements that have the same type and is a 
+	fixed size.', 3, 1); --1012
 INSERT INTO card_deck (card_id, deck_id) VALUES (1012, 102);
 INSERT INTO card_deck (card_id, deck_id) VALUES (1012, 103);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2005, 1012);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2012, 1012);
 
-INSERT INTO card (card_front, card_back, user_id) VALUES ('What is a shell?', 'A command line interface to the operating system that allows the user 
-	to type commands, execute programs, and see responses as text.', 3); --1013
+INSERT INTO card (card_front, card_back, user_id, isPublic) VALUES ('What is a shell?', 'A command line interface to the operating system that allows the user 
+	to type commands, execute programs, and see responses as text.', 3, 1); --1013
 INSERT INTO card_deck (card_id, deck_id) VALUES (1013, 104);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2014, 1013);
 
-INSERT INTO card (card_front, card_back, user_id) VALUES ('pwd', 'Command: print working directory. Shows the current directory', 3); --1014
+INSERT INTO card (card_front, card_back, user_id, isPublic) VALUES ('pwd', 'Command: print working directory. Shows the current directory', 3, 1); --1014
 INSERT INTO card_deck (card_id, deck_id) VALUES (1014, 104);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2014, 1014);
 
-INSERT INTO card (card_front, card_back, user_id) VALUES ('ls -a', 'list all of the contents in current directory. (-a includes hidden files)', 3); --1015
+INSERT INTO card (card_front, card_back, user_id, isPublic) VALUES ('ls -a', 'list all of the contents in current directory. (-a includes hidden files)', 3, 1); --1015
 INSERT INTO card_deck (card_id, deck_id) VALUES (1015, 104);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2014, 1015);
 
-INSERT INTO card (card_front, card_back, user_id) VALUES ('cd', 'Change Directory: used to change the current working directory', 3); --1016
+INSERT INTO card (card_front, card_back, user_id, isPublic) VALUES ('cd', 'Change Directory: used to change the current working directory', 3, 1); --1016
 INSERT INTO card_deck (card_id, deck_id) VALUES (1016, 104);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2014, 1016);
 
-INSERT INTO card (card_front, card_back, user_id) VALUES ('~ (tilde character)', 'designates the home directory', 3); --1017
+INSERT INTO card (card_front, card_back, user_id, isPublic) VALUES ('~ (tilde character)', 'designates the home directory', 3, 1); --1017
 INSERT INTO card_deck (card_id, deck_id) VALUES (1017, 104);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2014, 1017);
 
-INSERT INTO card (card_front, card_back, user_id) VALUES ('.. (two dots)', 'reference to parent directory', 3); --1018
+INSERT INTO card (card_front, card_back, user_id, isPublic) VALUES ('.. (two dots)', 'reference to parent directory', 3, 1); --1018
 INSERT INTO card_deck (card_id, deck_id) VALUES (1018, 104);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2014, 1018);
 
-INSERT INTO card (card_front, card_back, user_id) VALUES ('. (one dot)', 'self-reference to current directory', 3); --1019
+INSERT INTO card (card_front, card_back, user_id, isPublic) VALUES ('. (one dot)', 'self-reference to current directory', 3, 1); --1019
 INSERT INTO card_deck (card_id, deck_id) VALUES (1019, 104);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2014, 1019);
 
-INSERT INTO card (card_front, card_back, user_id) VALUES ('mkdir', 'make a new directory', 3); --1020
+INSERT INTO card (card_front, card_back, user_id, isPublic) VALUES ('mkdir', 'make a new directory', 3, 1); --1020
 INSERT INTO card_deck (card_id, deck_id) VALUES (1020, 104);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2014, 1020);
 
-INSERT INTO card (card_front, card_back, user_id) VALUES ('touch <filename>', 'create an empty file with the specified name', 3); --1021
+INSERT INTO card (card_front, card_back, user_id, isPublic) VALUES ('touch <filename>', 'create an empty file with the specified name', 3, 1); --1021
 INSERT INTO card_deck (card_id, deck_id) VALUES (1021, 104);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2014, 1021);
 
-INSERT INTO card (card_front, card_back, user_id) VALUES ('git init', 'Initializes and new Git repository. Creates a .git subdirectory in the current
-	directory, which contains all of the necessary metadata for the repo.', 3); --1022
+INSERT INTO card (card_front, card_back, user_id, isPublic) VALUES ('git init', 'Initializes and new Git repository. Creates a .git subdirectory in the current
+	directory, which contains all of the necessary metadata for the repo.', 3, 1); --1022
 INSERT INTO card_deck (card_id, deck_id) VALUES (1022, 104);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2013, 1022);
 
-INSERT INTO card (card_front, card_back, user_id) VALUES ('git status', 'Displays the state of the working directory and the staging area.', 3); --1023
+INSERT INTO card (card_front, card_back, user_id, isPublic) VALUES ('git status', 'Displays the state of the working directory and the staging area.', 3, 1); --1023
 INSERT INTO card_deck (card_id, deck_id) VALUES (1023, 104);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2013, 1023);
 
-INSERT INTO card (card_front, card_back, user_id) VALUES ('git add', 'Adds changes in the working directory to the staging area. It tells Git that you want to 
-	include updates on the next commit.', 3); --1024
+INSERT INTO card (card_front, card_back, user_id, isPublic) VALUES ('git add', 'Adds changes in the working directory to the staging area. It tells Git that you want to 
+	include updates on the next commit.', 3, 1); --1024
 INSERT INTO card_deck (card_id, deck_id) VALUES (1024, 104);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2013, 1024);
 
-INSERT INTO card (card_front, card_back, user_id) VALUES ('git commit -m "message"', 'Commits the staged snapshot to the project history. Also records the 
-	commit message', 3); --1025
+INSERT INTO card (card_front, card_back, user_id, isPublic) VALUES ('git commit -m "message"', 'Commits the staged snapshot to the project history. Also records the 
+	commit message', 3, 1); --1025
 INSERT INTO card_deck (card_id, deck_id) VALUES (1025, 104);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2013, 1025);
 
-INSERT INTO card (card_front, card_back, user_id) VALUES ('git clone <remote repo link>', 'Clone an existing repository.', 3); --1026
+INSERT INTO card (card_front, card_back, user_id, isPublic) VALUES ('git clone <remote repo link>', 'Clone an existing repository.', 3, 1); --1026
 INSERT INTO card_deck (card_id, deck_id) VALUES (1026, 104);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2013, 1026);
 
-INSERT INTO card (card_front, card_back, user_id) VALUES ('git push origin main', 'used to send changes made to the "main" branch', 3); --1027
+INSERT INTO card (card_front, card_back, user_id, isPublic) VALUES ('git push origin main', 'used to send changes made to the "main" branch', 3, 1); --1027
 INSERT INTO card_deck (card_id, deck_id) VALUES (1027, 104);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2013, 1027);
 
-INSERT INTO card (card_front, card_back, user_id) VALUES ('origin', 'Default name of remote repository that has been cloned to local machine.', 3); --1028
+INSERT INTO card (card_front, card_back, user_id, isPublic) VALUES ('origin', 'Default name of remote repository that has been cloned to local machine.', 3, 1); --1028
 INSERT INTO card_deck (card_id, deck_id) VALUES (1028, 104);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2013, 1028);
 
 
-INSERT INTO card (card_front, card_back, user_id) VALUES ('main', 'Default name of primary branch on local repository. Used to be called master', 3); --1029
+INSERT INTO card (card_front, card_back, user_id, isPublic) VALUES ('main', 'Default name of primary branch on local repository. Used to be called master', 3, 1); --1029
 INSERT INTO card_deck (card_id, deck_id) VALUES (1029, 104);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2013, 1029);
+
+
 
 
 --add data to Maggie's profile user_id 4
@@ -704,4 +708,15 @@ INSERT INTO card (card_front, card_back, user_id) VALUES ('main', 'Default name 
 INSERT INTO card_deck (card_id, deck_id) VALUES (1115, 116);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2013, 1115);
 
+
+
+--Additional added decks & cards
+
+INSERT INTO deck (user_id, deck_name, deck_description, isPublic) VALUES (3, 'Bird Id','Identify birds by their images',1); --117
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('What is this bird?','Male cardinal',
+	'https://images.unsplash.com/photo-1615146101981-cf25d1a1e6a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80',
+	3,1); --1117
+INSERT INTO card_deck (card_id, deck_id) VALUES (1117, 117);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2015, 1117);
 GO

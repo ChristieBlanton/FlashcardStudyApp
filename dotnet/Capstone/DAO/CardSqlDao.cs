@@ -28,7 +28,8 @@ namespace Capstone.DAO
         string sqlDeleteCardFromDeck = "DELETE FROM card_deck WHERE card_id = @card_id AND deck_id = @deck_id;";
         string sqlUpdateCard = "UPDATE card SET card_front = @card_front, card_back = @card_back WHERE card_id = @card_id;";
         string sqlDeleteCardTags = "DELETE FROM card_tag WHERE card_id = @card_id;";
-        string sqlGetCardsByTag = "SELECT card_id FROM card WHERE (user_id = @user_id OR isPublic = 1);";
+        string sqlGetCardsByUser = "SELECT card_id FROM card WHERE user_id = @user_id;";
+        string sqlGetPublicCards = "SELECT card_id FROM card WHERE isPublic = 1";
         public Card AddCard(string cardFront, string cardBack, int userId, int deckId, string[] tags)
         {
             int cardId = -1;
@@ -202,8 +203,40 @@ namespace Capstone.DAO
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand(sqlGetCardsByTag, conn);
+                    SqlCommand cmd = new SqlCommand(sqlGetCardsByUser, conn);
                     cmd.Parameters.AddWithValue("@user_id", userId);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        cardIds.Add(Convert.ToInt32(reader["card_id"]));
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            for (int i = 0; i < cardIds.Count; i++)
+            {
+                cards.Add(GetCard(cardIds[i]));
+            }
+            return cards;
+        }
+
+        public List<Card> GetPublicCards()
+        {
+            List<Card> cards = new List<Card>();
+            List<int> cardIds = new List<int>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sqlGetPublicCards, conn);
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
@@ -330,7 +363,7 @@ namespace Capstone.DAO
                 CardFront = Convert.ToString(reader["card_front"]),
                 CardBack = Convert.ToString(reader["card_back"]),
                 UserId = Convert.ToInt32(reader["user_id"]),
-                IsPublic = Convert.ToBoolean(reader["user_id"])
+                IsCardPublic = Convert.ToBoolean(reader["user_id"])
             };
             return card;
 
