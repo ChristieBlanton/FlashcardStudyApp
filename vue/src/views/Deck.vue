@@ -4,7 +4,7 @@
 
         <div class="add-study">
             <add-card />
-            <!-- <button class="deck-start-study small-new-teal-btn">Study</button> -->
+            <button v-on:click="$router.push({name: 'startstudysession', params: {deckId: $route.params.deckId}})" class="deck-start-study small-new-teal-btn skew-btn"><div>Study Session</div></button>
 
         </div>
 
@@ -31,10 +31,13 @@ export default {
 <style>
 .add-study{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    margin-left: 2vw;
+    margin-right: 2vw;
 }
 .deck-start-study{
-
+    height: 50px;
+    padding: 0 30px;
 }
 </style>
 

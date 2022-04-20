@@ -101,8 +101,22 @@
       </div>
 
       <div class="end-study-session" v-else>
-        <h3>Number of cards correct: {{ correct }}</h3>
-        <h3>Number of cards incorrect: {{ incorrect }}</h3>
+          <div>
+            <button class="small-new-teal-btn cards-correct" v-bind:class="{'cards-correct-animate': endSession}"><h3>{{ correct }}</h3></button>
+            <img class="results-correct-check" src="../assets/checkmark-outline.svg" v-bind:class="{'cards-correct-check-animate': endSession}" alt="">
+
+          </div>
+          <div>
+              <button class="small-navy-btn cards-incorrect" v-bind:class="{'cards-correct-animate': endSession}"><h3>{{ incorrect }}</h3></button>
+            <img class="results-incorrect-check" src="../assets/close.svg" v-bind:class="{'cards-incorrect-check-animate': endSession}" alt="">
+
+          </div>
+            <button
+          class="end-study-session-btn small-navy-btn skew-btn results-start-new-session"
+          v-on:click="$router.push({name: 'studysession'})"
+        >
+          <div>Start A New Session</div>
+        </button>
       </div>
     </div>
   </div>
@@ -298,6 +312,79 @@ export default {
 }
 .end-study-session {
   flex-grow: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.results-start-new-session{
+    margin-top: 15vh;
+}
+.end-study-session div{
+    display: flex;
+    justify-content: center;
+    gap: 3vw;
+}
+.cards-correct, .cards-incorrect{
+    width: 18vw;
+    height: 20vh;
+    opacity: 0;
+    border-color: rgba(255, 255, 255, 0.589);
+    border-style: solid;
+}
+.cards-correct:hover, .cards-incorrect:hover{
+    cursor: default;
+}
+.cards-correct{
+    animation-delay: .5s;
+}
+.cards-incorrect{
+    animation-delay: 1.5s;
+}
+.cards-correct-animate{
+    animation-name: cards-correct-animate;
+    animation-duration: .3s;
+    animation-fill-mode: forwards;
+}
+@keyframes cards-correct-animate {
+    0% {transform: rotateX(90deg);}
+    10%{opacity: 1;}
+    80% {transform: rotateX(0deg); transform: scale(1.1); border-width: 2px;}
+    90% {border-width: 20px;}
+    100% {border-width: 4px; opacity: 1;}
+}
+.results-correct-check, .results-incorrect-check{
+    width: 15vw;
+    border-radius: 20vh;
+    opacity: 0;
+}
+.results-incorrect-check{
+    opacity: 0;
+}
+.cards-correct-check-animate{
+    animation-name: cards-correct-check-animate;
+    animation-duration: 1s;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+    /* animation-timing-function: ease-out; */
+}
+.cards-incorrect-check-animate{
+    animation-name: cards-correct-check-animate;
+    animation-duration: 1s;
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
+    /* animation-timing-function: ease-out; */
+}
+@keyframes cards-correct-check-animate{
+    0% {transform: scale(0);}
+    10%{opacity: 1;}
+    20% {transform: scale(1.1);}
+    30% {transform: scale(1);}
+    40% {box-shadow: 0 0 5px aqua;}
+    50% {box-shadow: 0 0 20px aqua; }
+    60% {box-shadow: 0 0 5px aqua; }
+
+    100% {box-shadow: none; opacity: 1;}
+
 }
 .answer-btns {
   flex-grow: 1;
