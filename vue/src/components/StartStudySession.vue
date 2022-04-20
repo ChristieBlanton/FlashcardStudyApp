@@ -358,7 +358,7 @@ export default {
     100% {border-width: 4px; opacity: 1;}
 }
 .results-correct-check, .results-incorrect-check{
-    width: 15vw;
+    width: 13vw;
     border-radius: 20vh;
     opacity: 0;
 }
