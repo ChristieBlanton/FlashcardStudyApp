@@ -5,6 +5,7 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
+import PublicDecks from '../views/PublicDecks.vue'
 import MyDecks from '../views/MyDecks.vue'
 import Index from '../views/Index.vue'
 import Deck from '../views/Deck.vue'
@@ -67,6 +68,14 @@ const router = new Router({
       path: "/register",
       name: "register",
       component: Register,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path:"/comminitydecks",
+      name:"communitydecks",
+      component: PublicDecks,
       meta: {
         requiresAuth: false
       }
