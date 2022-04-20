@@ -29,6 +29,7 @@ export default new Vuex.Store({
       cardId: 0,
       cardFront: "",
       cardBack: "",
+      cardImage: "",
       tags: []
     },
     cards: [],
@@ -67,6 +68,7 @@ export default new Vuex.Store({
       state.editCard.cardId = card.cardId;
       state.editCard.cardFront = card.cardFront;
       state.editCard.cardBack = card.cardBack;
+      state.editCard.cardImage = card.cardImage;
       state.editCard.tags = card.tags;
     },
     

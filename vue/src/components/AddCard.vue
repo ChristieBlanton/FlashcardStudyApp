@@ -8,6 +8,7 @@
         <div class="add-card-form skew-btn small-new-teal-btn"  v-show="isAddCardVisible">
             <div class="add-card-input"><input type="text" required name="card-front" id="card-front" placeholder="Card Front" v-model="card.cardFront"></div>
             <textarea rows="5" cols="40" required name="card-back" id="card-back" placeholder="Card Back" v-model="card.cardBack"></textarea>
+            <input type="text" name="card-image" id="card-image" placeholder="Image URL" v-model="card.cardImage">
             <div class="tags">
                 <!-- <label for="tags-basic">Type a new tag and press enter</label><br> -->
                 <input  type="text" v-on:keyup.enter="addTag()" placeholder="Type a new tag and press enter" v-model="tag">
@@ -39,6 +40,7 @@ export default{
             card: {
                 cardFront: "",
                 cardBack: "",
+                cardImage:"",
                 deckId: parseInt(this.$route.params.deckId),
                 userId: this.$store.state.user.userId,
                 tags: []
@@ -53,6 +55,7 @@ export default{
 
                 this.card.cardFront = "";
                 this.card.cardBack = "";
+                this.card.cardImage= "";
                 this.isAddCardVisible = false;
                 this.card.tags = [];
             });

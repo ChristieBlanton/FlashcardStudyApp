@@ -25,7 +25,7 @@ namespace Capstone.Controllers
         {
             ActionResult result;
 
-            Card card = cardDao.AddCard(newCard.CardFront, newCard.CardBack, newCard.UserId, newCard.DeckId, newCard.Tags);
+            Card card = cardDao.AddCard(newCard.CardFront, newCard.CardBack, newCard.CardImage, newCard.UserId, newCard.DeckId, newCard.Tags);
 
             if (card != null)
             {
@@ -125,7 +125,7 @@ namespace Capstone.Controllers
         [HttpPut]
         public ActionResult<Card> UpdateCard(Card cardToUpdate)
         {
-            Card card = cardDao.UpdateCard(cardToUpdate.CardFront, cardToUpdate.CardBack, cardToUpdate.CardId, cardToUpdate.Tags);
+            Card card = cardDao.UpdateCard(cardToUpdate.CardFront, cardToUpdate.CardBack, cardToUpdate.CardImage, cardToUpdate.CardId, cardToUpdate.Tags);
             if(card != null)
             {
                 return Ok(card);
