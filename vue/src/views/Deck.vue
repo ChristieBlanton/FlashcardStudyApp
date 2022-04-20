@@ -2,11 +2,10 @@
     <div class="deck-details">
         <deck-details />
 
-        <div class="add-study">
+        <!-- <div class="add-study"> -->
             <add-card />
-            <button v-on:click="$router.push({name: 'startstudysession', params: {deckId: $route.params.deckId}})" class="deck-start-study small-new-teal-btn skew-btn"><div>Study Session</div></button>
 
-        </div>
+        <!-- </div> -->
 
         <list-cards />
     </div>
