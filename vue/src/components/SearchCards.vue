@@ -30,7 +30,7 @@
           v-show="currentCard == card.cardId"
           v-on:click.stop="showDropDown = true"
         />
-        <select name="deck-names" id="deck-names" v-if="showDropDown && currentCard == card.cardId" v-model="deckSelection">
+        <select name="deck-names" id="deck-names" v-on:click.stop="" v-if="showDropDown && currentCard == card.cardId" v-model="deckSelection">
           <option value="none" selected disabled hidden>Choose</option>
           <option v-for="deck in decks" v-bind:key="deck.deckId" v-bind:value="deck.deckId">{{deck.deckName}}</option> 
         </select>
@@ -194,6 +194,9 @@ export default {
 .my-cards-header{
   margin: 0 0 50px 0;
   flex-grow: 1;
+}
+#deck-names{
+  max-width: 50%;
 }
 .add-card-btn{
   box-shadow: none;
