@@ -13,10 +13,15 @@
 
 
       <div class="left-head-nav">
+        <!-- <div class="my-decks-slide skew-btn">My Decks</div>
+        <div class="my-cards-slide skew-btn">My Cards</div>
+        <div class="study-slide skew-btn">Study</div>
+        <div class="logout-slide skew-btn">Logout</div> -->
         <router-link class="home-btn" v-bind:to="{ name: 'home' }"><img class="logo-nav" src="./assets/flasher-logo-gray-small.png" ></router-link>
         <router-link class="my-decks-btn" v-bind:to="{ name: 'mydecks' }" v-if="$store.state.token != ''"><div class="nav-btn-text">My Decks</div></router-link>
         <router-link class="my-cards-btn" v-bind:to="{ name: 'mycards' }" v-if="$store.state.token != ''">My Cards</router-link>
         <router-link class="study-btn" v-bind:to="{ name: 'studysession' }" v-if="$store.state.token != ''">Study</router-link>
+        
 
         <router-link class="logout" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
 
@@ -62,12 +67,16 @@ h1{
   animation-duration: .1s;
   animation-fill-mode: forwards;
   animation-timing-function: ease-out;
+  transition: .2s;
+}
+.logo-nav:hover{
+  width: 12.5vh;
 }
 @keyframes logo-nav-load {
   from {opacity: 0; transform: scale(0);}
   to{opacity: 1; transform: scale(100%);}
 }
-.logout{
+.logout, .logout-slide{
   top: 32vh;
 }
 
@@ -75,28 +84,43 @@ h1{
   position: fixed;
   left: 40px;
   top: 20px;
+  transition: .2s;
 }
-.my-decks-btn{
+.home-btn:hover{
+  left:37px;
+  top: 17px;
+}
+.my-decks-btn, .my-decks-slide{
   top: 20vh;
   
 }
-
-.my-cards-btn{
+/* .my-decks-slide, .my-cards-slide, .study-slide, .logout-slide{
+  background-color: white;
+  color: rgb(255, 255, 255) !important;
+  left:-20vh;
+  transition: .2s;
+} */
+/* .my-decks-slide, .my-cards-slide, .study-slide, .logout-slide{
+  background-color: white;
+  color: rgb(255, 255, 255) !important;
+  left:-20vh;
+} */
+.my-cards-btn, .my-cards-slide{
   top: 23vh;
 }
-.study-btn{
+.study-btn, .study-slide{
   top: 26vh;
 }
-.my-decks-btn, .logout, .my-cards-btn, .study-btn{
+.my-decks-btn, .logout, .my-cards-btn, .study-btn, .my-decks-slide, .my-cards-slide, .study-slide, .logout-slide{
   padding: 0 10px 0 10px;
   font-size: 2vh;
   font-weight:bold;
   position: fixed;
   color: #092c49;
+  transition: .2s;
 }
 .my-decks-btn:hover, .logout:hover, .my-cards-btn:hover, .study-btn:hover{
-  
-  color: #6B48FF;
+  color: white;
 }
 /* #header{
   grid-area: nav;
@@ -194,8 +218,8 @@ h1{
   color: rgb(71, 71, 71);
   font-weight: bold;
 }
-#nav a.router-link-exact-active {
-  color: grey;
+.router-link-active {
+  color: white;
 }
 .main{
   padding: 30px;

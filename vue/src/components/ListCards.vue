@@ -1,44 +1,29 @@
 <template>
   <div class="list-cards">
-    
-    <button
-      class="card purple-btn btn btn-lg btn-primary btn-block"
-      v-for="card in cards"
-      v-bind:key="card.cardId"
-      v-on:click.self="toggleFlip(card.cardId)"
-      v-on:mouseover="currentCard = card.cardId"
-      v-on:mouseleave="currentCard = 0"
-      
-    >
-    <div class="flip-card" onclick="this.classList.toggle('clicked')">
-    
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-      <div class="hover-btn">
-        <img
-          class="edit"
-          src="../assets/cog.svg"
-          v-show="currentCard == card.cardId"
-          v-on:click="editCard(card)"
-        />
-        <img
-          class="edit"
-          src="../assets/close.svg"
-          v-show="currentCard == card.cardId"
-          v-on:click="deleteCard(currentCard)"
-        />
-      </div>
-      <h3 class="list-cards-text" v-if="!showBack.includes(card.cardId)">
-        {{ card.cardFront }}
-      </h3>
+    <button class="card purple-btn btn btn-lg btn-primary btn-block" id="card"
+        v-for="card in cards"  
+        v-bind:key="card.cardId" 
+        v-on:click="toggleFlip(card.cardId); flipCard(card.cardId)"
+        v-on:mouseover="currentCard = card.cardId" 
+        v-on:mouseleave="currentCard = 0"
+        v-bind:class="{'flip-card': showBack.includes(card.cardId)}" >
+        <div class="card-inner" v-bind:class="{'flip-text': showBack.includes(card.cardId)}">
+          <div class="hover-btn">
+            <img class="edit" src="../assets/cog.svg" v-show="currentCard == card.cardId" v-on:click="editCard(card)" />
+            <h3 class="list-cards-text" v-show="!showBack.includes(card.cardId)">Front</h3>
+            <h3 class="list-cards-text" v-show="showBack.includes(card.cardId)">Back</h3>
+
+            <img class="edit" src="../assets/close.svg" v-show="currentCard == card.cardId" v-on:click="deleteCard(currentCard)" />
+
+          </div>
+          <!-- <h3 class="list-cards-text" v-if="!showBack.includes(card.cardId)">{{ card.cardFront }}</h3>
+          <h3 class="list-cards-text" v-else>{{ card.cardBack }}</h3> -->
+          <h3 class="list-cards-text" v-show="!showBack.includes(card.cardId)">{{ card.cardFront }}</h3>
+          <h3 class="list-cards-text" v-show="showBack.includes(card.cardId)">{{ card.cardBack }}</h3>
+
         </div>
-        <div class ="flip-card-back">
-      <h4 class="list-cards-text">{{ card.cardBack }}</h4>
-        </div>
-      </div>
-  </div>
     </button>
-    </div>
+  </div>
     
 </template>
 
@@ -53,15 +38,20 @@ export default {
     };
   },
   methods: {
-    toggleFlip(cardId) {
-      if (!this.showBack.includes(cardId)) {
-        this.showBack.push(cardId);
-      } else {
-        this.showBack = this.showBack.filter((a) => {
-          return a != cardId;
-        });
-      }
-    },
+      toggleFlip(cardId){
+          if(!this.showBack.includes(cardId)){
+              this.showBack.push(cardId);
+          }
+          else{
+              this.showBack = this.showBack.filter(a => {
+                  return a != cardId;
+              })
+          }
+      },
+      // flipCard(cardId){
+      //   if(this.currentCard == cardId){}
+      // },
+    //   
     deleteCard(cardId) {
       cardService.deleteCard(this.$route.params.deckId, cardId).then(() => {
         cardService
@@ -75,7 +65,7 @@ export default {
       this.$store.commit("EDIT_CARD", card);
       this.$router.push({
         name: "editcard",
-        params: { deckId: this.$route.params.deckId, cardId: this.currentCard },
+        params: { deckId: this.$route.params.deckId, cardId: this.currentCard }
       });
     },
   },
@@ -96,16 +86,37 @@ export default {
 
 <style>
 .card {
-  width: 18vw;
-  height: 20vh;
-  padding: 10px;
+  width: 18vw !important;
+  height: 20vh !important;
   display: flex;
   cursor: default !important;
   overflow: scroll;
-
   border-width: 3px;
   border-color: rgba(255, 255, 255, 0.301);
   border-style: solid;
+  transition: .5s;
+}
+
+button#card.card{
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 0 !important;
+}
+.card-inner{
+  height: 100%;
+  width: 100%;
+  padding: 5px;
+  transition-delay: .2s;
+  transition-duration: 10ms;
+}
+.flip-card{
+  transform: rotateX(180deg);
+  box-shadow: 0 -3px 5px gray !important;
+
+}
+.flip-text{
+  transform: rotateX(180deg);
+
 }
 .card:hover{
   border-color: rgb(56, 255, 255) !important;
@@ -118,7 +129,8 @@ export default {
 }
 
 .card::-webkit-scrollbar {
-  width: 20px;
+  width: 0px;
+  height: 0;
 }
 .card::-webkit-scrollbar-corner {
   opacity: 0;
@@ -143,9 +155,27 @@ a:hover {
   display: flex;
   justify-content: space-between;
 }
-.edit {
+h3.list-cards-text{
+  font-size: 2.2vh;
+  opacity: 0;
+  animation-name: cards-text-flip;
+  animation-duration: .2s;
+  animation-delay: .2s;
+  animation-fill-mode: forwards;
+}
+@keyframes cards-text-flip {
+  from{opacity: 0;}
+  to{opacity: 1;}
+}
+.edit{
   width: 35px;
   cursor: pointer;
+  animation-name: hover-btn-fade;
+  animation-duration: .4s;
+}
+@keyframes hover-btn-fade {
+  from{opacity: 0;}
+  to{opacity: 1;}
 }
 .flip-card {
   width: 300px;

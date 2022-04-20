@@ -13,7 +13,7 @@
     </div>
     <div class="search-cards-container">
     <button
-      class="card purple-btn btn btn-lg btn-primary btn-block signin-button"
+      class="card purple-btn btn btn-lg btn-primary btn-block"
       v-for="card in filteredCards"
       v-bind:key="card.cardId"
       v-on:click.self="toggleFlip(card.cardId)"
@@ -33,8 +33,8 @@
         </select>
         <button class="add-card-btn" v-if="showDropDown && currentCard == card.cardId" v-on:click="addCardToDeck()">Add</button>
       </div>
-      <h3 class="card-txt" v-if="!showBack.includes(card.cardId)" v-on:click.self="toggleFlip(card.cardId)">{{ card.cardFront }}</h3>
-      <h4 class="card-text" v-else v-on:click.self="toggleFlip(card.cardId)">{{ card.cardBack }}</h4>
+      <h3 class="list-cards-text" v-if="!showBack.includes(card.cardId)" v-on:click.self="toggleFlip(card.cardId)">{{ card.cardFront }}</h3>
+      <h3 class="list-cards-text" v-else v-on:click.self="toggleFlip(card.cardId)">{{ card.cardBack }}</h3>
       <div class="card-tags">
         <p class="tag-name" v-for="tag in card.tags" v-bind:key="tag">
           {{ tag }}
@@ -155,7 +155,7 @@ export default {
   align-items: center;
   border-radius: 5px;
 }
-.card-text{
+.card-txt{
   flex-grow: 1;
 }
 .card-tags {
