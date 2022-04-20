@@ -45,7 +45,7 @@
     <div id="show-cards" v-else>
       <deck-details class="study-deck-name" />
       <div class="card-timer small-navy-btn skew-btn" v-if="isTimed">
-        <div>{{ timer }}</div>
+        <div v-if="!endSession">{{ timer }}</div>
       </div>
 
       <div class="current-study-session" v-if="!endSession">
