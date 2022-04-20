@@ -56,10 +56,11 @@
           class="current-flash-card purple-btn"
           v-on:click="toggleFlip()"
         >
-          <h3 class="current-card-front" v-if="!showBack">
+          <h3 class="current-card-front" v-show="!showBack">
             {{ currentCard.cardFront }}
           </h3>
-          <h3 class="current-card-back" v-else>{{ currentCard.cardBack }}</h3>
+          <img id="card-image-study" :src="(currentCard.cardImage)" alt="card image" v-show="(!showBack && currentCard.cardImage) ">
+          <h3 class="current-card-back" v-show="showBack">{{ currentCard.cardBack }}</h3>
         </button>
 
         <!-- <div class="current-study-session" v-if="!endSession && isRandom">
@@ -262,6 +263,10 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+#card-image-study {
+  height: 100%;
 }
 .session-form button {
   height: 50px;

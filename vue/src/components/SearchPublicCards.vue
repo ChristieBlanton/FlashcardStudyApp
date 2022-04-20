@@ -1,6 +1,6 @@
 <template>
   <div class="search-cards">
-    <h1 class="my-cards-header">My Flashcards</h1>
+    <h1 class="my-cards-header">Community Flashcards</h1>
     <div class="search-form">
       <input
         class="search-cards-input"
@@ -36,8 +36,10 @@
         </select>
         <button class="add-card-btn" v-if="showDropDown && currentCard == card.cardId" v-on:click="addCardToDeck()">Add</button>
       </div>
-      <h3 class="list-cards-text" v-if="!showBack.includes(card.cardId)" v-on:click.self="toggleFlip(card.cardId)">{{ card.cardFront }}</h3>
-      <h3 class="list-cards-text text-back" v-else v-on:click.self="toggleFlip(card.cardId)">{{ card.cardBack }}</h3>
+
+      <h3 class="list-cards-text" v-show="!showBack.includes(card.cardId)" v-on:click.self="toggleFlip(card.cardId)">{{ card.cardFront }}</h3>
+      <img id="card-image-search" :src="(card.cardImage)" alt="card image" v-show="(!showBack.includes(card.cardId) && card.cardImage) ">
+      <h3 class="list-cards-text text-back" v-show="showBack.includes(card.cardId)" v-on:click.self="toggleFlip(card.cardId)">{{ card.cardBack }}</h3>
       <div class="card-tags">
         <p class="tag-name" v-for="tag in card.tags" v-bind:key="tag">
           {{ tag }}
@@ -191,6 +193,9 @@ export default {
 
 
 }
+#card-image-search {
+    height: 10vh;
+}
 .my-cards-header{
   margin: 0 0 50px 0;
   flex-grow: 1;
@@ -210,6 +215,7 @@ export default {
 .card-tags {
   display: flex;
   gap: 5px;
+  
 }
 .card {
   width: 350px;
@@ -217,6 +223,10 @@ export default {
   padding: 10px;
   display: flex;
   justify-content: flex-start;
+}
+
+.card h3 {
+
 }
 .search-cards {
   display: flex;

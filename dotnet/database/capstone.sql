@@ -713,10 +713,56 @@ INSERT INTO card_tag (tag_id, card_id) VALUES (2013, 1116);
 --Additional added decks & cards
 
 INSERT INTO deck (user_id, deck_name, deck_description, isPublic) VALUES (3, 'Bird Id','Identify birds by their images',1); --117
+INSERT INTO deck (user_id, deck_name, deck_description, isPublic) VALUES (4, 'Bird Id','Identify birds by their images',0); --118
+INSERT INTO deck (user_id, deck_name, deck_description, isPublic) VALUES (5, 'Bird Id','Identify birds by their images',0); --119
+INSERT INTO deck (user_id, deck_name, deck_description, isPublic) VALUES (6, 'Bird Id','Identify birds by their images',0); --120
 
-INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('What is this bird?','Male cardinal',
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('What is this bird?','cardinal, male',
 	'https://images.unsplash.com/photo-1615146101981-cf25d1a1e6a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80',
 	3,1); --1117
 INSERT INTO card_deck (card_id, deck_id) VALUES (1117, 117);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2015, 1117);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('What is this bird?','cardinal, male',
+	'https://images.unsplash.com/photo-1615146101981-cf25d1a1e6a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80',
+	4,0); --1118
+INSERT INTO card_deck (card_id, deck_id) VALUES (1118, 118);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2015, 1118);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('What is this bird?','cardinal, male',
+	'https://images.unsplash.com/photo-1615146101981-cf25d1a1e6a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80',
+	5,0); --1119
+INSERT INTO card_deck (card_id, deck_id) VALUES (1119, 119);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2015, 1119);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('What is this bird?','cardinal, male',
+	'https://images.unsplash.com/photo-1615146101981-cf25d1a1e6a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80',
+	6,0); --1120
+INSERT INTO card_deck (card_id, deck_id) VALUES (1120, 120);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2015, 1120);
+
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('What is this bird?','cardinal, female',
+	'https://images.unsplash.com/photo-1590183281296-62bb55255612?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+	3,1); --1121
+INSERT INTO card_deck (card_id, deck_id) VALUES (1121, 117);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2015, 1121);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('What is this bird?','cardinal, female',
+	'https://images.unsplash.com/photo-1590183281296-62bb55255612?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+	4,0); --1122
+INSERT INTO card_deck (card_id, deck_id) VALUES (1122, 118);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2015, 1122);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('What is this bird?','cardinal, female',
+	'https://images.unsplash.com/photo-1590183281296-62bb55255612?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+	5,0); --1123
+INSERT INTO card_deck (card_id, deck_id) VALUES (1123, 119);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2015, 1123);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('What is this bird?','cardinal, female',
+	'https://images.unsplash.com/photo-1590183281296-62bb55255612?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+	6,0); --1124
+INSERT INTO card_deck (card_id, deck_id) VALUES (1124, 120);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2015, 1124);
 GO

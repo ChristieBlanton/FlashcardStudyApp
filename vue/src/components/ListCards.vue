@@ -12,8 +12,8 @@
           <!-- v-bind:class="{'flip-card': showBack.includes(card.cardId)}" -->
           <div class="hover-btn">
             <img class="edit" src="../assets/cog.svg" v-show="currentCard == card.cardId" v-on:click="editCard(card)" />
-            <h3 class="list-cards-text" v-show="!showBack.includes(card.cardId)">Front</h3>
-            <h3 class="list-cards-text" v-show="showBack.includes(card.cardId)">Back</h3>
+            <h3 class="list-cards-text" v-show="!showBack.includes(card.cardId)"></h3>
+            <h3 class="list-cards-text" v-show="showBack.includes(card.cardId)"></h3>
 
             <img class="edit" src="../assets/close.svg" v-show="currentCard == card.cardId" v-on:click="deleteCard(currentCard)" />
 
@@ -21,7 +21,7 @@
           <!-- <h3 class="list-cards-text" v-if="!showBack.includes(card.cardId)">{{ card.cardFront }}</h3>
           <h3 class="list-cards-text" v-else>{{ card.cardBack }}</h3> -->
           <h3 class="list-cards-text" v-show="!showBack.includes(card.cardId)">{{ card.cardFront }}</h3>
-          <img :src="(card.cardImage)" alt="card image" v-show="(!showBack.includes(card.cardId)) ">
+          <img id="card-image" :src="(card.cardImage)" alt="card image" v-show="(!showBack.includes(card.cardId) && card.cardImage) ">
           <h3 class="list-cards-text" v-show="showBack.includes(card.cardId)">{{ card.cardBack }}</h3>
 
         <!-- </div> -->
@@ -37,7 +37,6 @@ export default {
   data() {
     return {
       showBack: [],
-      showFront: [],
       currentCard: 0,
     };
   },
@@ -115,6 +114,12 @@ export default {
   border-color: rgba(255, 255, 255, 0.301);
   border-style: solid;
   transition: .5s;
+}
+
+#card-image {
+  height: 12vh;
+  width: auto;
+  margin-bottom: 5px;
 }
 
 button#card.card{
