@@ -22,5 +22,8 @@ export default {
   },
   getPublicCards(){
     return axios.get('/card')
+  },
+  getCardsForSearch(userId){
+    return axios.get(`/card/search/${userId}`)
   }
 }

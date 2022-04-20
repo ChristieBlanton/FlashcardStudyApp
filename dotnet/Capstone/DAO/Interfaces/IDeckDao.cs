@@ -19,7 +19,7 @@ namespace Capstone.DAO.Interfaces
 
         List<Deck> GetPublicDecks();
 
-
+        List<Deck> GetDecksForStudy(int userId);
 
     }
 }

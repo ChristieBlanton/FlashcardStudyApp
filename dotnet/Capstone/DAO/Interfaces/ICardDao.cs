@@ -8,7 +8,7 @@ namespace Capstone.DAO.Interfaces
 {
     public interface ICardDao
     {
-        Card AddCard(string cardFront, string cardBack, int userId, int deckId, string[] tags);
+        Card AddCard(string cardFront, string cardBack, string cardImage, int userId, int deckId, string[] tags);
 
         Card GetCard(int cardId);
 
@@ -18,10 +18,11 @@ namespace Capstone.DAO.Interfaces
 
         bool DeleteCardFromDeck(int cardId, int deckId);
 
-        Card UpdateCard(string cardFront, string cardBack, int cardId, string[] tags);
+        Card UpdateCard(string cardFront, string cardBack, string cardImage, int cardId, string[] tags);
 
         List<Card> GetCardsByUser(int userId);
         List<Card> GetPublicCards();
+        List<Card> GetCardsForSearch(int userId);
 
     }
 }

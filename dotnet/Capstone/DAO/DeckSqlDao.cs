@@ -23,6 +23,7 @@ namespace Capstone.DAO
         string sqlUpdateDeck = "UPDATE deck SET deck_name = @deck_name, deck_description = @deck_description WHERE deck_id = @deck_id AND isPublic = 0";
         string sqlDeleteDeck = "DELETE FROM card_deck WHERE deck_id = @deck_id; DELETE FROM deck WHERE deck_id = @deck_id";
         string sqlGetPublicDecks = "SELECT * FROM deck WHERE isPublic = 1";
+        string sqlGetDecksForStudy = "SELECT * FROM deck WHERE user_id = @user_id OR isPublic = 1";
         public Deck AddDeck (int userId, string deckName, string deckDescription)
         {
             int deckId = -1;
@@ -115,6 +116,35 @@ namespace Capstone.DAO
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand(sqlGetPublicDecks, conn);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Deck deck = GetDeckFromReader(reader);
+                        decks.Add(deck);
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            return decks;
+        }
+
+        public List<Deck> GetDecksForStudy(int userId)
+        {
+            List<Deck> decks = new List<Deck>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sqlGetDecksForStudy, conn);
+                    cmd.Parameters.AddWithValue("@user_id", userId);
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
