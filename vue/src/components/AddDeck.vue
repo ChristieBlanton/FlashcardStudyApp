@@ -6,8 +6,8 @@
             <input type="text" name="deck-name" id="deck-name" placeholder="Deck Name" required v-model="deck.deckName">
             <textarea rows="5" cols="40" name="deck-description" id="deck-description" placeholder="Deck Description" v-model="deck.deckDescription"></textarea>
             <div class="form-btn">
-                <button class="small-new-teal-btn" v-on:click="addDeck()">Submit</button>
-                <button class="small-lt-btn" v-on:click="isAddDeckVisible = false">Cancel</button>
+                <button class="small-navy-btn" v-on:click="addDeck()"><div>Submit</div></button>
+                <button class="small-lt-btn" v-on:click="isAddDeckVisible = false"><div>Cancel</div></button>
 
             </div>
         </div>
@@ -55,6 +55,9 @@ export default{
     width: 200px;
     padding: 0;
     height: 50px;
+}
+.form-btn button{
+    margin-top: 1vh;
 }
 .new-deck-btn:hover{
     color: black;

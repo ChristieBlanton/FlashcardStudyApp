@@ -1,20 +1,24 @@
 <template>
     <div class="edit-card">
-        <h2>Edit Card</h2>
+        <h1>Edit Card</h1>
 
         <div class="edit-card-form">
             <label for="card-front">Front</label>
-            <input type="text" name="card-front" id="card-front" v-model="card.cardFront">
+            <input class="form-control" type="text" name="card-front" id="card-front" v-model="card.cardFront">
             <label for="card-back">Back</label>
-            <textarea rows="5" cols="40" name="card-back" id="card-back" v-model="card.cardBack"></textarea>
+            <textarea class="form-control" rows="5" cols="40" name="card-back" id="card-back" v-model="card.cardBack"></textarea>
             <label for="card-image">Image URL (optional)</label>
-            <input type="text" name="card-image" id="card-image" v-model="card.cardImage">
+            <input class="form-control" type="text" name="card-image" id="card-image" v-model="card.cardImage">
             <div class="tags">
                 <label for="tags-basic">Type a new tag and press enter</label>
-                <input type="text" v-on:keyup.enter="addTag()" v-model="tag">
-                <p>Tags: </p>
-                <div class="list-tags" v-for="tag in card.tags" v-bind:key="tag">
-                    <p>{{ tag }} <img class="edit" src="../assets/close.svg" v-on:click="removeTag(tag)" /></p>
+                <input class="form-control" type="text" v-on:keyup.enter="addTag()" v-model="tag">
+                    <p>Tags: </p>
+
+                <div class="list-of-tags">
+                    <div class="list-tags" v-for="tag in card.tags" v-bind:key="tag">
+                        <p>{{ tag }} <img class="edit" src="../assets/close.svg" v-on:click="removeTag(tag)" /></p>
+
+                    </div>
 
                 </div>
             </div>
@@ -80,16 +84,31 @@ h2 {
     text-align: center;
     color: #0D3F67;
 }
+.list-of-tags{
+    display: flex;
+    gap: 10px;
+}
 .edit-card-btn{
     height: 40px;
     width: 200px;
 }
+.list-tags p img{
+    filter: none;
+    width: 20px;
+}
+
+.list-tags{
+    background-color: aqua;
+    padding: 5px;
+    height: 35px;
+    border-radius: 10px;
+    transition-duration: .2s;
+}
 .edit-card{
     display: flex;
-    justify-content: flex-start;
+    align-items: center;
 }
 .edit-card-form{
-    margin: 100px;
     display: flex;
     width: 60%;
     flex-direction: column;
@@ -108,6 +127,10 @@ h2 {
     margin: 0;
     font-size: 20px;
 
+}
+.form-btn button{
+    margin-top: 1vh;
+    transition: .2s;
 }
 
 </style>
