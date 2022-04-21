@@ -10,14 +10,7 @@
          >
         <!-- <div class="card-inner" v-bind:class="{'flip-text': showBack.includes(card.cardId)}"> -->
           <!-- v-bind:class="{'flip-card': showBack.includes(card.cardId)}" -->
-          <div class="hover-btn">
-            <img class="edit" src="../assets/cog.svg" v-show="currentCard == card.cardId" v-on:click="editCard(card)" />
-            <h3 class="list-cards-text" v-show="!showBack.includes(card.cardId)"></h3>
-            <h3 class="list-cards-text" v-show="showBack.includes(card.cardId)"></h3>
-
-            <img class="edit" src="../assets/close.svg" v-show="currentCard == card.cardId" v-on:click="deleteCard(currentCard)" />
-
-          </div>
+          
           <!-- <h3 class="list-cards-text" v-if="!showBack.includes(card.cardId)">{{ card.cardFront }}</h3>
           <h3 class="list-cards-text" v-else>{{ card.cardBack }}</h3> -->
           <h3 class="list-cards-text" v-show="!showBack.includes(card.cardId)">{{ card.cardFront }}</h3>
@@ -33,7 +26,7 @@
 <script>
 import cardService from "../services/CardService";
 export default {
-  name: "list-cards",
+  name: "list-public-cards",
   data() {
     return {
       showBack: [],
@@ -71,26 +64,10 @@ export default {
         }
       }
     },
-    deleteCard(cardId) {
-      cardService.deleteCard(this.$route.params.deckId, cardId).then(() => {
-        cardService
-          .getCardsInDeck(parseInt(this.$route.params.deckId))
-          .then((response) => {
-            this.$store.commit("SET_CARDS", response.data);
-          });
-      });
-    },
-    editCard(card) {
-      this.$store.commit("EDIT_CARD", card);
-      this.$router.push({
-        name: "editcard",
-        params: { deckId: this.$route.params.deckId, cardId: this.currentCard }
-      });
-    },
   },
   created() {
     cardService
-      .getCardsInDeck(parseInt(this.$route.params.deckId))
+      .getPublicCards(parseInt(this.$route.params.deckId))
       .then((response) => {
         this.$store.commit("SET_CARDS", response.data);
       });
@@ -103,7 +80,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .card {
   width: 30% !important;
   height: 20vh !important;
@@ -114,12 +91,6 @@ export default {
   border-color: rgba(255, 255, 255, 0.301);
   border-style: solid;
   transition: .5s;
-}
-
-#card-image {
-  height: 12vh;
-  width: auto;
-  margin-bottom: 5px;
 }
 
 button#card.card{
@@ -175,6 +146,7 @@ button#card.card{
 }
 .list-cards {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;

@@ -17,7 +17,7 @@ namespace Capstone.DAO
             connectionString = dbConnectionString;
         }
 
-        string sqlAddCard = "INSERT INTO card (card_front, card_back, user_id) OUTPUT inserted.card_id VALUES(@card_front, @card_back, @user_id);";
+        string sqlAddCard = "INSERT INTO card (card_front, card_back, card_image, user_id) OUTPUT inserted.card_id VALUES(@card_front, @card_back, @card_image, @user_id);";
         string sqlAddCardToDeck = "INSERT INTO card_deck (card_id, deck_id) VALUES (@card_id, @deck_id);";
         string sqlGetCard = "SELECT * FROM card WHERE card_id = @card_id";
         string sqlGetCardTags = "SELECT tag_name FROM tag t JOIN card_tag ct ON t.tag_id = ct.tag_id WHERE ct.card_id = @card_id";
@@ -26,10 +26,13 @@ namespace Capstone.DAO
         string sqlAddTagToCard = "INSERT INTO card_tag (card_id, tag_id) VALUES (@card_id, @tag_id)";
         string sqlAddTagToTags = "INSERT INTO tag (tag_name) OUTPUT inserted.tag_id VALUES (@tag_name)";
         string sqlDeleteCardFromDeck = "DELETE FROM card_deck WHERE card_id = @card_id AND deck_id = @deck_id;";
-        string sqlUpdateCard = "UPDATE card SET card_front = @card_front, card_back = @card_back WHERE card_id = @card_id;";
+        string sqlUpdateCard = "UPDATE card SET card_front = @card_front, card_back = @card_back, card_image = @card_image WHERE card_id = @card_id;";
         string sqlDeleteCardTags = "DELETE FROM card_tag WHERE card_id = @card_id;";
-        string sqlGetCardsByTag = "SELECT card_id FROM card WHERE (user_id = @user_id OR isPublic = 1);";
-        public Card AddCard(string cardFront, string cardBack, int userId, int deckId, string[] tags)
+        string sqlGetCardsByUser = "SELECT card_id FROM card WHERE user_id = @user_id";
+        string sqlGetPublicCards = "SELECT card_id FROM card WHERE isPublic = 1";
+        string sqlGetCardsForSearch = "SELECT card_id FROM card WHERE user_id = @user_id OR isPublic = 1";
+        
+        public Card AddCard(string cardFront, string cardBack, string cardImage, int userId, int deckId, string[] tags)
         {
             int cardId = -1;
 
@@ -42,6 +45,7 @@ namespace Capstone.DAO
                     SqlCommand cmd = new SqlCommand(sqlAddCard, conn);
                     cmd.Parameters.AddWithValue("@card_front", cardFront);
                     cmd.Parameters.AddWithValue("@card_back", cardBack);
+                    cmd.Parameters.AddWithValue("@card_image", cardImage);
                     cmd.Parameters.AddWithValue("@user_id", userId);
                     cardId = Convert.ToInt32(cmd.ExecuteScalar());
                 }
@@ -202,7 +206,7 @@ namespace Capstone.DAO
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand(sqlGetCardsByTag, conn);
+                    SqlCommand cmd = new SqlCommand(sqlGetCardsByUser, conn);
                     cmd.Parameters.AddWithValue("@user_id", userId);
 
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -224,6 +228,70 @@ namespace Capstone.DAO
             return cards;
         }
 
+        public List<Card> GetPublicCards()
+        {
+            List<Card> cards = new List<Card>();
+            List<int> cardIds = new List<int>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sqlGetPublicCards, conn);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        cardIds.Add(Convert.ToInt32(reader["card_id"]));
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            for (int i = 0; i < cardIds.Count; i++)
+            {
+                cards.Add(GetCard(cardIds[i]));
+            }
+            return cards;
+        }
+
+        public List<Card> GetCardsForSearch(int userId)
+        {
+            List<Card> cards = new List<Card>();
+            List<int> cardIds = new List<int>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sqlGetCardsForSearch, conn);
+                    cmd.Parameters.AddWithValue("@user_id", userId);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        cardIds.Add(Convert.ToInt32(reader["card_id"]));
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            for (int i = 0; i < cardIds.Count; i++)
+            {
+                cards.Add(GetCard(cardIds[i]));
+            }
+            return cards;
+        }
         public Card GetCard(int cardId)
         {
             Card card = new Card();
@@ -265,7 +333,7 @@ namespace Capstone.DAO
             return card;
         }
 
-        public Card UpdateCard(string cardFront, string cardBack, int cardId, string[] tags)
+        public Card UpdateCard(string cardFront, string cardBack, string cardImage, int cardId, string[] tags)
         {
 
 
@@ -278,6 +346,7 @@ namespace Capstone.DAO
                     SqlCommand cmd = new SqlCommand(sqlUpdateCard, conn);
                     cmd.Parameters.AddWithValue("@card_front", cardFront);
                     cmd.Parameters.AddWithValue("@card_back", cardBack);
+                    cmd.Parameters.AddWithValue("@card_image", cardImage);
                     cmd.Parameters.AddWithValue("@card_id", cardId);
 
 
@@ -329,8 +398,9 @@ namespace Capstone.DAO
                 CardId = Convert.ToInt32(reader["card_id"]),
                 CardFront = Convert.ToString(reader["card_front"]),
                 CardBack = Convert.ToString(reader["card_back"]),
+                CardImage = Convert.ToString(reader["card_image"]),
                 UserId = Convert.ToInt32(reader["user_id"]),
-                IsPublic = Convert.ToBoolean(reader["user_id"])
+                IsCardPublic = Convert.ToBoolean(reader["user_id"])
             };
             return card;
 

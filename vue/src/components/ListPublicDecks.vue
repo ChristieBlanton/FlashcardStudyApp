@@ -6,11 +6,6 @@
       v-for="deck in decks" 
       v-bind:key="deck.deckId" 
       v-on:click.self="viewDeck(deck)">
-      <div class="hover-btn">
-        <img class="edit" src="../assets/cog.svg" v-show="currentdeck == deck.deckId" v-on:click="editDeck(deck)" />
-        <img class="edit" src="../assets/close.svg" v-show="currentdeck == deck.deckId" v-on:click="deleteDeck(currentdeck)" />
-
-      </div>
       <h3 class="listdecks-deck-text" v-on:click.self="viewDeck(deck)">{{ deck.deckName }}</h3>
     </div>
   </div>
@@ -32,21 +27,13 @@ export default {
   methods: {
     viewDeck(deck){
       this.$store.commit("EDIT_DECK", deck)
-      this.$router.push({name: 'deck', params: {deckId: deck.deckId}})
+      this.$router.push({name: 'communitydeck', params: {deckId: deck.deckId}})
     },
-    editDeck(deck) {
-      this.$store.commit("EDIT_DECK", deck)
-      this.$router.push({name: "editdeck", params: {deckId: this.currentdeck}})
-    },
-    deleteDeck(id){
-      deckService.deleteDeck(id).then(() => {
-        deckService.myDecks(this.$store.state.user.userId).then((response) => {this.$store.commit("SET_DECKS", response.data )});
-      });
-    }
+
   },
   created() {
 
-    deckService.myDecks(this.$store.state.user.userId).then((response) => {this.$store.commit("SET_DECKS", response.data )});
+    deckService.getPublicDecks(this.$store.state.user.userId).then((response) => {this.$store.commit("SET_DECKS", response.data )});
   },
   computed: {
     decks(){
@@ -58,8 +45,8 @@ export default {
 
 <style>
 .deck {
-  width: 30%;
-  height: 20vh !important;
+  width: 18vw;
+  height: 20vh;
   padding: 10px;
   display: flex;
   flex-direction: column;

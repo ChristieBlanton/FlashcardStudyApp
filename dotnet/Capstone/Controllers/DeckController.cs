@@ -1,5 +1,6 @@
 ﻿using Capstone.DAO.Interfaces;
 using Capstone.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,6 +12,7 @@ namespace Capstone.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [Authorize]
     public class DeckController : ControllerBase
     {
         private readonly IDeckDao deckDao;
@@ -51,6 +53,37 @@ namespace Capstone.Controllers
                 result = BadRequest(new { message = "An error occurred and deck was not created." });
             }
             return result;
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public ActionResult<List<Deck>> PublicDecks()
+        {
+            List<Deck> decks = deckDao.GetPublicDecks();
+
+            if(decks != null)
+            {
+                return Ok(decks);
+            }
+            else
+            {
+                return BadRequest(new { message = "Unable to retrieve decks." });
+            }
+        }
+
+        [HttpGet("study/{userId}")]
+        public ActionResult<List<Deck>> GetDecksForStudy(int userId)
+        {
+            List<Deck> decks = deckDao.GetDecksForStudy(userId);
+
+            if (decks != null)
+            {
+                return Ok(decks);
+            }
+            else
+            {
+                return BadRequest(new { message = "Unable to retrieve decks." });
+            }
         }
 
         [HttpGet("mydecks/{id}")]

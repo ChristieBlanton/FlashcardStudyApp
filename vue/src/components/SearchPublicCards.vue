@@ -1,6 +1,6 @@
 <template>
   <div class="search-cards">
-    <h1 class="my-cards-header">My Flashcards</h1>
+    <h1 class="my-cards-header">Community Flashcards</h1>
     <div class="search-form">
       <input
         class="search-cards-input"
@@ -31,14 +31,15 @@
           v-on:click.stop="showDropDown = true"
         />
         <select name="deck-names" id="deck-names" v-on:click.stop="" v-if="showDropDown && currentCard == card.cardId" v-model="deckSelection">
-          <option value="none" selected disabled hidden >Choose</option>
+          <option value="none" selected disabled hidden>Choose</option>
           <option v-for="deck in decks" v-bind:key="deck.deckId" v-bind:value="deck.deckId">{{deck.deckName}}</option> 
         </select>
         <button class="add-card-btn" v-if="showDropDown && currentCard == card.cardId" v-on:click.stop="addCardToDeck()">Add</button>
       </div>
-      <h3 class="list-cards-text" v-if="!showBack.includes(card.cardId)" v-on:click.self="toggleFlip(card.cardId)">{{ card.cardFront }}</h3>
+
+      <h3 class="list-cards-text" v-show="!showBack.includes(card.cardId)" v-on:click.self="toggleFlip(card.cardId)">{{ card.cardFront }}</h3>
       <img id="card-image-search" :src="(card.cardImage)" alt="card image" v-show="(!showBack.includes(card.cardId) && card.cardImage) ">
-      <h3 class="list-cards-text text-back" v-if="showBack.includes(card.cardId)" v-on:click.self="toggleFlip(card.cardId)">{{ card.cardBack }}</h3>
+      <h3 class="list-cards-text text-back" v-show="showBack.includes(card.cardId)" v-on:click.self="toggleFlip(card.cardId)">{{ card.cardBack }}</h3>
       <div class="card-tags">
         <p class="tag-name" v-for="tag in card.tags" v-bind:key="tag">
           {{ tag }}
@@ -131,7 +132,7 @@ export default {
   },
   created() {
     cardService
-      .getCardsByUser(this.$store.state.user.userId)
+      .getPublicCards(this.$store.state.user.userId)
       .then((response) => {
         this.cards = response.data;
       });
@@ -150,8 +151,7 @@ export default {
         return this.cards.filter((card) => {
           return (
             card.tags.filter((tag) => {
-              return tag.toLowerCase().startsWith(this.searchQuery);
-              
+              return tag.startsWith(this.searchQuery);
             }).length > 0
           );
         });
@@ -193,12 +193,12 @@ export default {
 
 
 }
+#card-image-search {
+    height: 10vh;
+}
 .my-cards-header{
   margin: 0 0 50px 0;
   flex-grow: 1;
-}
-#deck-names{
-  max-width: 50%;
 }
 .add-card-btn{
   box-shadow: none;
@@ -215,6 +215,7 @@ export default {
 .card-tags {
   display: flex;
   gap: 5px;
+  
 }
 .card {
   width: 350px;
@@ -222,6 +223,10 @@ export default {
   padding: 10px;
   display: flex;
   justify-content: flex-start;
+}
+
+.card h3 {
+
 }
 .search-cards {
   display: flex;

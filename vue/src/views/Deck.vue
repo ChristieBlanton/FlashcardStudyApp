@@ -2,11 +2,10 @@
     <div class="deck-details">
         <deck-details />
 
-        <div class="add-study">
+        <!-- <div class="add-study"> -->
             <add-card />
-            <!-- <button class="deck-start-study small-new-teal-btn">Study</button> -->
 
-        </div>
+        <!-- </div> -->
 
         <list-cards />
     </div>
@@ -31,10 +30,13 @@ export default {
 <style>
 .add-study{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    margin-left: 2vw;
+    margin-right: 2vw;
 }
 .deck-start-study{
-
+    height: 50px;
+    padding: 0 30px;
 }
 </style>
 

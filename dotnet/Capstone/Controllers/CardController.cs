@@ -1,5 +1,6 @@
 ﻿using Capstone.DAO.Interfaces;
 using Capstone.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,6 +12,7 @@ namespace Capstone.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [Authorize]
     public class CardController : ControllerBase
     {
         private readonly ICardDao cardDao;
@@ -25,7 +27,7 @@ namespace Capstone.Controllers
         {
             ActionResult result;
 
-            Card card = cardDao.AddCard(newCard.CardFront, newCard.CardBack, newCard.UserId, newCard.DeckId, newCard.Tags);
+            Card card = cardDao.AddCard(newCard.CardFront, newCard.CardBack, newCard.CardImage, newCard.UserId, newCard.DeckId, newCard.Tags);
 
             if (card != null)
             {
@@ -37,6 +39,37 @@ namespace Capstone.Controllers
             }
 
             return result;
+        }
+        [AllowAnonymous]
+        [HttpGet]
+        public ActionResult<List<Card>> PublicDecks()
+        {
+            List<Card> cards = cardDao.GetPublicCards();
+
+            if(cards != null)
+            {
+                return Ok(cards);
+            }
+            else
+            {
+                return BadRequest(new { message = "Unable to retrieve cards" });
+            }
+
+        }
+
+        [HttpGet("search/{userId}")]
+        public ActionResult<List<Card>> GetCardsForSearch(int userId)
+        {
+            List<Card> cards = cardDao.GetCardsForSearch(userId);
+
+            if (cards != null)
+            {
+                return Ok(cards);
+            }
+            else
+            {
+                return BadRequest(new { message = "Unable to retrieve cards" });
+            }
         }
 
         [HttpGet("{deckId}")]
@@ -94,7 +127,7 @@ namespace Capstone.Controllers
         [HttpPut]
         public ActionResult<Card> UpdateCard(Card cardToUpdate)
         {
-            Card card = cardDao.UpdateCard(cardToUpdate.CardFront, cardToUpdate.CardBack, cardToUpdate.CardId, cardToUpdate.Tags);
+            Card card = cardDao.UpdateCard(cardToUpdate.CardFront, cardToUpdate.CardBack, cardToUpdate.CardImage, cardToUpdate.CardId, cardToUpdate.Tags);
             if(card != null)
             {
                 return Ok(card);
