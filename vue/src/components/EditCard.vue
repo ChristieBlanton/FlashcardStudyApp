@@ -7,7 +7,7 @@
             <input type="text" name="card-front" id="card-front" v-model="card.cardFront">
             <label for="card-back">Back</label>
             <textarea rows="5" cols="40" name="card-back" id="card-back" v-model="card.cardBack"></textarea>
-            <label for="card-image">Image URL</label>
+            <label for="card-image">Image URL (optional)</label>
             <input type="text" name="card-image" id="card-image" v-model="card.cardImage">
             <div class="tags">
                 <label for="tags-basic">Type a new tag and press enter</label>

@@ -11,7 +11,7 @@
         <div class="add-card-form"  v-show="isAddCardVisible">
             <div class="add-card-input"><input type="text" required name="card-front" id="card-front" placeholder="Card Front" v-model="card.cardFront"></div>
             <textarea rows="5" cols="40" required name="card-back" id="card-back" placeholder="Card Back" v-model="card.cardBack"></textarea>
-            <input type="text" name="card-image" id="card-image" placeholder="Image URL" v-model="card.cardImage">
+            <input type="text" name="card-image" id="card-image" placeholder="Image URL (optional)" v-model="card.cardImage">
             <div class="tags">
                 <!-- <label for="tags-basic">Type a new tag and press enter</label><br> -->
                 <input  type="text" v-on:keyup.enter="addTag()" placeholder="Type a new tag and press enter" v-model="tag">

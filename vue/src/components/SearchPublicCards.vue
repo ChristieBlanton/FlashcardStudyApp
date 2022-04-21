@@ -30,11 +30,11 @@
           v-show="currentCard == card.cardId"
           v-on:click.stop="showDropDown = true"
         />
-        <select name="deck-names" id="deck-names" v-if="showDropDown && currentCard == card.cardId" v-model="deckSelection">
+        <select name="deck-names" id="deck-names" v-on:click.stop="" v-if="showDropDown && currentCard == card.cardId" v-model="deckSelection">
           <option value="none" selected disabled hidden>Choose</option>
           <option v-for="deck in decks" v-bind:key="deck.deckId" v-bind:value="deck.deckId">{{deck.deckName}}</option> 
         </select>
-        <button class="add-card-btn" v-if="showDropDown && currentCard == card.cardId" v-on:click="addCardToDeck()">Add</button>
+        <button class="add-card-btn" v-if="showDropDown && currentCard == card.cardId" v-on:click.stop="addCardToDeck()">Add</button>
       </div>
 
       <h3 class="list-cards-text" v-show="!showBack.includes(card.cardId)" v-on:click.self="toggleFlip(card.cardId)">{{ card.cardFront }}</h3>

@@ -1,5 +1,6 @@
 ﻿using Capstone.DAO.Interfaces;
 using Capstone.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,6 +12,7 @@ namespace Capstone.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [Authorize]
     public class CardController : ControllerBase
     {
         private readonly ICardDao cardDao;
@@ -38,7 +40,7 @@ namespace Capstone.Controllers
 
             return result;
         }
-
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult<List<Card>> PublicDecks()
         {
