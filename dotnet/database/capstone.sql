@@ -69,7 +69,7 @@ CREATE TABLE card_deck(
 )
 
 CREATE TABLE submitted_deck(
-	sub_id int NOT NULL,
+	sub_id int IDENTITY (3001,1) NOT NULL,
 	deck_id int NOT NULL,
 	CONSTRAINT PK_submitted PRIMARY KEY (sub_id),
 	CONSTRAINT FK_submitted_deck FOREIGN KEY (deck_id) REFERENCES deck(deck_id)

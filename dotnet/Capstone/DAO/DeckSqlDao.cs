@@ -25,7 +25,7 @@ namespace Capstone.DAO
         string sqlGetPublicDecks = "SELECT * FROM deck WHERE isPublic = 1";
         string sqlGetDecksForStudy = "SELECT * FROM deck WHERE user_id = @user_id OR isPublic = 1";
         string sqlSubmitDeckToAdmin = "INSERT INTO submitted_deck (deck_id) VALUES (@deck_id)";
-        string sqlDecksRequestingApproval = "SELECT * FROM deck JOIN WHERE deck_id = (SELECT deck_id from submitted_decks)";
+        string sqlDecksSubmittedForApproval = "SELECT * FROM deck d JOIN submitted_deck sd ON d.deck_id = sd.deck_id";
         string sqlAdminApproveDeck = "UPDATE deck SET isPublic = 1 WHERE deck_id = (SELECT deck_id FROM submitted_deck WHERE sub_id = @sub_id); DELETE FROM submitted_deck WHERE sub_id = @sub_id;";
         string sqlAdminDenyDeck = "DELETE FROM submitted_deck WHERE sub_id = @sub_id";
 
@@ -228,6 +228,42 @@ namespace Capstone.DAO
 
                     int lines = cmd.ExecuteNonQuery();
                     return lines > 0;
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+        }
+
+        public List<Deck> GetDecksSubmittedForApproval()
+        {
+            try
+            {
+                List<Deck> decks = new List<Deck>();
+
+                using(SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sqlDecksSubmittedForApproval, conn);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Deck d = new Deck()
+                        {
+                            DeckId = Convert.ToInt32(reader["deck_id"]),
+                            UserId = Convert.ToInt32(reader["user_id"]),
+                            DeckName = Convert.ToString(reader["deck_name"]),
+                            DeckDescription = Convert.ToString(reader["deck_description"]),
+                            isDeckPublic = Convert.ToBoolean(reader["isPublic"]),
+                            SubId = Convert.ToInt32(reader["sub_id"])
+                        };
+                        decks.Add(d);
+                    }
+                    return decks;
                 }
             }
             catch (SqlException)
