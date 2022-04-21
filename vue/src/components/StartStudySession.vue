@@ -127,6 +127,7 @@ export default {
     };
   },
   methods: {
+    
     markCorrect() {
       this.correct++;
       if (this.cards.length > this.currentCardIndex + 1) {
