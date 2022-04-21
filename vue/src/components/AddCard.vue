@@ -6,7 +6,7 @@
 
 
             <button v-show="!isAddCardVisible" v-on:click="$router.push({name: 'startstudysession', params: {deckId: $route.params.deckId}})" class="deck-start-study small-new-teal-btn skew-btn"><div>Study Session</div></button>
-            <button v-show="!isAddCardVisible" v-on:click="submitCard()" class="deck-start-study small-new-teal-btn skew-btn"><div>Make Public</div></button>
+            <button v-show="!isAddCardVisible && !isPublic" v-on:click="submitCard()" class="deck-start-study small-new-teal-btn skew-btn"><div>Make Public</div></button>
 
 
         <div class="add-card-form"  v-show="isAddCardVisible">
@@ -44,6 +44,7 @@ export default{
         return{
             isAddCardVisible: false,
             deckDescription: '',
+            isPublic: false,
             tag: '',
             card: {
                 cardFront: "",
@@ -84,6 +85,11 @@ export default{
             deckService.submitDeckForAdminApproval(parseInt(this.$route.params.deckId))
         }
     },
+    created(){
+        deckService.getDeck(this.$route.params.deckId).then((response) => {
+            this.isPublic = response.data.isDeckPublic
+        })
+    }
     
 }
 </script>
@@ -129,8 +135,15 @@ export default{
 .new-card-btn:hover{
     color: black;
 }
-.form-img-url{
+#card-image.form-img-url{
     height: 40px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0;
+    border-color: lightgray;
+    border-width: 1px;
+    border-radius: 4px;
+    border-style: solid;
 }
 .add-card{
     display: flex;
