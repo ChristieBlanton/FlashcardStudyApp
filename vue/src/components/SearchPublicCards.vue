@@ -37,8 +37,14 @@
         <button class="add-card-btn" v-if="showDropDown && currentCard == card.cardId" v-on:click.stop="addCardToDeck()">Add</button>
       </div>
 
-      <h3 class="list-cards-text" v-show="!showBack.includes(card.cardId)" v-on:click.self="toggleFlip(card.cardId)">{{ card.cardFront }}</h3>
-      <img id="card-image-search" :src="(card.cardImage)" alt="card image" v-show="(!showBack.includes(card.cardId) && card.cardImage) ">
+      <!-- <h3 class="list-cards-text" v-show="!showBack.includes(card.cardId)" v-on:click.self="toggleFlip(card.cardId)">{{ card.cardFront }}</h3>
+      <img id="card-image-search" :src="(card.cardImage)" alt="card image" v-show="(!showBack.includes(card.cardId) && card.cardImage) "> -->
+      <div class="card-front-if-img" v-show="(!showBack.includes(card.cardId) && card.cardImage)">
+            <h3 class="list-cards-text" >{{ card.cardFront }}</h3>
+            <img id="card-image" :src="(card.cardImage)" alt="card image">
+
+          </div>
+            <h3 class="list-cards-text" v-show="!showBack.includes(card.cardId) && !card.cardImage">{{ card.cardFront }}</h3>
       <h3 class="list-cards-text text-back" v-show="showBack.includes(card.cardId)" v-on:click.self="toggleFlip(card.cardId)">{{ card.cardBack }}</h3>
       <div class="card-tags">
         <p class="tag-name" v-for="tag in card.tags" v-bind:key="tag">

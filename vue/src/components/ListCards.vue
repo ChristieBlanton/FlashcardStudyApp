@@ -6,7 +6,7 @@
         v-bind:value="card.cardId"
         v-on:click="toggleFlipAnimate(card.cardId); toggleFlip(card.cardId)"
         v-on:mouseover="currentCard = card.cardId" 
-        v-on:mouseleave="currentCard = 0"
+        v-on:mouseleave="currentCard = 0; "
          >
         <!-- <div class="card-inner" v-bind:class="{'flip-text': showBack.includes(card.cardId)}"> -->
           <!-- v-bind:class="{'flip-card': showBack.includes(card.cardId)}" -->
@@ -20,8 +20,13 @@
           </div>
           <!-- <h3 class="list-cards-text" v-if="!showBack.includes(card.cardId)">{{ card.cardFront }}</h3>
           <h3 class="list-cards-text" v-else>{{ card.cardBack }}</h3> -->
-          <h3 class="list-cards-text" v-show="!showBack.includes(card.cardId)">{{ card.cardFront }}</h3>
-          <img id="card-image" :src="(card.cardImage)" alt="card image" v-show="(!showBack.includes(card.cardId) && card.cardImage) ">
+          <div class="card-front-if-img" v-show="(!showBack.includes(card.cardId) && card.cardImage)">
+            <h3 class="list-cards-text" >{{ card.cardFront }}</h3>
+            <img id="card-image" :src="(card.cardImage)" alt="card image">
+
+          </div>
+            <h3 class="list-cards-text" v-show="!showBack.includes(card.cardId) && !card.cardImage">{{ card.cardFront }}</h3>
+
           <h3 class="list-cards-text" v-show="showBack.includes(card.cardId)">{{ card.cardBack }}</h3>
 
         <!-- </div> -->
@@ -38,6 +43,7 @@ export default {
     return {
       showBack: [],
       currentCard: 0,
+      zoomCardImage: false,
     };
   },
   methods: {
@@ -58,7 +64,6 @@ export default {
       }
     },
       toggleFlipAnimate(cardId){
-      console.log(cardId);
       const cardClasses = document.getElementsByClassName("card");
       for(let i = 0; i < cardClasses.length; i++){
         if(cardClasses[i].value == cardId){
@@ -116,14 +121,30 @@ export default {
   transition: .5s;
 }
 
+.card-front-if-img{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
 #card-image {
-  height: 12vh;
+  max-height: 12vh;
   width: auto;
+  max-width: 50%;
   margin-bottom: 5px;
+  border-color: rgba(255, 255, 255, 0.699);
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 8px;
+  margin-left: 5px;
 }
 
+/* .card-img-zoom{
+  height: 25vh !important;
+  position:relative !important;
+} */
+
 button#card.card{
-  justify-content: center !important;
   align-items: center !important;
   padding: 0 !important;
 }
@@ -186,6 +207,7 @@ a:hover {
 }
 .list-cards-text {
   pointer-events: none;
+  
 }
 .hover-btn {
   height: 40px;
