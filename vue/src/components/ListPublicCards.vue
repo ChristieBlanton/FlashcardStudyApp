@@ -15,8 +15,14 @@
           
           <!-- <h3 class="list-cards-text" v-if="!showBack.includes(card.cardId)">{{ card.cardFront }}</h3>
           <h3 class="list-cards-text" v-else>{{ card.cardBack }}</h3> -->
-          <h3 class="list-cards-text" v-show="!showBack.includes(card.cardId)">{{ card.cardFront }}</h3>
-          <img id="card-image" :src="(card.cardImage)" alt="card image" v-show="(!showBack.includes(card.cardId) && card.cardImage) ">
+          <!-- <h3 class="list-cards-text" v-show="!showBack.includes(card.cardId)">{{ card.cardFront }}</h3>
+          <img id="card-image" :src="(card.cardImage)" alt="card image" v-show="(!showBack.includes(card.cardId) && card.cardImage) "> -->
+          <div class="card-front-if-img" v-show="(!showBack.includes(card.cardId) && card.cardImage)">
+            <h3 class="list-cards-text" >{{ card.cardFront }}</h3>
+            <img id="card-image" :src="(card.cardImage)" alt="card image">
+
+          </div>
+            <h3 class="list-cards-text" v-show="!showBack.includes(card.cardId) && !card.cardImage">{{ card.cardFront }}</h3>
           <h3 class="list-cards-text" v-show="showBack.includes(card.cardId)">{{ card.cardBack }}</h3>
 
         <!-- </div> -->
@@ -98,7 +104,7 @@ export default {
 button#card.card{
   justify-content: center !important;
   align-items: center !important;
-  padding: 0 !important;
+  padding: 5px !important;
 }
 .card-inner{
   height: 100%;

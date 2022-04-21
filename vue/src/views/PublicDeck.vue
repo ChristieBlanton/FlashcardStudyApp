@@ -3,7 +3,7 @@
         <deck-details />
 
         <!-- <div class="add-study"> -->
-            <add-card />
+            <!-- <add-card /> -->
 
         <!-- </div> -->
 

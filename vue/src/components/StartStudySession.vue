@@ -97,12 +97,13 @@
             <div>Correct</div>
           </button>
         </div>
-        <button
+        <div style="background-color: white"><button
           class="end-study-session-btn small-navy-btn skew-btn"
           v-on:click="endSession = true"
+          v-if="!endSession"
         >
           <div>End Study Session</div>
-        </button>
+        </button></div>
       </div>
 
       <div class="end-study-session" v-else>
@@ -134,7 +135,7 @@
             alt=""
           />
         </div>
-        <button
+        <div style="background-color: white; position: absolute; bottom: 30px"><button
           class="
             end-study-session-btn
             small-navy-btn
@@ -144,7 +145,7 @@
           v-on:click="$router.push({ name: 'studysession' })"
         >
           <div>Start A New Session</div>
-        </button>
+        </button></div>
       </div>
     </div>
   </div>
@@ -283,7 +284,8 @@ export default {
 }
 
 #card-image-study {
-  height: 100%;
+  max-height: 100%;
+  max-width:50%;
   border-width: 4px;
   border-color: rgba(255, 255, 255, 0.603);
   border-style: solid;
@@ -348,7 +350,7 @@ export default {
   /* font-family: 'Pacifico'; */
 }
 .results-start-new-session {
-  margin-top: 50px;
+  position: relative;
 }
 .end-study-session div {
   display: flex;
