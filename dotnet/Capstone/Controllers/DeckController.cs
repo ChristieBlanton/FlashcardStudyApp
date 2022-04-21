@@ -74,7 +74,7 @@ namespace Capstone.Controllers
         [HttpGet("admin")]
         public ActionResult<List<Deck>> DeckRequestingApproval()
         {
-
+            return Ok();
         }
 
         [Authorize(Roles = "admin")]
@@ -94,7 +94,7 @@ namespace Capstone.Controllers
         }
 
         [Authorize(Roles = "admin")]
-        [HttpPut("admin/deny/{subId}"]
+        [HttpPut("admin/deny/{subId}")]
         public ActionResult AdminDenyDeck(int subId)
         {
             bool isDenied = deckDao.AdminDenyDeck(subId);
