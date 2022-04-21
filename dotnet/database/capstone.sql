@@ -103,6 +103,9 @@ INSERT INTO tag (tag_name) VALUES ('coding basics'); --2012
 INSERT INTO tag (tag_name) VALUES ('git'); --2013
 INSERT INTO tag (tag_name) VALUES ('shell commands'); --2014
 INSERT INTO tag (tag_name) VALUES ('Ohio birds'); --2015
+INSERT INTO tag (tag_name) VALUES ('big cats'); --2016
+INSERT INTO tag (tag_name) VALUES ('small cats'); --2017
+
 
 
 --insert data into Christie's profile user_id 3
@@ -717,52 +720,90 @@ INSERT INTO deck (user_id, deck_name, deck_description, isPublic) VALUES (4, 'Bi
 INSERT INTO deck (user_id, deck_name, deck_description, isPublic) VALUES (5, 'Bird Id','Identify birds by their images',0); --119
 INSERT INTO deck (user_id, deck_name, deck_description, isPublic) VALUES (6, 'Bird Id','Identify birds by their images',0); --120
 
-INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('What is this bird?','cardinal, male',
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the bird','cardinal, male',
 	'https://images.unsplash.com/photo-1615146101981-cf25d1a1e6a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80',
 	3,1); --1117
 INSERT INTO card_deck (card_id, deck_id) VALUES (1117, 117);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2015, 1117);
 
-INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('What is this bird?','cardinal, male',
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the bird','cardinal, male',
 	'https://images.unsplash.com/photo-1615146101981-cf25d1a1e6a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80',
 	4,0); --1118
 INSERT INTO card_deck (card_id, deck_id) VALUES (1118, 118);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2015, 1118);
 
-INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('What is this bird?','cardinal, male',
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the bird','cardinal, male',
 	'https://images.unsplash.com/photo-1615146101981-cf25d1a1e6a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80',
 	5,0); --1119
 INSERT INTO card_deck (card_id, deck_id) VALUES (1119, 119);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2015, 1119);
 
-INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('What is this bird?','cardinal, male',
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the bird','cardinal, male',
 	'https://images.unsplash.com/photo-1615146101981-cf25d1a1e6a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80',
 	6,0); --1120
 INSERT INTO card_deck (card_id, deck_id) VALUES (1120, 120);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2015, 1120);
 
 
-INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('What is this bird?','cardinal, female',
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the bird','cardinal, female',
 	'https://images.unsplash.com/photo-1590183281296-62bb55255612?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
 	3,1); --1121
 INSERT INTO card_deck (card_id, deck_id) VALUES (1121, 117);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2015, 1121);
 
-INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('What is this bird?','cardinal, female',
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the bird','cardinal, female',
 	'https://images.unsplash.com/photo-1590183281296-62bb55255612?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
 	4,0); --1122
 INSERT INTO card_deck (card_id, deck_id) VALUES (1122, 118);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2015, 1122);
 
-INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('What is this bird?','cardinal, female',
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the bird','cardinal, female',
 	'https://images.unsplash.com/photo-1590183281296-62bb55255612?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
 	5,0); --1123
 INSERT INTO card_deck (card_id, deck_id) VALUES (1123, 119);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2015, 1123);
 
-INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('What is this bird?','cardinal, female',
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the bird','cardinal, female',
 	'https://images.unsplash.com/photo-1590183281296-62bb55255612?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
 	6,0); --1124
 INSERT INTO card_deck (card_id, deck_id) VALUES (1124, 120);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2015, 1124);
+
+
+--add admin decks/cards
+
+INSERT INTO deck (user_id, deck_name, deck_description, isPublic) VALUES (2, 'Wild Cats','Identify wild felines by their images', 1); --121
+-- tag 'big cats' 2016
+-- tag 'small cats' 2017
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the cat','Bengal tiger',
+	'https://files.worldwildlife.org/wwfcmsprod/images/Tiger_resting_Bandhavgarh_National_Park_India/hero_small/6aofsvaglm_Medium_WW226365.jpg',
+	2,1); --1125
+INSERT INTO card_deck (card_id, deck_id) VALUES (1125, 121);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2016, 1125);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the cats','Lions, male(left) and female(right)',
+	'https://cdn.mos.cms.futurecdn.net/J9KeYkEZf4HHD5LRGf799N.jpg',
+	2,1); --1126
+INSERT INTO card_deck (card_id, deck_id) VALUES (1126, 121);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2016, 1126);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the cat','Leopard',
+	'https://cdn.mos.cms.futurecdn.net/J9KeYkEZf4HHD5LRGf799N.jpg',
+	2,1); --1127
+INSERT INTO card_deck (card_id, deck_id) VALUES (1127, 121);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2016, 1127);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the cat','Jaguar',
+	'https://www.awsfzoo.com/media/Screen-Shot-2021-01-24-at-9.20.25-AM-1024x677.png',
+	2,1); --1128
+INSERT INTO card_deck (card_id, deck_id) VALUES (1128, 121);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2016, 1128);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the cat','Serval',
+	'https://www.awf.org/sites/default/files/styles/species_image/public/2020-04/Website_SpeciesPage_Serval02_Challenges.jpg?h=29c6c1f6&itok=7C1FoaPW',
+	2,1); --1129
+INSERT INTO card_deck (card_id, deck_id) VALUES (1129, 121);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2017, 1129);
+
 GO

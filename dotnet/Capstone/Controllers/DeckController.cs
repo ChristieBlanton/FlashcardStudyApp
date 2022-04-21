@@ -55,6 +55,8 @@ namespace Capstone.Controllers
             return result;
         }
 
+        [Authorize (Roles = "admin")]
+
         [AllowAnonymous]
         [HttpGet]
         public ActionResult<List<Deck>> PublicDecks()
