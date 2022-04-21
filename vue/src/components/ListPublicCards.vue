@@ -1,7 +1,10 @@
 <template>
-  <div>
-   <button v-on:click="$router.push({name: 'startstudysession', params: {deckId: $route.params.deckId}})" class="deck-start-study small-new-teal-btn skew-btn"><div>Study Session</div></button>
   <div class="list-cards">
+    <div style="width: 100%; display: flex; justify-content: center;">
+   <button v-on:click="$router.push({name: 'startstudysession', params: {deckId: $route.params.deckId}})" class="deck-start-study small-new-teal-btn skew-btn"><div>Study Session</div></button>
+
+    </div>
+
     <button class="card purple-btn btn btn-lg btn-primary btn-block" id="card"
         v-for="card in cards"  
         v-bind:key="card.cardId" 
@@ -28,7 +31,6 @@
         <!-- </div> -->
     </button>
   </div>
-  </div>  
 </template>
 
 <script>

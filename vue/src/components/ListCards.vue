@@ -123,9 +123,13 @@ export default {
 
 .card-front-if-img{
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
+  height: 100%;
+  padding: 5px;
+}
+.card-front-if-img{
+  text-align: center;
+  text-justify: center;
 }
 #card-image {
   max-height: 12vh;
@@ -146,6 +150,7 @@ export default {
 
 button#card.card{
   align-items: center !important;
+
   padding: 0 8px!important;
 }
 .card-inner{
