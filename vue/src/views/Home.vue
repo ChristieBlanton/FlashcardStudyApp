@@ -37,10 +37,10 @@ export default {
 }
 .home-options button {
   width: 40%;
-  
+  height: 20vh;
   border-width: 3px;
   border-style: solid;
-  
+  transition: .2s;
 }
 .home-options button div{
   font-family: 'Pacifico';
