@@ -5,7 +5,7 @@
             v-on:click="isAddCardVisible = !isAddCardVisible" 
             v-show="!isAddCardVisible"><div>New Card</div></button>
 
-            <button v-show="!isAddCardVisible" v-on:click="$router.push({name: 'startstudysession', params: {deckId: $route.params.deckId}})" class="deck-start-study small-new-teal-btn skew-btn"><div>Study Session</div></button>
+        <button v-show="!isAddCardVisible" v-on:click="$router.push({name: 'startstudysession', params: {deckId: $route.params.deckId}})" class="deck-start-study small-new-teal-btn skew-btn"><div>Study Session</div></button>
 
 
         <div class="add-card-form"  v-show="isAddCardVisible">
@@ -35,6 +35,7 @@
 
 <script>
 import cardService from "../services/CardService";
+import deckService from "../services/DeckService"
 
 export default{
     name: 'add-card',
@@ -77,6 +78,9 @@ export default{
             this.card.tags = this.card.tags.filter(a => {
                 return a != tag
             })
+        },
+        submitCard(){
+            deckService.submitDeckForAdminApproval(parseInt(this.$route.params.deckId))
         }
     },
     

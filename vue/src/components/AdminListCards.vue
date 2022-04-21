@@ -7,7 +7,7 @@
     </button>
     <button
       v-on:click="denyDeck()"
-      class="deck-start-study small-new-teal-btn skew-btn">
+      class="deck-start-study small-lt-btn skew-btn">
       <div>Deny Deck</div>
     </button>
     <div class="list-cards">
