@@ -74,11 +74,19 @@ namespace Capstone.Controllers
         [HttpGet("admin")]
         public ActionResult<List<Deck>> DeckRequestingApproval()
         {
-            return Ok();
+            List<Deck> decks = deckDao.GetDecksSubmittedForApproval();
+            if(decks != null)
+            {
+                return Ok(decks);
+            }
+            else
+            {
+                return BadRequest(new { message = "Unable to retrieve decks." });
+            }
         }
 
         [Authorize(Roles = "admin")]
-        [HttpPut("admin/appprove/{subId}")]
+        [HttpPut("admin/approve/{subId}")]
         public ActionResult AdminApproveDeck(int subId)
         {
             bool isApproved = deckDao.AdminApproveDeck(subId);
@@ -94,7 +102,7 @@ namespace Capstone.Controllers
         }
 
         [Authorize(Roles = "admin")]
-        [HttpPut("admin/deny/{subId}")]
+        [HttpDelete("admin/deny/{subId}")]
         public ActionResult AdminDenyDeck(int subId)
         {
             bool isDenied = deckDao.AdminDenyDeck(subId);

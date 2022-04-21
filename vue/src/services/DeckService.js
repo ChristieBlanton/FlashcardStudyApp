@@ -22,5 +22,17 @@ export default {
   },
   getDecksForStudy(userId){
     return axios.get(`/deck/study/${userId}`)
+  },
+  submitDeckForAdminApproval(deckId){
+    return axios.post(`/deck/submit/${deckId}`)
+  },
+  getDecksAwaitingApproval(){
+    return axios.get('deck/admin')
+  },
+  adminApproveDeck(subId){
+    return axios.put(`/deck/admin/approve/${subId}`)
+  },
+  adminDenyDeck(subId){
+    return axios.delete(`/deck/admin/deny/${subId}`)
   }
 }
