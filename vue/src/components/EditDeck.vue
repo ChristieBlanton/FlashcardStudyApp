@@ -3,9 +3,9 @@
         <h1>Edit Deck</h1>
         <div class="edit-deck-form">
             <label for="deck-name">Deck Name: </label>
-            <input type="text" name="deck-name" id="deck-name" v-model="deck.deckName">
+            <input class="form-control" type="text" name="deck-name" id="deck-name" v-model="deck.deckName">
             <label for="deck-description">Deck Description: </label>
-            <textarea rows="5" cols="40" name="deck-description" id="deck-description" v-model="deck.deckDescription"></textarea>
+            <textarea class="form-control" rows="5" cols="40" name="deck-description" id="deck-description" v-model="deck.deckDescription"></textarea>
             <div class="form-btn">
                 <button class="small-navy-btn" v-on:click="editDeck()"><div>Submit</div></button>
                 <button class="small-lt-btn" v-on:click="$router.push({name: 'mydecks'})"><div>Cancel</div></button>
