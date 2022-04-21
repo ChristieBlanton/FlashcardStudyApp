@@ -67,7 +67,7 @@ export default {
   },
   created() {
     cardService
-      .getPublicCards(parseInt(this.$route.params.deckId))
+      .getCardsInDeck(parseInt(this.$route.params.deckId))
       .then((response) => {
         this.$store.commit("SET_CARDS", response.data);
       });
