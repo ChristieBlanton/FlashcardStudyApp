@@ -6,6 +6,8 @@
       <button class="purple-btn skew-btn" v-on:click="$router.push({name: 'communitycards'})"><div>Community Cards</div></button>
       <button class="new-teal-btn skew-btn" v-on:click="$router.push({name: 'mydecks'})"><div>My Decks</div></button>
       <button class="lt-btn skew-btn" v-on:click="$router.push({name: 'mycards'})"><div>My Cards</div></button>
+      <button v-show="$store.state.user.role == 'Admin'" class="purple-btn skew-btn" id="admin-home-btn" v-on:click="$router.push({name: 'admin'})"><div>Approve Decks And Cards</div></button>
+
 
     </div>
   </div>
@@ -46,7 +48,11 @@ export default {
   font-family: 'Pacifico';
   font-size: 5vh;
 }
-
+button#admin-home-btn{
+  width: 82%;
+  height: 12vh;
+  padding: 0;
+}
 .home-options{
   display: flex;
   flex-wrap: wrap;

@@ -146,7 +146,7 @@ export default {
 
 button#card.card{
   align-items: center !important;
-  padding: 0 !important;
+  padding: 0 8px!important;
 }
 .card-inner{
   height: 100%;
