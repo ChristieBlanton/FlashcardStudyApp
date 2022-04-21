@@ -6,7 +6,7 @@
 
 
             <button v-show="!isAddCardVisible" v-on:click="$router.push({name: 'startstudysession', params: {deckId: $route.params.deckId}})" class="deck-start-study small-new-teal-btn skew-btn"><div>Study Session</div></button>
-            <button v-show="!isAddCardVisible" v-on:click="true" class="deck-start-study small-new-teal-btn skew-btn"><div>Make Public</div></button>
+            <button v-show="!isAddCardVisible" v-on:click="submitCard()" class="deck-start-study small-new-teal-btn skew-btn"><div>Make Public</div></button>
 
 
         <div class="add-card-form"  v-show="isAddCardVisible">
