@@ -1040,4 +1040,7 @@ INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES 
 	2,1); --1167
 INSERT INTO card_deck (card_id, deck_id) VALUES (1167, 121);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2017, 1167);
+
+INSERT INTO submitted_deck (deck_id) VALUES (113);
+INSERT INTO submitted_deck (deck_id) VALUES (103);
 GO

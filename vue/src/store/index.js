@@ -23,7 +23,8 @@ export default new Vuex.Store({
     editDeck: {
       deckId: 0,
       deckName: "",
-      deckDescription: ""
+      deckDescription: "",
+      subId: 0
     },
     editCard: {
       cardId: 0,
@@ -63,6 +64,7 @@ export default new Vuex.Store({
       state.editDeck.deckId = deck.deckId;
       state.editDeck.deckName = deck.deckName;
       state.editDeck.deckDescription = deck.deckDescription;
+      state.editDeck.subId = deck.subId;
     },
     EDIT_CARD(state, card) {
       state.editCard.cardId = card.cardId;

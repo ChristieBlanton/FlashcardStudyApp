@@ -16,6 +16,8 @@ import EditCard from '../components/EditCard.vue'
 import MyCards from '../views/MyCards.vue'
 import StudySession from '../views/StudySession.vue'
 import StartStudySession from '../components/StartStudySession.vue'
+import Admin from '../views/Admin'
+import AdminDeck from '../views/AdminDeck'
 
 
 
@@ -154,6 +156,24 @@ const router = new Router({
         requiresAuth: true
       }
     },
+    {
+      path: '/admin',
+      name: "admin",
+      component: Admin,
+      meta: {
+        isAdmin: true,
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/admin/:deckId',
+      name: "admindeck",
+      component: AdminDeck,
+      meta: {
+        isAdmin: true,
+        requiresAuth: true
+      }
+    }
   ]
 })
 
