@@ -111,9 +111,9 @@ INSERT INTO tag (tag_name) VALUES ('paintings'); --2018
 
 --insert data into Christie's profile user_id 3
 INSERT INTO deck (user_id, deck_name, deck_description) VALUES (3, 'Object Oriented Programming', 'Cards related to OOP principles'); --101
-INSERT INTO deck (user_id, deck_name, deck_description, isPublic) VALUES (3, 'Data types, arrays, and collections in C#', '', 1); --102
+INSERT INTO deck (user_id, deck_name, deck_description, isPublic) VALUES (3, 'Data types, arrays, and collections in C#', '', 0); --102
 INSERT INTO deck (user_id, deck_name, deck_description) VALUES (3, 'C# Coding basics', 'Basic coding terminology'); --103
-INSERT INTO deck (user_id, deck_name, deck_description, isPublic) VALUES (3, 'git and shell', 'git and shell definitions and commands', 1); --104
+INSERT INTO deck (user_id, deck_name, deck_description, isPublic) VALUES (3, 'git and shell', 'git and shell definitions and commands', 0); --104
 
 
 INSERT INTO card (card_front, card_back, user_id) VALUES ('What are the 3 principles of OOP?', 'Encapsulation, Inheritance, and Polymorphism', 3); --1001
@@ -145,14 +145,14 @@ INSERT INTO card_deck (card_id, deck_id) VALUES (1006, 103);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2012, 1006);
 
 INSERT INTO card (card_front, card_back, user_id, isPublic) VALUES ('What is the difference between a "for loop" and a "while loop"?', 'A "for loop" runs a 
-	specific number of times. A "while loop" runs until a specified condition is false.', 3, 1); --1007
+	specific number of times. A "while loop" runs until a specified condition is false.', 3, 0); --1007
 INSERT INTO card_deck (card_id, deck_id) VALUES (1007, 103);
 INSERT INTO card_deck (card_id, deck_id) VALUES (1007, 102);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2005, 1007);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2012, 1007);
 
 INSERT INTO card (card_front, card_back, user_id, isPublic) VALUES ('What is the difference between a "while loop" and a " do while loop"?', 'A "while loop" may never
-	run if the conditional is false when it gets to the loop. A "do while loop" will always run at least once.', 3, 1); --1008
+	run if the conditional is false when it gets to the loop. A "do while loop" will always run at least once.', 3, 0); --1008
 INSERT INTO card_deck (card_id, deck_id) VALUES (1008, 103);
 INSERT INTO card_deck (card_id, deck_id) VALUES (1008, 102);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2005, 1008);
@@ -166,7 +166,7 @@ INSERT INTO card_deck (card_id, deck_id) VALUES (1009, 102);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2012, 1009);
 
 INSERT INTO card (card_front, card_back, user_id, isPublic) VALUES ('What is an object"?', 'An in-memory data structure that combines state and behavior into a 
-	usable and useful abstraction. A collection of properties and methods.', 3, 1); --1010
+	usable and useful abstraction. A collection of properties and methods.', 3, 0); --1010
 INSERT INTO card_deck (card_id, deck_id) VALUES (1010, 101);
 INSERT INTO card_deck (card_id, deck_id) VALUES (1010, 102);
 INSERT INTO card_deck (card_id, deck_id) VALUES (1010, 103);
