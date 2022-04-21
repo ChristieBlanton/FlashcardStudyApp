@@ -37,7 +37,7 @@ export default {
 }
 .home-options button {
   width: 40%;
-  
+  height: 20vh;
   border-width: 3px;
   border-style: solid;
   

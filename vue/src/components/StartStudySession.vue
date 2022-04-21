@@ -284,6 +284,10 @@ export default {
 
 #card-image-study {
   height: 100%;
+  border-width: 4px;
+  border-color: rgba(255, 255, 255, 0.603);
+  border-style: solid;
+  border-radius: 10px;
 }
 .session-form button {
   height: 50px;
