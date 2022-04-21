@@ -36,6 +36,7 @@
 
 <script>
 import cardService from "../services/CardService";
+import deckService from "../services/DeckService"
 
 export default{
     name: 'add-card',
@@ -78,6 +79,9 @@ export default{
             this.card.tags = this.card.tags.filter(a => {
                 return a != tag
             })
+        },
+        submitCard(){
+            deckService.submitDeckForAdminApproval(parseInt(this.$route.params.deckId))
         }
     },
     

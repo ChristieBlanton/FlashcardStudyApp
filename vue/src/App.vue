@@ -307,7 +307,7 @@ h1{
   justify-content: center;
   align-items: center;
   color: whitesmoke;
-  font-size: 22px;
+  font-size: 26px;
 }
 * > .small-purple-btn:hover{
   background-color: #4b32bb;
@@ -339,7 +339,7 @@ h1{
   justify-content: center;
   align-items: center;
   color: black;
-  font-size: 22px;
+  font-size: 26px;
 }
 * > .small-lt-btn:hover{
   background-color: #afafaf;
@@ -386,7 +386,7 @@ h1{
   justify-content: center;
   align-items: center;
   color: whitesmoke;
-  font-size: 22px;
+  font-size: 26px;
 }
 * > .small-navy-btn:hover{
   background-color: #092c49;
