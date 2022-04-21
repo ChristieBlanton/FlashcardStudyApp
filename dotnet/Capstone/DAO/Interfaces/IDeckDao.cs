@@ -20,6 +20,9 @@ namespace Capstone.DAO.Interfaces
         List<Deck> GetPublicDecks();
 
         List<Deck> GetDecksForStudy(int userId);
+        bool SubmitDeckForAdminApproval(int deckId);
+        bool AdminApproveDeck(int subId);
+        bool AdminDenyDeck(int subId);
 
     }
 }

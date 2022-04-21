@@ -55,7 +55,59 @@ namespace Capstone.Controllers
             return result;
         }
 
-        [Authorize (Roles = "admin")]
+        [HttpPost("submit/{deckId}")]
+        public ActionResult SubmitDeckForAdminApproval(int deckId)
+        {
+            bool isSubmitted = deckDao.SubmitDeckForAdminApproval(deckId);
+
+            if (isSubmitted)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest(new { message = "An error occured and deck was not submitted." });
+            }
+        }
+
+        [Authorize(Roles = "admin")]
+        [HttpGet("admin")]
+        public ActionResult<List<Deck>> DeckRequestingApproval()
+        {
+            return Ok();
+        }
+
+        [Authorize(Roles = "admin")]
+        [HttpPut("admin/appprove/{subId}")]
+        public ActionResult AdminApproveDeck(int subId)
+        {
+            bool isApproved = deckDao.AdminApproveDeck(subId);
+
+            if (isApproved)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest(new { message = "An error occurred." });
+            }
+        }
+
+        [Authorize(Roles = "admin")]
+        [HttpPut("admin/deny/{subId}")]
+        public ActionResult AdminDenyDeck(int subId)
+        {
+            bool isDenied = deckDao.AdminDenyDeck(subId);
+
+            if (isDenied)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest(new { message = "An error occurred." });
+            }
+        }
 
         [AllowAnonymous]
         [HttpGet]

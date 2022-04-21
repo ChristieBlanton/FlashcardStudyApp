@@ -24,8 +24,10 @@ namespace Capstone.DAO
         string sqlDeleteDeck = "DELETE FROM card_deck WHERE deck_id = @deck_id; DELETE FROM deck WHERE deck_id = @deck_id";
         string sqlGetPublicDecks = "SELECT * FROM deck WHERE isPublic = 1";
         string sqlGetDecksForStudy = "SELECT * FROM deck WHERE user_id = @user_id OR isPublic = 1";
-        string sqlRequestToAdmin = "INSERT INTO submitted_deck (deck_id) VALUES (@deck_id)";
-        string sqlAdminApproveDeck = "UPDATE deck SET isPublic = 1; DELETE FROM";
+        string sqlSubmitDeckToAdmin = "INSERT INTO submitted_deck (deck_id) VALUES (@deck_id)";
+        string sqlDecksRequestingApproval = "SELECT * FROM deck JOIN WHERE deck_id = (SELECT deck_id from submitted_decks)";
+        string sqlAdminApproveDeck = "UPDATE deck SET isPublic = 1 WHERE deck_id = (SELECT deck_id FROM submitted_deck WHERE sub_id = @sub_id); DELETE FROM submitted_deck WHERE sub_id = @sub_id;";
+        string sqlAdminDenyDeck = "DELETE FROM submitted_deck WHERE sub_id = @sub_id";
 
         public Deck AddDeck (int userId, string deckName, string deckDescription)
         {
@@ -202,6 +204,69 @@ namespace Capstone.DAO
 
                     SqlCommand cmd = new SqlCommand(sqlDeleteDeck, conn);
                     cmd.Parameters.AddWithValue("@deck_id", deckId);
+
+                    int lines = cmd.ExecuteNonQuery();
+                    return lines > 0;
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+        }
+
+        public bool SubmitDeckForAdminApproval(int deckId)
+        {
+            try
+            {
+                using(SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sqlSubmitDeckToAdmin, conn);
+                    cmd.Parameters.AddWithValue("@deck_id", deckId);
+
+                    int lines = cmd.ExecuteNonQuery();
+                    return lines > 0;
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+        }
+
+        public bool AdminApproveDeck(int subId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sqlAdminApproveDeck, conn);
+                    cmd.Parameters.AddWithValue("@sub_id", subId);
+
+                    int lines = cmd.ExecuteNonQuery();
+                    return lines > 0;
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+        }
+
+        public bool AdminDenyDeck(int subId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sqlAdminDenyDeck, conn);
+                    cmd.Parameters.AddWithValue("@sub_id", subId);
 
                     int lines = cmd.ExecuteNonQuery();
                     return lines > 0;

@@ -791,7 +791,7 @@ INSERT INTO card_deck (card_id, deck_id) VALUES (1126, 121);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2016, 1126);
 
 INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the cat','Leopard',
-	'https://cdn.mos.cms.futurecdn.net/J9KeYkEZf4HHD5LRGf799N.jpg',
+	'https://540934-1733880-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2020/01/leopard-walking-1024x683.jpg',
 	2,1); --1127
 INSERT INTO card_deck (card_id, deck_id) VALUES (1127, 121);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2016, 1127);
@@ -960,4 +960,84 @@ INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES 
 	2,1); --1154
 INSERT INTO card_deck (card_id, deck_id) VALUES (1154, 122);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2018, 1154);
+
+--big cats 2016
+--small cats 2017
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the cat','Snow Leopard',
+	'https://540934-1733880-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2019/05/Snow-leopard-AdobeStock_243151027-1024x683.jpg',
+	2,1); --1155
+INSERT INTO card_deck (card_id, deck_id) VALUES (1155, 121);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2016, 1155);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the cat','Clouded Leopard',
+	'https://540934-1733880-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2019/06/Clouded-leopard-AdobeStock_177858806-1024x683.jpg',
+	2,1); --1156
+INSERT INTO card_deck (card_id, deck_id) VALUES (1156, 121);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2016, 1156);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the cat','Asiatic Golden Cat',
+	'https://540934-1733880-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2020/05/Asiatic-golden-cat-Flikr-creative-commons-1024x683.jpg',
+	2,1); --1157
+INSERT INTO card_deck (card_id, deck_id) VALUES (1157, 121);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2017, 1157);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the cat','Caracal',
+	'https://540934-1733880-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2018/04/Caracal.jpg',
+	2,1); --1158
+INSERT INTO card_deck (card_id, deck_id) VALUES (1158, 121);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2017, 1158);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the cat','Ocelot',
+	'https://540934-1733880-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2018/05/DSC_0731-1024x683.jpg',
+	2,1); --1159
+INSERT INTO card_deck (card_id, deck_id) VALUES (1159, 121);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2017, 1159);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the cat','Margay',
+	'https://540934-1733880-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2019/04/Margay-AdobeStock_102591632-1024x683.jpg',
+	2,1); --1160
+INSERT INTO card_deck (card_id, deck_id) VALUES (1160, 121);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2017, 1160);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the cat','Colocolo',
+	'https://540934-1733880-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2021/07/Pampas-cat-1024x683.jpg',
+	2,1); --1161
+INSERT INTO card_deck (card_id, deck_id) VALUES (1161, 121);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2017, 1161);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the cat','Canada Lynx',
+	'https://540934-1733880-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2018/04/Bobcat-in-the-snow.jpg',
+	2,1); --1162
+INSERT INTO card_deck (card_id, deck_id) VALUES (1162, 121);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2017, 1162);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the cat','Bobcat',
+	'https://540934-1733880-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2020/05/Bobcat-AdobeStock_177846262-1024x683.jpg',
+	2,1); --1163
+INSERT INTO card_deck (card_id, deck_id) VALUES (1163, 121);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2017, 1163);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the cat','Puma',
+	'https://540934-1733880-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2018/04/Puma.jpg',
+	2,1); --1164
+INSERT INTO card_deck (card_id, deck_id) VALUES (1164, 121);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2017, 1164);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the cat','Cheetah',
+	'https://540934-1733880-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2020/01/two-cheetahs-1024x682.jpg',
+	2,1); --1165
+INSERT INTO card_deck (card_id, deck_id) VALUES (1165, 121);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2017, 1165);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the cat','Jungle Cat',
+	'https://540934-1733880-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2019/06/Jungle-cat-AdobeStock_134820657-1024x682.jpg',
+	2,1); --1166
+INSERT INTO card_deck (card_id, deck_id) VALUES (1166, 121);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2017, 1166);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the cat','Sand Cat',
+	'https://540934-1733880-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2018/04/Sand-cat.jpg',
+	2,1); --1167
+INSERT INTO card_deck (card_id, deck_id) VALUES (1167, 121);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2017, 1167);
 GO
