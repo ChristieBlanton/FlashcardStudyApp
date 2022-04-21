@@ -38,7 +38,7 @@ CREATE TABLE card (
 	card_id int IDENTITY (1001,1) NOT NULL,
 	card_front varchar(200) NOT NULL,
 	card_back varchar(500) NOT NULL,
-	card_image varchar(200) DEFAULT('') NOT NULL,
+	card_image varchar(250) DEFAULT('') NOT NULL,
 	user_id int NOT NULL,
 	isPublic bit DEFAULT(0) NOT NULL,
 	CONSTRAINT FK_card FOREIGN KEY (user_id) REFERENCES users(user_id),
@@ -105,6 +105,7 @@ INSERT INTO tag (tag_name) VALUES ('shell commands'); --2014
 INSERT INTO tag (tag_name) VALUES ('Ohio birds'); --2015
 INSERT INTO tag (tag_name) VALUES ('big cats'); --2016
 INSERT INTO tag (tag_name) VALUES ('small cats'); --2017
+INSERT INTO tag (tag_name) VALUES ('paintings'); --2018
 
 
 
@@ -129,7 +130,7 @@ INSERT INTO card (card_front, card_back, user_id) VALUES ('What is inheritance?'
 INSERT INTO card_deck (card_id, deck_id) VALUES (1003, 101);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1003);
 
-INSERT INTO card (card_front, card_back, user_id) VALUES ('What is polymorphism?', 'Allows differnt types of objects to be treated as the same type of thing
+INSERT INTO card (card_front, card_back, user_id) VALUES ('What is polymorphism?', 'Allows different types of objects to be treated as the same type of thing
 	within a program.', 3); --1004
 INSERT INTO card_deck (card_id, deck_id) VALUES (1004, 101);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1004);
@@ -282,7 +283,7 @@ INSERT INTO card (card_front, card_back, user_id) VALUES ('What is inheritance?'
 INSERT INTO card_deck (card_id, deck_id) VALUES (1032, 105);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1032);
 
-INSERT INTO card (card_front, card_back, user_id) VALUES ('What is polymorphism?', 'Allows differnt types of objects to be treated as the same type of thing
+INSERT INTO card (card_front, card_back, user_id) VALUES ('What is polymorphism?', 'Allows different types of objects to be treated as the same type of thing
 	within a program.', 4); --1033
 INSERT INTO card_deck (card_id, deck_id) VALUES (1033, 105);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1033);
@@ -432,7 +433,7 @@ INSERT INTO card (card_front, card_back, user_id) VALUES ('What is inheritance?'
 INSERT INTO card_deck (card_id, deck_id) VALUES (1061, 109);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1061);
 
-INSERT INTO card (card_front, card_back, user_id) VALUES ('What is polymorphism?', 'Allows differnt types of objects to be treated as the same type of thing
+INSERT INTO card (card_front, card_back, user_id) VALUES ('What is polymorphism?', 'Allows different types of objects to be treated as the same type of thing
 	within a program.', 5); --1062
 INSERT INTO card_deck (card_id, deck_id) VALUES (1062, 109);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1062);
@@ -582,7 +583,7 @@ INSERT INTO card (card_front, card_back, user_id) VALUES ('What is inheritance?'
 INSERT INTO card_deck (card_id, deck_id) VALUES (1090, 113);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1090);
 
-INSERT INTO card (card_front, card_back, user_id) VALUES ('What is polymorphism?', 'Allows differnt types of objects to be treated as the same type of thing
+INSERT INTO card (card_front, card_back, user_id) VALUES ('What is polymorphism?', 'Allows different types of objects to be treated as the same type of thing
 	within a program.', 6); --1091
 INSERT INTO card_deck (card_id, deck_id) VALUES (1091, 113);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2001, 1091);
@@ -776,6 +777,7 @@ INSERT INTO deck (user_id, deck_name, deck_description, isPublic) VALUES (2, 'Wi
 -- tag 'big cats' 2016
 -- tag 'small cats' 2017
 
+
 INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the cat','Bengal tiger',
 	'https://files.worldwildlife.org/wwfcmsprod/images/Tiger_resting_Bandhavgarh_National_Park_India/hero_small/6aofsvaglm_Medium_WW226365.jpg',
 	2,1); --1125
@@ -806,4 +808,156 @@ INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES 
 INSERT INTO card_deck (card_id, deck_id) VALUES (1129, 121);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2017, 1129);
 
+INSERT INTO deck (user_id, deck_name, deck_description, isPublic) VALUES (2, 'Paintings','Identify the name and painter of famous paintings', 1); --122
+-- tag 'paintings' 2018
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the painting and artist','Mona Lisa by Leonardo da Vinci',
+	'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/270px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg',
+	2,1); --1130
+INSERT INTO card_deck (card_id, deck_id) VALUES (1130, 122);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2018, 1130);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the painting and artist','The Starry Night by Vincent van Gogh',
+	'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/270px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg',
+	2,1); --1131
+INSERT INTO card_deck (card_id, deck_id) VALUES (1131, 122);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2018, 1131);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the painting and artist','Girl with a Pearl Earring by Johannes Vermeer',
+	'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/1665_Girl_with_a_Pearl_Earring.jpg/270px-1665_Girl_with_a_Pearl_Earring.jpg',
+	2,1); --1132
+INSERT INTO card_deck (card_id, deck_id) VALUES (1132, 122);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2018, 1132);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the painting and artist','The Kiss by Gustav Klimt',
+	'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/The_Kiss_-_Gustav_Klimt_-_Google_Cultural_Institute.jpg/300px-The_Kiss_-_Gustav_Klimt_-_Google_Cultural_Institute.jpg',
+	2,1); --1133
+INSERT INTO card_deck (card_id, deck_id) VALUES (1133, 122);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2018, 1133);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the painting and artist','The Last Supper by Leonardo da Vinci',
+	'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/%C3%9Altima_Cena_-_Da_Vinci_5.jpg/350px-%C3%9Altima_Cena_-_Da_Vinci_5.jpg',
+	2,1); --1134
+INSERT INTO card_deck (card_id, deck_id) VALUES (1134, 122);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2018, 1134);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the painting and artist','American Gothic by Grant Wood',
+	'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Grant_Wood_-_American_Gothic_-_Google_Art_Project.jpg/240px-Grant_Wood_-_American_Gothic_-_Google_Art_Project.jpg',
+	2,1); --1135
+INSERT INTO card_deck (card_id, deck_id) VALUES (1135, 122);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2018, 1135);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the painting and artist', 'Whistler"s Mother (Arrangement in Grey and Black No. 1) by James McNeill Whistler',
+	'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Whistlers_Mother_high_res.jpg/270px-Whistlers_Mother_high_res.jpg',
+	2,1); --1136
+INSERT INTO card_deck (card_id, deck_id) VALUES (1136, 122);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2018, 1136);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the painting and artist', 'The Birth of Venus by Sandro Botticelli',
+	'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg/400px-Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg',
+	2,1); --1137
+INSERT INTO card_deck (card_id, deck_id) VALUES (1137, 122);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2018, 1137);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the painting and artist', 'Las Meninas by Diego Velazquez',
+	'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Las_Meninas%2C_by_Diego_Vel%C3%A1zquez%2C_from_Prado_in_Google_Earth.jpg/360px-Las_Meninas%2C_by_Diego_Vel%C3%A1zquez%2C_from_Prado_in_Google_Earth.jpg',
+	2,1); --1138
+INSERT INTO card_deck (card_id, deck_id) VALUES (1138, 122);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2018, 1138);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the painting and artist', 'Guernica by Pablo Picasso',
+	'https://upload.wikimedia.org/wikipedia/en/thumb/7/74/PicassoGuernica.jpg/350px-PicassoGuernica.jpg',
+	2,1); --1139
+INSERT INTO card_deck (card_id, deck_id) VALUES (1139, 122);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2018, 1139);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the painting and artist', 'The Night Watch by Rembrandt van Rijn',
+	'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/The_Night_Watch_-_HD.jpg/380px-The_Night_Watch_-_HD.jpg',
+	2,1); --1140
+INSERT INTO card_deck (card_id, deck_id) VALUES (1140, 122);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2018, 1140);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the painting and artist', 'The Arnolfini Portrait by Jan van Eyck',
+	'https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Van_Eyck_-_Arnolfini_Portrait.jpg/270px-Van_Eyck_-_Arnolfini_Portrait.jpg',
+	2,1); --1141
+INSERT INTO card_deck (card_id, deck_id) VALUES (1141, 122);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2018, 1141);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the painting and artist', 'The Persistence of Memory by Salvador Dali',
+	'https://upload.wikimedia.org/wikipedia/en/thumb/d/dd/The_Persistence_of_Memory.jpg/300px-The_Persistence_of_Memory.jpg',
+	2,1); --1142
+INSERT INTO card_deck (card_id, deck_id) VALUES (1142, 122);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2018, 1142);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the painting and artist', 'Impression, Sunrise by Claude Monet',
+	'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Monet_-_Impression%2C_Sunrise.jpg/400px-Monet_-_Impression%2C_Sunrise.jpg',
+	2,1); --1143
+INSERT INTO card_deck (card_id, deck_id) VALUES (1143, 122);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2018, 1143);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the painting and artist', 'A Sunday Afternoon on the Island of La Grande Jatte',
+	'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/A_Sunday_on_La_Grande_Jatte%2C_Georges_Seurat%2C_1884.jpg/350px-A_Sunday_on_La_Grande_Jatte%2C_Georges_Seurat%2C_1884.jpg',
+	2,1); --1144
+INSERT INTO card_deck (card_id, deck_id) VALUES (1144, 122);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2018, 1144);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the painting and artist', 'Liberty Leading the People by Eugene Delacroix',
+	'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Eug%C3%A8ne_Delacroix_-_Le_28_Juillet._La_Libert%C3%A9_guidant_le_peuple.jpg/300px-Eug%C3%A8ne_Delacroix_-_Le_28_Juillet._La_Libert%C3%A9_guidant_le_peuple.jpg',
+	2,1); --1145
+INSERT INTO card_deck (card_id, deck_id) VALUES (1145, 122);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2018, 1145);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the painting and artist', 'Cafe Terrace at Night by Vincent Van Gogh',
+	'https://sep.yimg.com/ty/cdn/madisonartshop/most-famous-paintings-16.jpg?t=1628119938&',
+	2,1); --1146
+INSERT INTO card_deck (card_id, deck_id) VALUES (1146, 122);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2018, 1146);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the painting and artist', 'Les Menoiselles d"Avignon by Pablo Picasso',
+	'https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Les_Demoiselles_d%27Avignon.jpg/350px-Les_Demoiselles_d%27Avignon.jpg',
+	2,1); --1147
+INSERT INTO card_deck (card_id, deck_id) VALUES (1147, 122);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2018, 1147);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the painting and artist', 'Bal du moulin de la Galette by Pierre-Auguste Renoir',
+	'https://sep.yimg.com/ty/cdn/madisonartshop/most-famous-paintings-19.jpg?t=1628119938&',
+	2,1); --1148
+INSERT INTO card_deck (card_id, deck_id) VALUES (1148, 122);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2018, 1148);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the painting and artist', 'The Scream by Edvard Munch',
+	'https://sep.yimg.com/ty/cdn/madisonartshop/most-famous-paintings-3.jpg?t=1628119938&',
+	2,1); --1149
+INSERT INTO card_deck (card_id, deck_id) VALUES (1149, 122);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2018, 1149);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the painting and artist', 'Three Musicians by Pablo Picasso',
+	'https://sep.yimg.com/ty/cdn/madisonartshop/Picasso-3musicians?t=1628119938&',
+	2,1); --1150
+INSERT INTO card_deck (card_id, deck_id) VALUES (1150, 122);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2018, 1150);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the painting and artist', 'Water Lillies by Claude Monet',
+	'https://sep.yimg.com/ty/cdn/madisonartshop/most-famous-paintings-13.jpg?t=1628119938&',
+	2,1); --1151
+INSERT INTO card_deck (card_id, deck_id) VALUES (1151, 122);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2018, 1151);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the painting and artist', 'The Flower Carrier by Diego Rivera',
+	'https://sep.yimg.com/ty/cdn/madisonartshop/carrier?t=1628119938&',
+	2,1); --1152
+INSERT INTO card_deck (card_id, deck_id) VALUES (1152, 122);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2018, 1152);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the painting and artist', 'The Son of Man by Rene Magrittees',
+	'https://sep.yimg.com/ty/cdn/madisonartshop/most-famous-paintings-17.jpg?t=1628119938&',
+	2,1); --1153
+INSERT INTO card_deck (card_id, deck_id) VALUES (1153, 122);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2018, 1153);
+
+INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the painting and artist', 'Dogs Playing Poker by C.M. Coolidge',
+	'https://sep.yimg.com/ty/cdn/madisonartshop/most-famous-paintings-20.jpg?t=1628119938&',
+	2,1); --1154
+INSERT INTO card_deck (card_id, deck_id) VALUES (1154, 122);
+INSERT INTO card_tag (tag_id, card_id) VALUES (2018, 1154);
 GO
