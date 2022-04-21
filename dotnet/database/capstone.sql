@@ -803,7 +803,7 @@ INSERT INTO card_deck (card_id, deck_id) VALUES (1128, 121);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2016, 1128);
 
 INSERT INTO card (card_front, card_back	, card_image, user_id ,isPublic) VALUES ('Identify the cat','Serval',
-	'https://static.wikia.nocookie.net/wildkratts/images/f/f4/Serval_RL.PNG/revision/latest?cb=20190421222129',
+	'https://www.awf.org/sites/default/files/styles/species_image/public/2020-04/Website_SpeciesPage_Serval02_Challenges.jpg?h=29c6c1f6&itok=7C1FoaPW',
 	2,1); --1129
 INSERT INTO card_deck (card_id, deck_id) VALUES (1129, 121);
 INSERT INTO card_tag (tag_id, card_id) VALUES (2017, 1129);

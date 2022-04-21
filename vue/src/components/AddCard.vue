@@ -9,21 +9,24 @@
 
 
         <div class="add-card-form"  v-show="isAddCardVisible">
-            <div class="add-card-input"><input type="text" required name="card-front" id="card-front" placeholder="Card Front" v-model="card.cardFront"></div>
-            <textarea rows="5" cols="40" required name="card-back" id="card-back" placeholder="Card Back" v-model="card.cardBack"></textarea>
-            <input type="text" name="card-image" id="card-image" placeholder="Image URL (optional)" v-model="card.cardImage">
+            <input class="form-control" type="text" required name="card-front" id="card-front" placeholder="Card Front" v-model="card.cardFront">
+            <textarea class="form-control" rows="5" cols="40" required name="card-back" id="card-back" placeholder="Card Back" v-model="card.cardBack"></textarea>
+            <input class="form-control form-img-url" type="text" name="card-image" id="card-image" placeholder="Image URL (optional)" v-model="card.cardImage">
             <div class="tags">
                 <!-- <label for="tags-basic">Type a new tag and press enter</label><br> -->
-                <input  type="text" v-on:keyup.enter="addTag()" placeholder="Type a new tag and press enter" v-model="tag">
+                <input class="form-control"  type="text" v-on:keyup.enter="addTag()" placeholder="Type a new tag and press enter" v-model="tag">
                 <p>Tags: </p>
-                <div class="list-tags" v-for="tag in card.tags" v-bind:key="tag">
-                    <p>{{ tag }} <img class="remove-tag-btn" src="../assets/close.svg" v-on:click="removeTag(tag)" /></p>
+                <div class="list-of-tags">
+                    <div class="list-tags" v-for="tag in card.tags" v-bind:key="tag">
+                        <p>{{ tag }} <img class="remove-tag-btn" src="../assets/close.svg" v-on:click="removeTag(tag)" /></p>
+
+                    </div>
 
                 </div>
             </div>
             <div class="form-btn">
-                <button class="teal-btn" v-on:click="addCard()">Submit</button>
-                <button class="teal-btn" v-on:click="isAddCardVisible = false">Cancel</button>
+                <button class="small-navy-btn" v-on:click="addCard()">Submit</button>
+                <button class="small-lt-btn" v-on:click="isAddCardVisible = false">Cancel</button>
 
             </div>
         </div>
@@ -91,16 +94,27 @@ export default{
     from{transform: rotateX(90deg);}
     to{transform: rotateX(0deg);}
 } */
-.add-card-form div input{
-    width: 95%;
-    border: none;
-}
+
 .add-card-input{
-    border-color: aqua;
-    border-width: 3px;
-    border-style: outset;
     display: flex;
     justify-content: center;
+}
+.list-of-tags{
+    display: flex;
+    gap: 10px;
+}
+.list-tags{
+    background-color: #1ee3cf;
+    border-width: 3px;
+    border-color: rgba(255, 255, 255, 0.521);
+    border-style: solid;
+    padding: 5px;
+    height: 40px;
+    border-radius: 10px;
+    transition-duration: .2s;
+}
+.form-btn button{
+    transition: .2s;
 }
 .new-card-btn{
     height: 50px;
@@ -110,6 +124,9 @@ export default{
 .new-card-btn:hover{
     color: black;
 }
+.form-img-url{
+    height: 40px !important;
+}
 .add-card{
     display: flex;
     justify-content: space-around;
@@ -117,6 +134,7 @@ export default{
 .add-card-form{
     display: flex;
     flex-direction: column;
+    gap: 5px;
 }
 #card-name{
     margin-bottom: 5px;

@@ -1,4 +1,6 @@
 <template>
+  <div>
+   <button v-show="!isAddCardVisible" v-on:click="$router.push({name: 'startstudysession', params: {deckId: $route.params.deckId}})" class="deck-start-study small-new-teal-btn skew-btn"><div>Study Session</div></button>
   <div class="list-cards">
     <button class="card purple-btn btn btn-lg btn-primary btn-block" id="card"
         v-for="card in cards"  
@@ -20,7 +22,7 @@
         <!-- </div> -->
     </button>
   </div>
-    
+  </div>  
 </template>
 
 <script>
@@ -67,7 +69,7 @@ export default {
   },
   created() {
     cardService
-      .getPublicCards(parseInt(this.$route.params.deckId))
+      .getCardsInDeck(parseInt(this.$route.params.deckId))
       .then((response) => {
         this.$store.commit("SET_CARDS", response.data);
       });
