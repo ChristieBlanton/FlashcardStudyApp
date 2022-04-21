@@ -105,10 +105,16 @@ export default{
 }
 .list-tags{
     background-color: #1ee3cf;
+    border-width: 3px;
+    border-color: rgba(255, 255, 255, 0.521);
+    border-style: solid;
     padding: 5px;
-    height: 35px;
+    height: 40px;
     border-radius: 10px;
     transition-duration: .2s;
+}
+.form-btn button{
+    transition: .2s;
 }
 .new-card-btn{
     height: 50px;

@@ -2,10 +2,10 @@
   <div class="home">
     <h2 class="home-header">Welcome to Flasher<br> <h3 class="home-header home-header-small">Your Flash Card Study App</h3></h2>
     <div class="home-options">
-      <button class="navy-btn" v-on:click="$router.push({name: 'communitydecks'})">Community Decks</button>
-      <button class="purple-btn" v-on:click="$router.push({name: 'communitycards'})">Community Cards</button>
-      <button class="new-teal-btn" v-on:click="$router.push({name: 'mydecks'})">My Decks</button>
-      <button class="lt-btn" v-on:click="$router.push({name: 'mycards'})">My Cards</button>
+      <button class="navy-btn skew-btn" v-on:click="$router.push({name: 'communitydecks'})"><div>Community Decks</div></button>
+      <button class="purple-btn skew-btn" v-on:click="$router.push({name: 'communitycards'})"><div>Community Cards</div></button>
+      <button class="new-teal-btn skew-btn" v-on:click="$router.push({name: 'mydecks'})"><div>My Decks</div></button>
+      <button class="lt-btn skew-btn" v-on:click="$router.push({name: 'mycards'})"><div>My Cards</div></button>
 
     </div>
   </div>
@@ -35,13 +35,16 @@ export default {
 .home-header-small{
   font-size: 3vw;
 }
-.home-options button{
+.home-options button {
   width: 40%;
-  font-family: 'Pacifico';
-  font-size: 5vh;
+  
   border-width: 3px;
   border-style: solid;
   
+}
+.home-options button div{
+  font-family: 'Pacifico';
+  font-size: 5vh;
 }
 
 .home-options{

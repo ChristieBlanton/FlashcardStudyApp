@@ -8,7 +8,7 @@
             <label for="card-back">Back</label>
             <textarea class="form-control" rows="5" cols="40" name="card-back" id="card-back" v-model="card.cardBack"></textarea>
             <label for="card-image">Image URL (optional)</label>
-            <input class="form-control" type="text" name="card-image" id="card-image" v-model="card.cardImage">
+            <input class="form-control form-img-url" type="text" name="card-image" id="card-image" v-model="card.cardImage">
             <div class="tags">
                 <label for="tags-basic">Type a new tag and press enter</label>
                 <input class="form-control" type="text" v-on:keyup.enter="addTag()" v-model="tag">
@@ -98,9 +98,12 @@ h2 {
 }
 
 .list-tags{
-    background-color: aqua;
+    background-color: #1ee3cf;
+    border-width: 3px;
+    border-color: rgba(255, 255, 255, 0.521);
+    border-style: solid;
     padding: 5px;
-    height: 35px;
+    height: 40px;
     border-radius: 10px;
     transition-duration: .2s;
 }
@@ -110,7 +113,7 @@ h2 {
 }
 .edit-card-form{
     display: flex;
-    width: 60%;
+    width: 50%;
     flex-direction: column;
 }
 #card-name{
